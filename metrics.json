@@ -1,0 +1,111 @@
+{
+  "rmse": 18.473274830409498,
+  "mae": 10.648403272573216,
+  "r2": 0.9510132075555312,
+  "feature_importances": [
+    {
+      "feature": "lag_168",
+      "importance": 0.8531936385838168
+    },
+    {
+      "feature": "lag_1",
+      "importance": 0.10205714081664048
+    },
+    {
+      "feature": "lag_24",
+      "importance": 0.012044176820588956
+    },
+    {
+      "feature": "rolling_mean_24",
+      "importance": 0.004571631220493866
+    },
+    {
+      "feature": "PULocationID",
+      "importance": 0.002832303992621599
+    },
+    {
+      "feature": "hour_of_day",
+      "importance": 0.002817469612021787
+    },
+    {
+      "feature": "sealevelpressure",
+      "importance": 0.0022634051079973125
+    },
+    {
+      "feature": "humidity",
+      "importance": 0.002174677340588036
+    },
+    {
+      "feature": "hour_cos",
+      "importance": 0.0020432836729743537
+    },
+    {
+      "feature": "windspeed",
+      "importance": 0.0017292415827648649
+    },
+    {
+      "feature": "hour_sin",
+      "importance": 0.0016920497673662152
+    },
+    {
+      "feature": "temp",
+      "importance": 0.0016788948678687174
+    },
+    {
+      "feature": "windgust",
+      "importance": 0.0016650453512029597
+    },
+    {
+      "feature": "feelslike",
+      "importance": 0.001645606666895519
+    },
+    {
+      "feature": "dayofyear",
+      "importance": 0.0016253692228522056
+    },
+    {
+      "feature": "day",
+      "importance": 0.0013384882235270399
+    },
+    {
+      "feature": "cloudcover",
+      "importance": 0.0012881812733236122
+    },
+    {
+      "feature": "dow_sin",
+      "importance": 0.0010347571897894724
+    },
+    {
+      "feature": "dow_cos",
+      "importance": 0.0007997178735029133
+    },
+    {
+      "feature": "precip",
+      "importance": 0.0007266919711899901
+    },
+    {
+      "feature": "weekofyear",
+      "importance": 0.00042468277242669694
+    },
+    {
+      "feature": "is_weekend",
+      "importance": 0.00019649678668078076
+    },
+    {
+      "feature": "precipprob",
+      "importance": 8.556785400258529e-05
+    },
+    {
+      "feature": "month",
+      "importance": 7.075295515854601e-05
+    },
+    {
+      "feature": "snow",
+      "importance": 7.284737047692472e-07
+    },
+    {
+      "feature": "quarter",
+      "importance": 0.0
+    }
+  ]
+}
