@@ -1,2 +1,7 @@
 rf_model.pkl
 *.pkl
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
