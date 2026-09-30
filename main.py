@@ -227,19 +227,59 @@ def _build_prediction_sample_points() -> list[dict]:
     if model is None:
         raise HTTPException(status_code=503, detail="The serialized model is not available.")
 
-    frame = _build_model_frame()
-    test_frame = frame.loc[frame["pickup_date"] >= "2021-06-01"].sort_values("pickup_hour").copy()
+    frame = pd.read_parquet(
+        HISTORY_PATH,
+        columns=[
+            "pickup_hour",
+            "PULocationID",
+            "ride_count",
+            *WEATHER_FIELDS,
+            "day",
+            "month",
+            "dayofweek",
+            "weekofyear",
+            "is_weekend",
+            "quarter",
+            "dayofyear",
+        ],
+    )
+    frame["pickup_hour"] = pd.to_datetime(frame["pickup_hour"]).dt.floor("h")
+    test_frame = frame.loc[frame["pickup_hour"] >= pd.Timestamp("2021-06-01")].sort_values("pickup_hour")
     if test_frame.empty:
         raise HTTPException(status_code=404, detail="No test rows were found for the prediction sample.")
 
-    X_test = test_frame.loc[:, FEATURE_ORDER]
-    y_test = test_frame["ride_count"].to_numpy(dtype=float)
-    predictions = model.predict(X_test)
+    sample_size = min(80, len(test_frame))
+    candidate_count = min(len(test_frame), sample_size * 20)
+    candidate_indices = np.linspace(0, len(test_frame) - 1, num=candidate_count, dtype=int)
+    candidates = test_frame.iloc[candidate_indices].reset_index(drop=True)
+    lag_hours = np.array([1, 24, 168, *range(1, 25)])
+    query_locations = np.repeat(candidates["PULocationID"].to_numpy(dtype=int), len(lag_hours))
+    query_times = np.repeat(candidates["pickup_hour"].to_numpy(), len(lag_hours)) - np.tile(
+        pd.to_timedelta(lag_hours, unit="h"), candidate_count
+    )
+    query_index = pd.MultiIndex.from_arrays(
+        [query_locations, query_times], names=history_by_key.index.names
+    )
+    lag_values = history_by_key.reindex(query_index).to_numpy().reshape(candidate_count, -1)
+    valid_indices = np.flatnonzero(np.isfinite(lag_values).all(axis=1))
 
-    sample_size = min(80, len(y_test))
-    sample_indices = np.linspace(0, len(y_test) - 1, num=sample_size, dtype=int)
-    sample_frame = test_frame.iloc[sample_indices].copy()
-    sample_predictions = predictions[sample_indices]
+    if not len(valid_indices):
+        raise HTTPException(status_code=404, detail="No prediction sample rows have sufficient lag history.")
+
+    selected_positions = np.linspace(0, len(valid_indices) - 1, num=min(sample_size, len(valid_indices)), dtype=int)
+    selected_indices = valid_indices[selected_positions]
+    sample_frame = candidates.iloc[selected_indices].copy()
+    sample_frame["hour_of_day"] = sample_frame["pickup_hour"].dt.hour
+    sample_frame["hour_sin"] = np.sin(2 * np.pi * sample_frame["hour_of_day"] / 24)
+    sample_frame["hour_cos"] = np.cos(2 * np.pi * sample_frame["hour_of_day"] / 24)
+    sample_frame["dow_sin"] = np.sin(2 * np.pi * sample_frame["dayofweek"] / 7)
+    sample_frame["dow_cos"] = np.cos(2 * np.pi * sample_frame["dayofweek"] / 7)
+    selected_lags = lag_values[selected_indices]
+    sample_frame["lag_1"] = selected_lags[:, 0]
+    sample_frame["lag_24"] = selected_lags[:, 1]
+    sample_frame["lag_168"] = selected_lags[:, 2]
+    sample_frame["rolling_mean_24"] = selected_lags[:, 3:].mean(axis=1)
+    sample_predictions = model.predict(sample_frame.loc[:, FEATURE_ORDER])
 
     return [
         {
@@ -254,6 +294,30 @@ def _build_prediction_sample_points() -> list[dict]:
 @app.get("/predictions-sample")
 def get_predictions_sample() -> dict:
     return {"points": _build_prediction_sample_points()}
+
+
+@app.get("/locations")
+def get_locations() -> dict:
+    lookup_path = BASE_DIR / "taxi_zone_lookup.csv"
+    if not lookup_path.exists():
+        raise HTTPException(status_code=404, detail="taxi_zone_lookup.csv was not found.")
+    if history is None:
+        raise HTTPException(status_code=503, detail="Historical ride data is not available.")
+
+    location_ids = set(history.index.get_level_values("PULocationID").unique())
+    lookup = pd.read_csv(lookup_path)
+    lookup = lookup.loc[lookup["LocationID"].isin(location_ids)].sort_values(["Borough", "Zone"])
+
+    return {
+        "locations": [
+            {
+                "PULocationID": int(row.LocationID),
+                "Borough": row.Borough,
+                "Zone": row.Zone,
+            }
+            for row in lookup.itertuples(index=False)
+        ]
+    }
 
 
 @app.get("/historical")

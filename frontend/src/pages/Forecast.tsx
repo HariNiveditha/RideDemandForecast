@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 
-const locationMap: Record<string, number> = {
-  Manhattan: 4,
-  Queens: 7,
-  Brooklyn: 11,
-  Bronx: 3,
-}
-
 type HistoricalRange = {
   start: string
   end: string
+}
+
+type PickupLocation = {
+  PULocationID: number
+  Borough: string
+  Zone: string
 }
 
 type FeatureImportance = {
@@ -76,7 +75,8 @@ function getFeatureInfluenceText(featureImportances: FeatureImportance[]) {
 }
 
 function Forecast() {
-  const [location, setLocation] = useState('Select a pickup zone')
+  const [locationId, setLocationId] = useState('')
+  const [locations, setLocations] = useState<PickupLocation[]>([])
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [weather, setWeather] = useState({ temp: '', humidity: '', precip: '' })
@@ -88,17 +88,19 @@ function Forecast() {
   useEffect(() => {
     const loadForecastConstraints = async () => {
       try {
-        const [historicalResponse, metricsResponse] = await Promise.all([
+        const [historicalResponse, metricsResponse, locationsResponse] = await Promise.all([
           fetch('/api/historical'),
           fetch('/api/metrics'),
+          fetch('/api/locations'),
         ])
 
-        if (!historicalResponse.ok || !metricsResponse.ok) {
-          throw new Error('Unable to load the forecast window and model metrics.')
+        if (!historicalResponse.ok || !metricsResponse.ok || !locationsResponse.ok) {
+          throw new Error('Unable to load the forecast window, model metrics, and pickup zones.')
         }
 
         const historicalData = await historicalResponse.json()
         const metricsData = (await metricsResponse.json()) as MetricsResponse
+        const locationsData = (await locationsResponse.json()) as { locations: PickupLocation[] }
 
         const range = {
           start: historicalData.date_range.start.slice(0, 10),
@@ -107,6 +109,7 @@ function Forecast() {
 
         setDateRange(range)
         setFeatureImportances(metricsData.feature_importances ?? [])
+        setLocations(locationsData.locations)
         setDate((currentDate) => {
           if (currentDate && dateIsWithinRange(currentDate, range.start, range.end)) {
             return currentDate
@@ -129,7 +132,8 @@ function Forecast() {
   const submitPrediction = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const selectedLocation = locationMap[location]
+    const selectedLocation = Number(locationId)
+    const selectedZone = locations.find((zone) => zone.PULocationID === selectedLocation)
     const timestamp = date && time ? new Date(`${date}T${time}:00`).toISOString() : ''
 
     if (!dateRange.start || !dateRange.end) {
@@ -142,7 +146,7 @@ function Forecast() {
       return
     }
 
-    if (!selectedLocation || !timestamp || !weather.temp || !weather.humidity || !weather.precip) {
+    if (!selectedZone || !timestamp || !weather.temp || !weather.humidity || !weather.precip) {
       setStatus('Please choose a location, date, time, and required weather fields before predicting.')
       return
     }
@@ -186,7 +190,7 @@ function Forecast() {
 
       setPrediction({
         rides: predictedRides,
-        context: `For ${location} on ${formattedDate} at ${formattedTime}, with ${tempValue.toFixed(1)}°C and ${precipValue.toFixed(1)}mm precipitation, the model expects ${predictedRides} rides.`,
+        context: `For ${selectedZone.Zone} (ID ${selectedLocation}), ${selectedZone.Borough}, on ${formattedDate} at ${formattedTime}, with ${tempValue.toFixed(1)}°C and ${precipValue.toFixed(1)}mm precipitation, the model expects ${predictedRides} rides.`,
         influence: getFeatureInfluenceText(featureImportances),
       })
       setStatus('')
@@ -232,12 +236,13 @@ function Forecast() {
         <div className="form-fields">
           <label>
             Pickup location
-            <select value={location} onChange={(event) => setLocation(event.target.value)}>
-              <option>Select a pickup zone</option>
-              <option>Manhattan</option>
-              <option>Queens</option>
-              <option>Brooklyn</option>
-              <option>Bronx</option>
+            <select value={locationId} onChange={(event) => setLocationId(event.target.value)}>
+              <option value="">Select a pickup zone</option>
+              {locations.map((zone) => (
+                <option key={zone.PULocationID} value={zone.PULocationID}>
+                  {zone.Zone} (ID {zone.PULocationID}) - {zone.Borough}
+                </option>
+              ))}
             </select>
           </label>
 
