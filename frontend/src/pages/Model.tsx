@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import SectionHeading from '../components/SectionHeading'
+import StateCard from '../components/StateCard'
 import { Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 type MetricsResponse = {
@@ -69,11 +71,11 @@ function Model() {
   }, [])
 
   if (loading) {
-    return <div className="view-notice"><strong>Loading model metrics…</strong></div>
+    return <StateCard tone="loading" title="Loading model metrics…" description="Warming up the Random Forest evaluation results." />
   }
 
   if (error || !metrics) {
-    return <div className="view-notice"><div><strong>Model metrics unavailable</strong><span>{error || 'metrics.json was not found or could not be loaded.'}</span></div></div>
+    return <StateCard tone="error" title="Model metrics unavailable" description={error || 'metrics.json was not found or could not be loaded.'} />
   }
 
   const chartData = [...metrics.feature_importances]
@@ -83,12 +85,7 @@ function Model() {
 
   return (
     <section className="forecast-section">
-      <div className="section-heading">
-        <div>
-          <span className="eyebrow">MODEL PERFORMANCE</span>
-          <h2>Model metrics</h2>
-        </div>
-      </div>
+      <SectionHeading eyebrow="MODEL PERFORMANCE" title="Model metrics" />
 
       <div className="kpi-grid">
         <article className="kpi-card">
@@ -119,9 +116,9 @@ function Model() {
         </div>
 
         {predictionLoading ? (
-          <div className="view-notice"><strong>Loading prediction sample…</strong></div>
+          <StateCard compact tone="loading" title="Loading prediction sample…" />
         ) : predictionError || !sample ? (
-          <div className="view-notice"><div><strong>Prediction sample unavailable</strong><span>{predictionError || 'The prediction sample could not be loaded.'}</span></div></div>
+          <StateCard compact tone="error" title="Prediction sample unavailable" description={predictionError || 'The prediction sample could not be loaded.'} />
         ) : (
           <div style={{ width: '100%', height: 260, marginTop: 18 }}>
             <ResponsiveContainer>

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import SectionHeading from '../components/SectionHeading'
+import StateCard from '../components/StateCard'
+import { ASPHALT, CAB_YELLOW, TaxiIcon } from '../components/TaxiIcons'
 
 type HistoricalResponse = {
   demand_by_hour_of_day: Array<{ hour: number; avg_rides: number }>
@@ -35,11 +38,11 @@ function Analytics() {
   }, [])
 
   if (loading) {
-    return <div className="view-notice"><strong>Loading analytics…</strong></div>
+    return <StateCard tone="loading" title="Loading analytics…" description="Tallying rides by hour and pickup zone." />
   }
 
   if (error || !data) {
-    return <div className="view-notice"><div><strong>Analytics unavailable</strong><span>{error || 'The historical endpoint could not be loaded.'}</span></div></div>
+    return <StateCard tone="error" title="Analytics unavailable" description={error || 'The historical endpoint could not be loaded.'} />
   }
 
   const peakHour = data.demand_by_hour_of_day.reduce((best, current) => (current.avg_rides > best.avg_rides ? current : best), data.demand_by_hour_of_day[0])
@@ -47,12 +50,7 @@ function Analytics() {
 
   return (
     <section className="forecast-section">
-      <div className="section-heading">
-        <div>
-          <span className="eyebrow">PERFORMANCE</span>
-          <h2>Demand analytics</h2>
-        </div>
-      </div>
+      <SectionHeading eyebrow="PERFORMANCE" title="Demand analytics" />
 
       <div className="dashboard-grid">
         <article className="panel" style={{ minHeight: 320 }}>
@@ -61,6 +59,12 @@ function Analytics() {
               <span className="eyebrow">HOURLY PROFILE</span>
               <h3>Average rides by hour of day</h3>
             </div>
+            {peakHour && (
+              <span className="cab-chip">
+                <TaxiIcon size={16} badge="peak" />
+                Peak {String(peakHour.hour).padStart(2, '0')}:00
+              </span>
+            )}
           </div>
 
           <div style={{ width: '100%', height: 260, marginTop: 18 }}>
@@ -75,7 +79,15 @@ function Analytics() {
                     return typeof numericValue === 'number' ? Number(numericValue).toFixed(1) : String(numericValue ?? '')
                   }}
                 />
-                <Bar dataKey="avg_rides" fill={peakHour ? '#2aa6a4' : '#9ecdc9'} radius={[4, 4, 0, 0]} />
+                <Bar dataKey="avg_rides" fill="#2aa6a4" radius={[4, 4, 0, 0]}>
+                  {data.demand_by_hour_of_day.map((entry) => (
+                    <Cell
+                      key={entry.hour}
+                      fill={entry.hour === peakHour?.hour ? CAB_YELLOW : '#2aa6a4'}
+                      stroke={entry.hour === peakHour?.hour ? ASPHALT : undefined}
+                    />
+                  ))}
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -87,6 +99,12 @@ function Analytics() {
               <span className="eyebrow">TOP LOCATIONS</span>
               <h3>Demand by pickup zone</h3>
             </div>
+            {topLocations[0] && (
+              <span className="cab-chip">
+                <TaxiIcon size={16} badge="pin" />
+                Top zone {topLocations[0].PULocationID}
+              </span>
+            )}
           </div>
 
           <div style={{ width: '100%', height: 260, marginTop: 18 }}>
@@ -101,7 +119,11 @@ function Analytics() {
                     return typeof numericValue === 'number' ? Number(numericValue).toFixed(1) : String(numericValue ?? '')
                   }}
                 />
-                <Bar dataKey="total_rides" fill="#2aa6a4" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="total_rides" fill="#2aa6a4" radius={[0, 4, 4, 0]}>
+                  {topLocations.map((entry, index) => (
+                    <Cell key={entry.PULocationID} fill={index === 0 ? CAB_YELLOW : '#2aa6a4'} stroke={index === 0 ? ASPHALT : undefined} />
+                  ))}
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>

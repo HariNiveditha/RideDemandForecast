@@ -1,5 +1,18 @@
 import { useEffect, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
+import SectionHeading from '../components/SectionHeading'
+import StateCard from '../components/StateCard'
+import { TaxiIcon } from '../components/TaxiIcons'
+
+type Prediction = {
+  rides: number
+  context: string
+  influence: string
+  zone: string
+  borough: string
+  zoneId: number
+  when: string
+}
 
 type HistoricalRange = {
   start: string
@@ -82,7 +95,7 @@ function Forecast() {
   const [weather, setWeather] = useState({ temp: '', humidity: '', precip: '' })
   const [dateRange, setDateRange] = useState<HistoricalRange>({ start: '', end: '' })
   const [status, setStatus] = useState('')
-  const [prediction, setPrediction] = useState<{ rides: number; context: string; influence: string } | null>(null)
+  const [prediction, setPrediction] = useState<Prediction | null>(null)
   const [featureImportances, setFeatureImportances] = useState<FeatureImportance[]>([])
 
   useEffect(() => {
@@ -192,6 +205,10 @@ function Forecast() {
         rides: predictedRides,
         context: `For ${selectedZone.Zone} (ID ${selectedLocation}), ${selectedZone.Borough}, on ${formattedDate} at ${formattedTime}, with ${tempValue.toFixed(1)}°C and ${precipValue.toFixed(1)}mm precipitation, the model expects ${predictedRides} rides.`,
         influence: getFeatureInfluenceText(featureImportances),
+        zone: selectedZone.Zone,
+        borough: selectedZone.Borough,
+        zoneId: selectedLocation,
+        when: `${formattedDate} · ${formattedTime}`,
       })
       setStatus('')
     } catch (error) {
@@ -202,40 +219,23 @@ function Forecast() {
 
   return (
     <section className="forecast-section">
-      <div className="section-heading">
-        <div>
-          <span className="eyebrow">LIVE INFERENCE</span>
-          <h2>Run a demand forecast</h2>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-          <span className="model-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+      <SectionHeading eyebrow="LIVE INFERENCE" title="Run a demand forecast">
+        <div className="heading-chips">
+          <span className="model-chip">
             <span className="status-dot" />
             Random Forest · weather + lags
           </span>
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              padding: '6px 10px',
-              borderRadius: 999,
-              border: '1px solid #d6e7eb',
-              background: '#edf6f7',
-              color: '#4d6d7d',
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: '.02em',
-            }}
-          >
-            {dateHelperText}
-          </span>
+          <span className="range-chip">{dateHelperText}</span>
         </div>
-      </div>
+      </SectionHeading>
 
       <form className="forecast-card" onSubmit={submitPrediction}>
         <div className="form-fields">
           <label>
-            Pickup location
+            <span className="label-with-icon">
+              <TaxiIcon size={15} badge="pin" />
+              Pickup location
+            </span>
             <select value={locationId} onChange={(event) => setLocationId(event.target.value)}>
               <option value="">Select a pickup zone</option>
               {locations.map((zone) => (
@@ -302,18 +302,48 @@ function Forecast() {
         </div>
       </form>
 
-      {prediction && (
-        <div style={{ marginTop: 22, borderRadius: 16, background: '#edf9f7', border: '1px solid #c8eae5', padding: 22 }}>
-          <div style={{ fontSize: 11, letterSpacing: '1.35px', textTransform: 'uppercase', color: '#587286', fontWeight: 700 }}>
-            Prediction result
+      {prediction ? (
+        <article className="prediction-card" aria-live="polite">
+          <div className="prediction-main">
+            <span className="prediction-taxi">
+              <TaxiIcon size={30} />
+            </span>
+            <div>
+              <span className="eyebrow">PREDICTION RESULT</span>
+              <strong className="prediction-value">
+                {prediction.rides.toLocaleString()} <span>rides expected</span>
+              </strong>
+            </div>
           </div>
-          <div style={{ marginTop: 10, fontSize: 36, lineHeight: 1.1, fontWeight: 800, color: '#10263f' }}>
-            {prediction.rides} rides expected
+          <div className="prediction-meta">
+            <div className="meta-item">
+              <TaxiIcon size={18} badge="pin" />
+              <div>
+                <small>Pickup zone</small>
+                <strong>
+                  {prediction.zone} · ID {prediction.zoneId}
+                </strong>
+                <small>{prediction.borough}</small>
+              </div>
+            </div>
+            <div className="meta-item">
+              <TaxiIcon size={18} badge="clock" />
+              <div>
+                <small>Pickup time</small>
+                <strong>{prediction.when}</strong>
+              </div>
+            </div>
           </div>
-          <p style={{ marginTop: 12, marginBottom: 8, color: '#1c3e59', fontSize: 15 }}>{prediction.context}</p>
-          <p style={{ margin: 0, color: '#577386', fontSize: 14 }}>
-            {prediction.influence}
-          </p>
+          <p className="prediction-context">{prediction.context}</p>
+          <p className="prediction-influence">{prediction.influence}</p>
+        </article>
+      ) : (
+        <div className="forecast-empty">
+          <StateCard
+            compact
+            title="No forecast dispatched yet"
+            description="Choose a pickup zone, time, and weather conditions, then predict ride demand."
+          />
         </div>
       )}
     </section>
