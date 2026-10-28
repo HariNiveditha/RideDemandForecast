@@ -1,0 +1,43 @@
+{
+  "confidence_level": 0.8,
+  "calibration_table": {
+    "60": [
+      -14.96,
+      14.35
+    ],
+    "180": [
+      -17.337,
+      15.415
+    ],
+    "360": [
+      -18.194,
+      15.748
+    ]
+  },
+  "validation_metrics": {
+    "60": {
+      "target_coverage_pct": 80.0,
+      "empirical_coverage_pct": 80.0,
+      "mean_interval_width": 27.41,
+      "q_low": -14.96,
+      "q_high": 14.35,
+      "sample_size": 100992
+    },
+    "180": {
+      "target_coverage_pct": 80.0,
+      "empirical_coverage_pct": 80.0,
+      "mean_interval_width": 30.36,
+      "q_low": -17.337,
+      "q_high": 15.415,
+      "sample_size": 100992
+    },
+    "360": {
+      "target_coverage_pct": 80.0,
+      "empirical_coverage_pct": 80.0,
+      "mean_interval_width": 31.3,
+      "q_low": -18.194,
+      "q_high": 15.748,
+      "sample_size": 100992
+    }
+  }
+}
