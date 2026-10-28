@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 import joblib
 import numpy as np
@@ -82,6 +83,9 @@ def _load_history() -> pd.DataFrame:
     frame["pickup_hour"] = pd.to_datetime(frame["pickup_hour"]).dt.floor("h")
     frame["PULocationID"] = frame["PULocationID"].astype(int)
     return frame.set_index(["PULocationID", "pickup_hour"]).sort_index()
+
+
+forecasting_service = None
 
 
 @asynccontextmanager
@@ -398,3 +402,98 @@ def predict(request: PredictionRequest) -> dict[str, float]:
     features = _build_features(request)
     prediction = float(model.predict(features)[0])
     return {"predicted_demand": prediction}
+
+
+class MultiHorizonForecastRequest(BaseModel):
+    zone_id: int = Field(gt=0, description="NYC TLC Taxi Zone ID (PULocationID)")
+    forecast_origin: datetime = Field(description="ISO timestamp when forecast is generated")
+    horizon_minutes: Optional[int] = Field(default=None, description="Horizon in minutes (60, 180, 360). If omitted, all horizons are returned.")
+    temp: Optional[float] = None
+    humidity: Optional[float] = None
+    precip: Optional[float] = None
+    windspeed: Optional[float] = None
+
+
+@app.get("/forecast/horizons")
+def get_supported_horizons() -> dict:
+    return {
+        "supported_horizons": [
+            {"minutes": 60, "hours": 1, "label": "1 Hour Ahead"},
+            {"minutes": 180, "hours": 3, "label": "3 Hours Ahead"},
+            {"minutes": 360, "hours": 6, "label": "6 Hours Ahead"},
+        ],
+        "default_horizon": 60,
+        "model_version": "layer1-multihorizon-v1.0",
+        "has_uncertainty_bounds": True,
+    }
+
+
+@app.post("/forecast/multi-horizon")
+def get_multi_horizon_forecast(request: MultiHorizonForecastRequest) -> dict:
+    global forecasting_service
+    if forecasting_service is None:
+        try:
+            from forecasting.service import ForecastingService
+            forecasting_service = ForecastingService.get_default_service()
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail=f"Forecasting service unavailable: {exc}")
+
+    origin_dt = pd.Timestamp(request.forecast_origin).floor("h")
+    if origin_dt.tzinfo is not None:
+        origin_dt = origin_dt.tz_convert(None)
+
+    valid_horizons = [60, 180, 360]
+    if request.horizon_minutes is not None:
+        if request.horizon_minutes not in valid_horizons:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Unsupported horizon_minutes: {request.horizon_minutes}. Supported horizons: {valid_horizons}",
+            )
+        target_horizons = [request.horizon_minutes]
+    else:
+        target_horizons = valid_horizons
+
+    weather_overrides = {}
+    if request.temp is not None:
+        weather_overrides["temp"] = request.temp
+    if request.humidity is not None:
+        weather_overrides["humidity"] = request.humidity
+    if request.precip is not None:
+        weather_overrides["precip"] = request.precip
+    if request.windspeed is not None:
+        weather_overrides["windspeed"] = request.windspeed
+
+    forecasts = []
+    for h in target_horizons:
+        rec = forecasting_service.predict_zone(
+            zone_id=request.zone_id,
+            forecast_origin=origin_dt,
+            horizon_minutes=h,
+            weather_overrides=weather_overrides if weather_overrides else None,
+            include_bounds=True,
+        )
+        forecasts.append(rec)
+
+    # Compile recent historical demand leading up to origin (up to 12 hours)
+    recent_history = []
+    for offset in range(12, 0, -1):
+        t_hist = origin_dt - pd.Timedelta(hours=offset)
+        val = forecasting_service._get_historical_demand(request.zone_id, t_hist)
+        recent_history.append({
+            "timestamp": t_hist.strftime("%Y-%m-%dT%H:%M:%S"),
+            "actual_rides": float(val),
+        })
+    val_origin = forecasting_service._get_historical_demand(request.zone_id, origin_dt)
+    recent_history.append({
+        "timestamp": origin_dt.strftime("%Y-%m-%dT%H:%M:%S"),
+        "actual_rides": float(val_origin),
+    })
+
+    return {
+        "zone_id": request.zone_id,
+        "forecast_origin": origin_dt.strftime("%Y-%m-%dT%H:%M:%S"),
+        "forecasts": forecasts,
+        "recent_history": recent_history,
+        "model_version": "layer1-multihorizon-v1.0",
+        "target_description": "Passenger pickup ride demand (completed trips) per hourly interval.",
+    }

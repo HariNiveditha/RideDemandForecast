@@ -1163,3 +1163,140 @@
         display: none;
     }
 }
+
+/* Multi-Horizon Forecasting Additions */
+.horizon-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+}
+
+@media (max-width: 800px) {
+    .horizon-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.horizon-card {
+    background: #fbfdfd;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    transition: transform .15s ease, border-color .15s ease;
+}
+
+.horizon-card.active-horizon {
+    border-color: var(--cab);
+    background: #fffdf8;
+    box-shadow: 0 4px 14px rgba(246, 190, 26, 0.15);
+}
+
+.horizon-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.horizon-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #eef5f8;
+    color: var(--navy);
+}
+
+.horizon-card.active-horizon .horizon-badge {
+    background: var(--cab-soft);
+    color: #8c6500;
+}
+
+.horizon-predicted {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.1;
+}
+
+.horizon-predicted span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.horizon-bounds {
+    font-size: 11px;
+    color: #27797b;
+    background: #e8f6f5;
+    padding: 4px 8px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.forecast-chart-container {
+    margin-top: 22px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+}
+
+.forecast-table-container {
+    margin-top: 22px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+}
+
+.forecast-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.forecast-table th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #f6f9fa;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+}
+
+.forecast-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f0f4f6;
+    color: var(--ink);
+}
+
+.forecast-table tr:hover td {
+    background: #fbfdfd;
+}
+
+.disclaimer-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #fdf8e6;
+    border: 1px solid #fae8a7;
+    border-radius: 8px;
+    color: #835c00;
+    font-size: 11px;
+    margin-top: 14px;
+}
