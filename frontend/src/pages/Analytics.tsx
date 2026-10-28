@@ -297,76 +297,88 @@ function Analytics() {
       {activeTab === 'anomalies' && (
         <>
           {/* KPI Summary Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14, marginBottom: 24 }}>
-            <article className="panel" style={{ padding: '16px 20px', borderLeft: '4px solid #f97316' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 10, marginBottom: 16 }}>
+            <article className="compact-metric-card" style={{ borderLeft: '4px solid #f97316' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="eyebrow" style={{ color: '#c2410c' }}>DEMAND SPIKES</span>
-                <ArrowUpRight size={18} color="#ea580c" />
+                <ArrowUpRight size={16} color="#ea580c" />
               </div>
-              <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--navy)', marginTop: 8 }}>
+              <div className="metric-val">
                 {summary?.by_type.demand_spike?.toLocaleString() ?? 0}
               </div>
-              <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>Unusually high volume (&gt;2.5 MAD z-score)</p>
+              <p className="metric-desc">Unusually high volume (&gt;2.5 MAD z-score)</p>
             </article>
 
-            <article className="panel" style={{ padding: '16px 20px', borderLeft: '4px solid #0284c7' }}>
+            <article className="compact-metric-card" style={{ borderLeft: '4px solid #0284c7' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="eyebrow" style={{ color: '#0369a1' }}>DEMAND DROPS</span>
-                <ArrowDownRight size={18} color="#0284c7" />
+                <ArrowDownRight size={16} color="#0284c7" />
               </div>
-              <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--navy)', marginTop: 8 }}>
+              <div className="metric-val">
                 {summary?.by_type.demand_drop?.toLocaleString() ?? 0}
               </div>
-              <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>Unusually low volume (&lt;-2.5 MAD z-score)</p>
+              <p className="metric-desc">Unusually low volume (&lt;-2.5 MAD z-score)</p>
             </article>
 
-            <article className="panel" style={{ padding: '16px 20px', borderLeft: '4px solid #8b5cf6' }}>
+            <article className="compact-metric-card" style={{ borderLeft: '4px solid #8b5cf6' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="eyebrow" style={{ color: '#6d28d9' }}>FORECAST DEVIATIONS</span>
-                <AlertTriangle size={18} color="#8b5cf6" />
+                <AlertTriangle size={16} color="#8b5cf6" />
               </div>
-              <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--navy)', marginTop: 8 }}>
+              <div className="metric-val">
                 {summary?.by_type.forecast_deviation?.toLocaleString() ?? 0}
               </div>
-              <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>Breached 80% conformal bounds</p>
+              <p className="metric-desc">Breached 80% conformal bounds</p>
             </article>
 
-            <article className="panel" style={{ padding: '16px 20px', borderLeft: '4px solid #eab308' }}>
+            <article className="compact-metric-card" style={{ borderLeft: '4px solid #eab308' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="eyebrow" style={{ color: '#a16207' }}>PERSISTENT (&ge;3h)</span>
-                <Clock size={18} color="#ca8a04" />
+                <Clock size={16} color="#ca8a04" />
               </div>
-              <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--navy)', marginTop: 8 }}>
+              <div className="metric-val">
                 {summary?.by_type.persistent_anomaly?.toLocaleString() ?? 0}
               </div>
-              <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>3+ consecutive anomalous hours</p>
+              <p className="metric-desc">3+ consecutive anomalous hours</p>
             </article>
 
-            <article className="panel" style={{ padding: '16px 20px', borderLeft: '4px solid #64748b' }}>
+            <article className="compact-metric-card" style={{ borderLeft: '4px solid #64748b' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="eyebrow" style={{ color: '#475569' }}>DATA QUALITY</span>
-                <ShieldAlert size={18} color="#64748b" />
+                <ShieldAlert size={16} color="#64748b" />
               </div>
-              <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--navy)', marginTop: 8 }}>
+              <div className="metric-val">
                 {summary?.by_type.data_quality?.toLocaleString() ?? 0}
               </div>
-              <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>Missing, invalid, duplicate, or extreme</p>
+              <p className="metric-desc">Missing, invalid, duplicate, or extreme</p>
             </article>
           </div>
 
-          {/* Filter Bar */}
-          <article className="panel" style={{ padding: '16px 20px', marginBottom: 20 }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center', justifyContent: 'space-between' }}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--navy)', display: 'flex', alignItems: 'center', gap: 5 }}>
-                  <Filter size={15} /> Filters:
+          {/* Anomaly Records Explorer with Integrated Filters */}
+          <article className="integrated-table-card">
+            {/* Header: Title and Observation Count */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+              <div>
+                <span className="eyebrow">AUDIT TRAIL</span>
+                <h3 style={{ margin: '2px 0 0', fontSize: 17, color: 'var(--navy)' }}>Detected Demand Anomalies</h3>
+              </div>
+              <span style={{ fontSize: 11, color: 'var(--navy)', background: '#eef3f6', padding: '3px 9px', borderRadius: 10, fontWeight: 700 }}>
+                {anomalies.length} observations
+              </span>
+            </div>
+
+            {/* Filter Toolbar (Directly Above Table with Zero Gap) */}
+            <div className="filter-toolbar">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--navy)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <Filter size={13} /> Filters:
                 </span>
 
                 {/* Anomaly Type */}
                 <select
                   value={selectedType}
                   onChange={(e) => setSelectedType(e.target.value)}
-                  style={{ padding: '6px 12px', borderRadius: 6, border: '1px solid var(--line)', fontSize: 13 }}
+                  style={{ padding: '5px 10px', borderRadius: 6, border: '1px solid var(--line)', fontSize: 12, background: '#fff' }}
                 >
                   <option value="all">All Anomaly Types</option>
                   <option value="demand_spike">Demand Spikes</option>
@@ -380,7 +392,7 @@ function Analytics() {
                 <select
                   value={selectedSeverity}
                   onChange={(e) => setSelectedSeverity(e.target.value)}
-                  style={{ padding: '6px 12px', borderRadius: 6, border: '1px solid var(--line)', fontSize: 13 }}
+                  style={{ padding: '5px 10px', borderRadius: 6, border: '1px solid var(--line)', fontSize: 12, background: '#fff' }}
                 >
                   <option value="all">All Severities</option>
                   <option value="low">Low (|z| &ge; 2.5)</option>
@@ -393,7 +405,7 @@ function Analytics() {
                 <select
                   value={selectedZone}
                   onChange={(e) => setSelectedZone(e.target.value)}
-                  style={{ padding: '6px 12px', borderRadius: 6, border: '1px solid var(--line)', fontSize: 13, maxWidth: 220 }}
+                  style={{ padding: '5px 10px', borderRadius: 6, border: '1px solid var(--line)', fontSize: 12, maxWidth: 220, background: '#fff' }}
                 >
                   <option value="all">All Zones (NYC)</option>
                   {locations.map((loc) => (
@@ -411,43 +423,33 @@ function Analytics() {
                   setSelectedSeverity('all')
                   setSelectedZone('all')
                 }}
-                style={{ padding: '6px 12px', border: '1px solid var(--line)', background: '#fff', borderRadius: 6, cursor: 'pointer', fontSize: 12, display: 'flex', alignItems: 'center', gap: 5 }}
+                style={{ padding: '5px 10px', border: '1px solid var(--line)', background: '#fff', borderRadius: 6, cursor: 'pointer', fontSize: 11, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}
               >
-                <RefreshCw size={12} /> Reset Filters
+                <RefreshCw size={11} /> Reset Filters
               </button>
             </div>
-          </article>
 
-          {/* Anomaly Records Explorer Table */}
-          <article className="panel" style={{ padding: '20px 24px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <div>
-                <span className="eyebrow">AUDIT TRAIL</span>
-                <h3 style={{ margin: '4px 0 0', fontSize: 18 }}>Detected Demand Anomalies</h3>
-              </div>
-              <span style={{ fontSize: 12, color: 'var(--muted)' }}>Showing {anomalies.length} observations</span>
-            </div>
-
+            {/* Results Table OR Compact Empty State */}
             {anomalies.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--muted)' }}>
-                <CheckCircle2 size={36} color="#10b981" style={{ margin: '0 auto 10px' }} />
-                <p style={{ fontWeight: 600, color: 'var(--navy)' }}>No anomalies found matching current filters.</p>
-                <p style={{ fontSize: 12 }}>Try selecting another zone, anomaly type, or severity level.</p>
+              <div style={{ textAlign: 'center', padding: '24px 16px', color: 'var(--muted)' }}>
+                <CheckCircle2 size={26} color="#10b981" style={{ margin: '0 auto 6px' }} />
+                <p style={{ fontWeight: 600, color: 'var(--navy)', margin: '0 0 2px', fontSize: 13 }}>No anomalies match the selected filters.</p>
+                <p style={{ fontSize: 11, margin: 0 }}>Try clearing filters or selecting another zone or severity level.</p>
               </div>
             ) : (
               <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 13 }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
                   <thead>
-                    <tr style={{ borderBottom: '2px solid var(--line)', color: 'var(--muted)', fontSize: 11, textTransform: 'uppercase' }}>
-                      <th style={{ padding: '10px 8px' }}>Timestamp</th>
-                      <th style={{ padding: '10px 8px' }}>Zone</th>
-                      <th style={{ padding: '10px 8px' }}>Type</th>
-                      <th style={{ padding: '10px 8px' }}>Severity</th>
-                      <th style={{ padding: '10px 8px', textAlign: 'right' }}>Observed</th>
-                      <th style={{ padding: '10px 8px', textAlign: 'right' }}>Baseline</th>
-                      <th style={{ padding: '10px 8px', textAlign: 'right' }}>Deviation</th>
-                      <th style={{ padding: '10px 8px', textAlign: 'right' }}>Z-Score</th>
-                      <th style={{ padding: '10px 8px' }}>Explanation</th>
+                    <tr style={{ borderBottom: '2px solid var(--line)', color: 'var(--muted)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      <th style={{ padding: '8px 6px' }}>Timestamp</th>
+                      <th style={{ padding: '8px 6px' }}>Zone</th>
+                      <th style={{ padding: '8px 6px' }}>Type</th>
+                      <th style={{ padding: '8px 6px' }}>Severity</th>
+                      <th style={{ padding: '8px 6px', textAlign: 'right' }}>Observed</th>
+                      <th style={{ padding: '8px 6px', textAlign: 'right' }}>Baseline</th>
+                      <th style={{ padding: '8px 6px', textAlign: 'right' }}>Deviation</th>
+                      <th style={{ padding: '8px 6px', textAlign: 'right' }}>Z-Score</th>
+                      <th style={{ padding: '8px 6px' }}>Explanation</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -469,36 +471,36 @@ function Analytics() {
 
                       return (
                         <tr key={`${rec.zone_id}-${rec.timestamp}-${idx}`} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                          <td style={{ padding: '10px 8px', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
+                          <td style={{ padding: '8px 6px', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
                             {rec.timestamp.replace('T', ' ')}
                           </td>
-                          <td style={{ padding: '10px 8px' }}>
+                          <td style={{ padding: '8px 6px' }}>
                             <strong>{rec.zone_name || `Zone ${rec.zone_id}`}</strong>
-                            <small style={{ display: 'block', color: 'var(--muted)', fontSize: 11 }}>{rec.borough}</small>
+                            <small style={{ display: 'block', color: 'var(--muted)', fontSize: 10 }}>{rec.borough}</small>
                           </td>
-                          <td style={{ padding: '10px 8px' }}>
-                            <span style={{ background: typeBadge.bg, color: typeBadge.text, padding: '3px 8px', borderRadius: 12, fontSize: 11, fontWeight: 600 }}>
+                          <td style={{ padding: '8px 6px' }}>
+                            <span style={{ background: typeBadge.bg, color: typeBadge.text, padding: '2px 7px', borderRadius: 10, fontSize: 10, fontWeight: 700 }}>
                               {typeBadge.label}
                             </span>
                           </td>
-                          <td style={{ padding: '10px 8px' }}>
-                            <span style={{ background: sevBadge.bg, color: sevBadge.text, padding: '2px 7px', borderRadius: 4, fontSize: 11, fontWeight: 700, textTransform: 'uppercase' }}>
+                          <td style={{ padding: '8px 6px' }}>
+                            <span style={{ background: sevBadge.bg, color: sevBadge.text, padding: '2px 6px', borderRadius: 4, fontSize: 10, fontWeight: 700, textTransform: 'uppercase' }}>
                               {rec.severity}
                             </span>
                           </td>
-                          <td style={{ padding: '10px 8px', textAlign: 'right', fontWeight: 600 }}>
+                          <td style={{ padding: '8px 6px', textAlign: 'right', fontWeight: 700 }}>
                             {rec.actual_demand !== null && rec.actual_demand !== undefined ? Math.round(rec.actual_demand) : '—'}
                           </td>
-                          <td style={{ padding: '10px 8px', textAlign: 'right', color: 'var(--muted)' }}>
+                          <td style={{ padding: '8px 6px', textAlign: 'right', color: 'var(--muted)' }}>
                             {rec.baseline_demand !== null && rec.baseline_demand !== undefined ? Math.round(rec.baseline_demand) : '—'}
                           </td>
-                          <td style={{ padding: '10px 8px', textAlign: 'right', fontWeight: 600, color: (rec.deviation || 0) > 0 ? '#c2410c' : '#0369a1' }}>
+                          <td style={{ padding: '8px 6px', textAlign: 'right', fontWeight: 700, color: (rec.deviation || 0) > 0 ? '#c2410c' : '#0369a1' }}>
                             {rec.deviation !== null && rec.deviation !== undefined ? `${rec.deviation > 0 ? '+' : ''}${Math.round(rec.deviation)}` : '—'}
                           </td>
-                          <td style={{ padding: '10px 8px', textAlign: 'right', fontFamily: 'monospace' }}>
+                          <td style={{ padding: '8px 6px', textAlign: 'right', fontFamily: 'monospace' }}>
                             {rec.z_score !== null && rec.z_score !== undefined ? `${rec.z_score > 0 ? '+' : ''}${rec.z_score.toFixed(2)}` : '—'}
                           </td>
-                          <td style={{ padding: '10px 8px', fontSize: 12, maxWidth: 300, color: 'var(--ink)' }}>
+                          <td style={{ padding: '8px 6px', fontSize: 11, maxWidth: 300, color: 'var(--ink)' }}>
                             {rec.explanation}
                           </td>
                         </tr>
@@ -511,13 +513,12 @@ function Analytics() {
           </article>
         </>
       )}
-
       {/* TAB 2: FORECAST ERROR ANALYSIS */}
       {activeTab === 'errors' && (
         <>
-          {/* Horizon Pills */}
-          <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 20 }}>
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--navy)' }}>Forecast Horizon:</span>
+          {/* Horizon Pills Toolbar */}
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 14 }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--navy)' }}>Forecast Horizon:</span>
             {[
               { min: 60, label: '1 Hour Ahead (T+1h)' },
               { min: 180, label: '3 Hours Ahead (T+3h)' },
@@ -528,85 +529,85 @@ function Analytics() {
                 type="button"
                 className={`filter-pill ${selectedHorizon === h.min ? 'active' : ''}`}
                 onClick={() => setSelectedHorizon(h.min)}
-                style={{ padding: '6px 14px', borderRadius: 16, cursor: 'pointer', fontWeight: 600, fontSize: 12 }}
+                style={{ padding: '5px 12px', borderRadius: 14, cursor: 'pointer', fontWeight: 600, fontSize: 11 }}
               >
                 {h.label}
               </button>
             ))}
           </div>
 
-          {/* Model Performance Cards */}
+          {/* Model Performance Cards (Content-Driven & Compact) */}
           {selectedPerf && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14, marginBottom: 24 }}>
-              <article className="panel" style={{ padding: '18px 20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 10, marginBottom: 16 }}>
+              <article className="compact-metric-card">
                 <span className="eyebrow">MAE (ACCURACY)</span>
-                <div style={{ fontSize: 28, fontWeight: 700, color: 'var(--navy)', marginTop: 8 }}>
-                  {selectedPerf.mae.toFixed(2)} <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--muted)' }}>rides/hr</span>
+                <div className="metric-val">
+                  {selectedPerf.mae.toFixed(2)} <span style={{ fontSize: 12, fontWeight: 400, color: 'var(--muted)' }}>rides/hr</span>
                 </div>
-                <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>Mean Absolute Error on June test split</p>
+                <p className="metric-desc">Mean Absolute Error on June test split</p>
               </article>
 
-              <article className="panel" style={{ padding: '18px 20px' }}>
+              <article className="compact-metric-card">
                 <span className="eyebrow">RMSE (SPREAD)</span>
-                <div style={{ fontSize: 28, fontWeight: 700, color: 'var(--navy)', marginTop: 8 }}>
-                  {selectedPerf.rmse.toFixed(2)} <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--muted)' }}>rides/hr</span>
+                <div className="metric-val">
+                  {selectedPerf.rmse.toFixed(2)} <span style={{ fontSize: 12, fontWeight: 400, color: 'var(--muted)' }}>rides/hr</span>
                 </div>
-                <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>Penalizes large outlier forecast errors</p>
+                <p className="metric-desc">Penalizes large outlier forecast errors</p>
               </article>
 
-              <article className="panel" style={{ padding: '18px 20px', borderLeft: `4px solid ${Math.abs(selectedPerf.mean_bias) < 0.25 ? '#10b981' : '#f59e0b'}` }}>
+              <article className="compact-metric-card" style={{ borderLeft: `3px solid ${Math.abs(selectedPerf.mean_bias) < 0.25 ? '#10b981' : '#f59e0b'}` }}>
                 <span className="eyebrow">SIGNED MEAN BIAS</span>
-                <div style={{ fontSize: 28, fontWeight: 700, color: selectedPerf.mean_bias > 0 ? '#b45309' : '#0369a1', marginTop: 8 }}>
+                <div className="metric-val" style={{ color: selectedPerf.mean_bias > 0 ? '#b45309' : '#0369a1' }}>
                   {selectedPerf.mean_bias > 0 ? `+${selectedPerf.mean_bias.toFixed(2)}` : selectedPerf.mean_bias.toFixed(2)}{' '}
-                  <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--muted)' }}>rides</span>
+                  <span style={{ fontSize: 12, fontWeight: 400, color: 'var(--muted)' }}>rides</span>
                 </div>
-                <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--ink)' }}>
+                <p className="metric-desc" style={{ color: 'var(--ink)' }}>
                   {selectedPerf.mean_bias > 0 ? 'Underpredicting (actual > pred)' : 'Overpredicting (pred > actual)'}
                 </p>
               </article>
 
-              <article className="panel" style={{ padding: '18px 20px' }}>
+              <article className="compact-metric-card">
                 <span className="eyebrow">WAPE</span>
-                <div style={{ fontSize: 28, fontWeight: 700, color: 'var(--navy)', marginTop: 8 }}>
+                <div className="metric-val">
                   {selectedPerf.wape_pct.toFixed(1)}%
                 </div>
-                <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>Volume-weighted percentage error</p>
+                <p className="metric-desc">Volume-weighted percentage error</p>
               </article>
 
-              <article className="panel" style={{ padding: '18px 20px' }}>
+              <article className="compact-metric-card">
                 <span className="eyebrow">80% INTERVAL COVERAGE</span>
-                <div style={{ fontSize: 28, fontWeight: 700, color: '#059669', marginTop: 8 }}>
+                <div className="metric-val" style={{ color: '#059669' }}>
                   {selectedPerf.empirical_coverage_pct.toFixed(1)}%
                 </div>
-                <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)' }}>Target: 80% conformal coverage</p>
+                <p className="metric-desc">Target: 80% conformal coverage</p>
               </article>
             </div>
           )}
 
           {/* Time Series Error Trend Chart */}
-          <article className="panel" style={{ padding: '20px 24px', marginBottom: 24 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+          <article className="integrated-table-card" style={{ marginBottom: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
               <div>
                 <span className="eyebrow">TEMPORAL ERROR TREND</span>
-                <h3 style={{ margin: '4px 0 0', fontSize: 18 }}>Daily Forecast Error & Signed Bias across June Test Month</h3>
+                <h3 style={{ margin: '2px 0 0', fontSize: 16, color: 'var(--navy)' }}>Daily Forecast Error & Signed Bias across June Test Month</h3>
               </div>
-              <div style={{ display: 'flex', gap: 14, fontSize: 12 }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ width: 12, height: 12, background: '#2aa6a4', borderRadius: 2 }} /> Daily MAE
+              <div style={{ display: 'flex', gap: 12, fontSize: 11 }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                  <span style={{ width: 10, height: 10, background: '#2aa6a4', borderRadius: 2 }} /> Daily MAE
                 </span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
                   <span style={{ width: 12, height: 3, background: '#e11d48' }} /> Signed Bias (actual - pred)
                 </span>
               </div>
             </div>
 
-            <div style={{ width: '100%', height: 280 }}>
+            <div style={{ width: '100%', height: 240 }}>
               <ResponsiveContainer>
-                <ComposedChart data={timeseriesErrors} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                <ComposedChart data={timeseriesErrors} margin={{ top: 8, right: 10, left: -10, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }} tickFormatter={(d) => d.slice(5)} />
-                  <YAxis yAxisId="left" tick={{ fontSize: 11 }} />
-                  <YAxis yAxisId="right" orientation="right" domain={[-1.5, 1.5]} tick={{ fontSize: 11 }} />
+                  <XAxis dataKey="date" tick={{ fontSize: 10 }} tickFormatter={(d) => d.slice(5)} />
+                  <YAxis yAxisId="left" tick={{ fontSize: 10 }} />
+                  <YAxis yAxisId="right" orientation="right" domain={[-1.5, 1.5]} tick={{ fontSize: 10 }} />
                   <Tooltip
                     formatter={(val, name) => {
                       const num = Number(val)
@@ -614,30 +615,30 @@ function Analytics() {
                     }}
                   />
                   <ReferenceLine yAxisId="right" y={0} stroke="#94a3b8" strokeDasharray="3 3" />
-                  <Bar yAxisId="left" dataKey="mae" fill="#2aa6a4" opacity={0.8} radius={[4, 4, 0, 0]} />
-                  <Line yAxisId="right" type="monotone" dataKey="mean_bias" stroke="#e11d48" strokeWidth={2.5} dot={{ r: 3 }} />
+                  <Bar yAxisId="left" dataKey="mae" fill="#2aa6a4" opacity={0.8} radius={[3, 3, 0, 0]} />
+                  <Line yAxisId="right" type="monotone" dataKey="mean_bias" stroke="#e11d48" strokeWidth={2} dot={{ r: 2 }} />
                 </ComposedChart>
               </ResponsiveContainer>
             </div>
-            <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 8 }}>
+            <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 6 }}>
               Note: Error convention strictly follows <code>error = actual_demand - predicted_demand</code>. A positive bias means underprediction; negative bias means overprediction.
             </div>
           </article>
 
           {/* Top Error Zones Table & Comparison */}
-          <article className="panel" style={{ padding: '20px 24px' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+          <article className="integrated-table-card">
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
               <div>
                 <span className="eyebrow">ZONE-LEVEL BREAKDOWN</span>
-                <h3 style={{ margin: '4px 0 0', fontSize: 18 }}>Top 10 Problem Zones by Accuracy & Bias</h3>
+                <h3 style={{ margin: '2px 0 0', fontSize: 16, color: 'var(--navy)' }}>Top 10 Problem Zones by Accuracy & Bias</h3>
               </div>
 
-              <div style={{ display: 'flex', gap: 8 }}>
+              <div style={{ display: 'flex', gap: 6 }}>
                 <button
                   type="button"
                   className={`filter-pill ${zoneSort === 'mae' ? 'active' : ''}`}
                   onClick={() => setZoneSort('mae')}
-                  style={{ fontSize: 12, padding: '5px 12px', borderRadius: 14, cursor: 'pointer' }}
+                  style={{ fontSize: 11, padding: '4px 10px', borderRadius: 12, cursor: 'pointer' }}
                 >
                   Highest MAE
                 </button>
@@ -645,7 +646,7 @@ function Analytics() {
                   type="button"
                   className={`filter-pill ${zoneSort === 'bias_asc' ? 'active' : ''}`}
                   onClick={() => setZoneSort('bias_asc')}
-                  style={{ fontSize: 12, padding: '5px 12px', borderRadius: 14, cursor: 'pointer' }}
+                  style={{ fontSize: 11, padding: '4px 10px', borderRadius: 12, cursor: 'pointer' }}
                 >
                   Most Overpredicted
                 </button>
@@ -653,7 +654,7 @@ function Analytics() {
                   type="button"
                   className={`filter-pill ${zoneSort === 'bias_desc' ? 'active' : ''}`}
                   onClick={() => setZoneSort('bias_desc')}
-                  style={{ fontSize: 12, padding: '5px 12px', borderRadius: 14, cursor: 'pointer' }}
+                  style={{ fontSize: 11, padding: '4px 10px', borderRadius: 12, cursor: 'pointer' }}
                 >
                   Most Underpredicted
                 </button>
@@ -661,32 +662,32 @@ function Analytics() {
             </div>
 
             <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 13 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 12 }}>
                 <thead>
-                  <tr style={{ borderBottom: '2px solid var(--line)', color: 'var(--muted)', fontSize: 11, textTransform: 'uppercase' }}>
-                    <th style={{ padding: '10px 8px' }}>Zone Name</th>
-                    <th style={{ padding: '10px 8px' }}>Borough</th>
-                    <th style={{ padding: '10px 8px', textAlign: 'right' }}>MAE (Rides)</th>
-                    <th style={{ padding: '10px 8px', textAlign: 'right' }}>RMSE</th>
-                    <th style={{ padding: '10px 8px', textAlign: 'right' }}>Signed Mean Bias</th>
-                    <th style={{ padding: '10px 8px', textAlign: 'right' }}>WAPE</th>
-                    <th style={{ padding: '10px 8px', textAlign: 'right' }}>Evaluation Samples</th>
+                  <tr style={{ borderBottom: '2px solid var(--line)', color: 'var(--muted)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    <th style={{ padding: '8px 6px' }}>Zone Name</th>
+                    <th style={{ padding: '8px 6px' }}>Borough</th>
+                    <th style={{ padding: '8px 6px', textAlign: 'right' }}>MAE (Rides)</th>
+                    <th style={{ padding: '8px 6px', textAlign: 'right' }}>RMSE</th>
+                    <th style={{ padding: '8px 6px', textAlign: 'right' }}>Signed Mean Bias</th>
+                    <th style={{ padding: '8px 6px', textAlign: 'right' }}>WAPE</th>
+                    <th style={{ padding: '8px 6px', textAlign: 'right' }}>Samples</th>
                   </tr>
                 </thead>
                 <tbody>
                   {zoneErrors.map((z) => (
                     <tr key={z.zone_id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                      <td style={{ padding: '10px 8px', fontWeight: 600 }}>
-                        {z.zone_name} <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: 11 }}>#{z.zone_id}</span>
+                      <td style={{ padding: '8px 6px', fontWeight: 600 }}>
+                        {z.zone_name} <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: 10 }}>#{z.zone_id}</span>
                       </td>
-                      <td style={{ padding: '10px 8px', color: 'var(--muted)' }}>{z.borough}</td>
-                      <td style={{ padding: '10px 8px', textAlign: 'right', fontWeight: 600 }}>{z.mae.toFixed(2)}</td>
-                      <td style={{ padding: '10px 8px', textAlign: 'right', color: 'var(--muted)' }}>{z.rmse.toFixed(2)}</td>
-                      <td style={{ padding: '10px 8px', textAlign: 'right', fontWeight: 600, color: z.mean_bias > 0 ? '#b45309' : '#0369a1' }}>
+                      <td style={{ padding: '8px 6px', color: 'var(--muted)' }}>{z.borough}</td>
+                      <td style={{ padding: '8px 6px', textAlign: 'right', fontWeight: 700 }}>{z.mae.toFixed(2)}</td>
+                      <td style={{ padding: '8px 6px', textAlign: 'right', color: 'var(--muted)' }}>{z.rmse.toFixed(2)}</td>
+                      <td style={{ padding: '8px 6px', textAlign: 'right', fontWeight: 700, color: z.mean_bias > 0 ? '#b45309' : '#0369a1' }}>
                         {z.mean_bias > 0 ? `+${z.mean_bias.toFixed(2)}` : z.mean_bias.toFixed(2)}
                       </td>
-                      <td style={{ padding: '10px 8px', textAlign: 'right' }}>{z.wape_pct.toFixed(1)}%</td>
-                      <td style={{ padding: '10px 8px', textAlign: 'right', fontFamily: 'monospace' }}>{z.sample_count.toLocaleString()}</td>
+                      <td style={{ padding: '8px 6px', textAlign: 'right' }}>{z.wape_pct.toFixed(1)}%</td>
+                      <td style={{ padding: '8px 6px', textAlign: 'right', fontFamily: 'monospace' }}>{z.sample_count.toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -339,7 +339,7 @@ function Forecast() {
               const formattedTime = targetDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
               const formattedDate = targetDate.toLocaleDateString([], { month: 'short', day: 'numeric' })
               return (
-                <article key={f.horizon_minutes} className="horizon-card active-horizon">
+                <article key={f.horizon_minutes} className="horizon-card active-horizon" style={{ height: 'auto', minHeight: 'auto' }}>
                   <div className="horizon-card-header">
                     <span className="horizon-badge">
                       HORIZON: +{f.horizon_minutes / 60}H ({f.horizon_minutes} MIN)
@@ -347,24 +347,24 @@ function Forecast() {
                     <span className="eyebrow">{f.model_version}</span>
                   </div>
 
-                  <strong className="horizon-predicted">
+                  <strong className="horizon-predicted" style={{ margin: '4px 0 2px' }}>
                     {Math.round(f.predicted_rides).toLocaleString()}{' '}
                     <span>completed rides</span>
                   </strong>
 
-                  <div className="meta-item" style={{ padding: '8px 10px', marginTop: 4 }}>
-                    <Clock size={15} />
+                  <div className="meta-item" style={{ padding: '6px 10px', marginTop: 2, flex: '0 0 auto', minHeight: 'auto' }}>
+                    <Clock size={14} />
                     <div>
-                      <small>Target interval start</small>
-                      <strong>
+                      <small style={{ fontSize: 10 }}>Target interval start</small>
+                      <strong style={{ fontSize: 12 }}>
                         {formattedDate} · {formattedTime}
                       </strong>
                     </div>
                   </div>
 
                   {f.lower_bound != null && f.upper_bound != null && (
-                    <div className="horizon-bounds">
-                      <ShieldCheck size={14} />
+                    <div className="horizon-bounds" style={{ marginTop: 2 }}>
+                      <ShieldCheck size={13} />
                       <span>
                         80% Conformal CI: [{Math.round(f.lower_bound)} – {Math.round(f.upper_bound)} rides]
                       </span>
@@ -375,8 +375,8 @@ function Forecast() {
             })}
           </div>
 
-          <div className="disclaimer-banner">
-            <Info size={16} />
+          <div className="disclaimer-banner" style={{ marginTop: 10 }}>
+            <Info size={15} />
             <span>
               <strong>Target Definition:</strong> Predicted values strictly represent expected completed passenger
               pickups originating in <strong>{selectedZone.Zone} (ID {selectedZone.PULocationID})</strong> during the
