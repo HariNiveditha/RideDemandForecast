@@ -5,3 +5,6 @@ __pycache__/
 .env
 .venv/
 venv/
+frontend/dist/
+dist/
+forecasting/artifacts/layer2_cache/

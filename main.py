@@ -85,17 +85,24 @@ def _load_history() -> pd.DataFrame:
     return frame.set_index(["PULocationID", "pickup_hour"]).sort_index()
 
 
+def _ensure_history_loaded():
+    global history, history_by_key
+    if history is None and HISTORY_PATH.exists():
+        history = _load_history()
+        history_by_key = history["ride_count"]
+
+
 forecasting_service = None
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    global model, history, history_by_key
+    global model
     if MODEL_PATH.exists():
-        model = joblib.load(MODEL_PATH)
-    if HISTORY_PATH.exists():
-        history = _load_history()
-        history_by_key = history["ride_count"]
+        try:
+            model = joblib.load(MODEL_PATH)
+        except Exception:
+            pass
     yield
 
 
@@ -120,6 +127,7 @@ def _naive_timestamp(value: datetime) -> pd.Timestamp:
 
 
 def _lookup_lags(location_id: int, timestamp: pd.Timestamp) -> tuple[float, float, float, float]:
+    _ensure_history_loaded()
     if history_by_key is None:
         raise HTTPException(status_code=503, detail="Historical ride data is not available.")
 
@@ -228,6 +236,7 @@ def _build_model_frame() -> pd.DataFrame:
 
 @lru_cache(maxsize=1)
 def _build_prediction_sample_points() -> list[dict]:
+    _ensure_history_loaded()
     if model is None:
         raise HTTPException(status_code=503, detail="The serialized model is not available.")
 
@@ -305,6 +314,7 @@ def get_locations() -> dict:
     lookup_path = BASE_DIR / "taxi_zone_lookup.csv"
     if not lookup_path.exists():
         raise HTTPException(status_code=404, detail="taxi_zone_lookup.csv was not found.")
+    _ensure_history_loaded()
     if history is None:
         raise HTTPException(status_code=503, detail="Historical ride data is not available.")
 
@@ -497,3 +507,109 @@ def get_multi_horizon_forecast(request: MultiHorizonForecastRequest) -> dict:
         "model_version": "layer1-multihorizon-v1.0",
         "target_description": "Passenger pickup ride demand (completed trips) per hourly interval.",
     }
+
+
+# ==========================================
+# Layer 2: Demand Anomaly Detection & Errors
+# ==========================================
+
+layer2_service = None
+
+
+def _get_layer2_service():
+    global layer2_service
+    if layer2_service is None:
+        from layer2.service import Layer2Service
+        layer2_service = Layer2Service.get_default_service()
+    return layer2_service
+
+
+@app.get("/anomalies")
+def get_anomalies(
+    zone_id: Optional[int] = None,
+    start_time: Optional[str] = None,
+    end_time: Optional[str] = None,
+    anomaly_type: Optional[str] = None,
+    severity: Optional[str] = None,
+    limit: int = 50,
+) -> dict:
+    svc = _get_layer2_service()
+    from layer2.schemas import AnomalySeverity, AnomalyType
+
+    type_enum = None
+    if anomaly_type:
+        try:
+            type_enum = AnomalyType(anomaly_type)
+        except ValueError:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid anomaly_type: {anomaly_type}. Must be one of {[t.value for t in AnomalyType]}",
+            )
+
+    sev_enum = None
+    if severity:
+        try:
+            sev_enum = AnomalySeverity(severity)
+        except ValueError:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid severity: {severity}. Must be one of {[s.value for s in AnomalySeverity]}",
+            )
+
+    records = svc.get_anomalies(
+        zone_id=zone_id,
+        start_time=start_time,
+        end_time=end_time,
+        anomaly_type=type_enum,
+        severity=sev_enum,
+        limit=min(limit, 500),
+    )
+    return {
+        "anomalies": [r.model_dump() for r in records],
+        "count": len(records),
+        "limit": limit,
+    }
+
+
+@app.get("/anomalies/summary")
+def get_anomalies_summary() -> dict:
+    svc = _get_layer2_service()
+    summary = svc.get_anomaly_summary()
+    return summary.model_dump()
+
+
+@app.get("/forecast-performance")
+def get_forecast_performance() -> dict:
+    svc = _get_layer2_service()
+    perf = svc.get_forecast_performance()
+    return perf.model_dump()
+
+
+@app.get("/forecast-errors/zones")
+def get_forecast_errors_zones(
+    horizon: int = 60,
+    sort_by: str = "mae",
+    limit: int = 10,
+) -> dict:
+    svc = _get_layer2_service()
+    records = svc.get_zone_errors(horizon_minutes=horizon, sort_by=sort_by, limit=limit)
+    return {
+        "horizon_minutes": horizon,
+        "sort_by": sort_by,
+        "zones": [r.model_dump() for r in records],
+        "count": len(records),
+    }
+
+
+@app.get("/forecast-errors/timeseries")
+def get_forecast_errors_timeseries(
+    horizon: int = 60,
+) -> dict:
+    svc = _get_layer2_service()
+    points = svc.get_timeseries_errors(horizon_minutes=horizon)
+    return {
+        "horizon_minutes": horizon,
+        "timeseries": [p.model_dump() for p in points],
+        "count": len(points),
+    }
+

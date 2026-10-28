@@ -121,3 +121,56 @@ def test_legacy_predict_preserved(client):
     data = res.json()
     assert "predicted_demand" in data
     assert isinstance(data["predicted_demand"], float)
+
+
+def test_layer2_anomalies_endpoint(client):
+    res = client.get("/anomalies?limit=10")
+    assert res.status_code == 200
+    data = res.json()
+    assert "anomalies" in data
+    assert len(data["anomalies"]) <= 10
+    if data["anomalies"]:
+        rec = data["anomalies"][0]
+        assert "zone_id" in rec
+        assert "anomaly_type" in rec
+        assert "severity" in rec
+        assert "explanation" in rec
+
+
+def test_layer2_anomalies_summary_endpoint(client):
+    res = client.get("/anomalies/summary")
+    assert res.status_code == 200
+    data = res.json()
+    assert "total_anomalies" in data
+    assert "by_type" in data
+    assert "by_severity" in data
+    assert "top_zones" in data
+    assert data["total_anomalies"] > 0
+
+
+def test_layer2_forecast_performance_endpoint(client):
+    res = client.get("/forecast-performance")
+    assert res.status_code == 200
+    data = res.json()
+    assert "horizons" in data
+    assert len(data["horizons"]) == 3
+    assert data["error_convention"] == "error = actual - predicted (positive = underprediction, negative = overprediction)"
+
+
+def test_layer2_forecast_errors_zones_endpoint(client):
+    res = client.get("/forecast-errors/zones?horizon=60&sort_by=mae&limit=5")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["horizon_minutes"] == 60
+    assert "zones" in data
+    assert len(data["zones"]) <= 5
+
+
+def test_layer2_forecast_errors_timeseries_endpoint(client):
+    res = client.get("/forecast-errors/timeseries?horizon=60")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["horizon_minutes"] == 60
+    assert "timeseries" in data
+    assert len(data["timeseries"]) == 30
+
