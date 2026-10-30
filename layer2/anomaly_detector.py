@@ -23,7 +23,7 @@ class DemandAnomalyDetector:
 
     def fit_seasonal_profile(self, df: pd.DataFrame) -> DemandAnomalyDetector:
         """Fit seasonal median and MAD profiles from historical baseline data (e.g. April-May).
-        
+
         Requires columns: ['pickup_hour' (or 'dayofweek', 'hour_of_day'), 'PULocationID', 'ride_count']
         """
         frame = df.copy()
@@ -116,7 +116,7 @@ class DemandAnomalyDetector:
         sort_by_time: bool = True,
     ) -> List[AnomalyRecord]:
         """Detect anomalies across a sequence of records.
-        
+
         Each record should have at minimum:
         - zone_id (or PULocationID)
         - timestamp (or pickup_hour)

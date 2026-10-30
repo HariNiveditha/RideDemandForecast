@@ -92,3 +92,8 @@ MULTI_HORIZON_FEATURE_ORDER = [
 
 MODEL_VERSION = "layer1-multihorizon-v1.0"
 DEFAULT_INTERVAL_CONFIDENCE = 0.80  # 80% empirical prediction interval
+
+# Maximum accepted age of a forecast origin relative to the newest hour present
+# in the forecasting dataset. The Layer 3 (fleet) integration rejects origins
+# outside [latest - this, latest] instead of silently consuming stale forecasts.
+DEFAULT_MAX_FORECAST_AGE_HOURS = 24.0

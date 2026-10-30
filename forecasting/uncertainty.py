@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 class ConformalResidualCalibrator:
     """Split conformal residual calibrator for multi-horizon point forecasts.
-    
+
     Calibration procedure:
       1. On a chronological validation set (e.g. May 16 - May 31), generate point forecasts.
       2. Compute signed residuals: e_i = y_i - y_hat_i.
@@ -26,7 +26,7 @@ class ConformalResidualCalibrator:
       4. For any future point prediction y_hat:
          lower_bound = max(0.0, y_hat + q_low)
          upper_bound = max(lower_bound, y_hat + q_high)
-    
+
     Assumptions & Limitations:
       - Exchangeability: The distribution of residuals in future periods is assumed similar
         to the calibration window.

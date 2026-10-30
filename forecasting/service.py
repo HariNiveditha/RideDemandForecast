@@ -183,7 +183,7 @@ class ForecastingService:
         include_bounds: bool = True,
     ) -> Dict[str, Any]:
         """Generate demand forecast for a single taxi zone and horizon.
-        
+
         Returns record strictly complying with Layer 3 integration contract.
         """
         if horizon_minutes not in HORIZON_STEPS:

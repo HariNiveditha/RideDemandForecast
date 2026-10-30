@@ -10,7 +10,7 @@ import pandas as pd
 
 def calculate_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float]:
     """Calculate MAE, RMSE, WAPE, and R2 on predictions.
-    
+
     WAPE = sum(|y - y_hat|) / sum(y) * 100%, perfectly defined when zero demand intervals exist.
     """
     y_true = np.asarray(y_true, dtype=float)

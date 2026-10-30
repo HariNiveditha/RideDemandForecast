@@ -163,12 +163,12 @@ class Layer2Service:
                 df["pickup_hour"] = pd.to_datetime(df["pickup_hour"]).dt.floor("h")
                 # Focus detection on June test window
                 june_df = df[df["pickup_hour"] >= "2021-06-01"].copy()
-                
+
                 # Sample representative zones for lightning-fast detection if large
                 records = june_df.rename(
                     columns={"pickup_hour": "timestamp", "ride_count": "actual", "PULocationID": "zone_id"}
                 ).to_dict("records")
-                
+
                 detected = self.detector.detect_anomalies(records, sort_by_time=True)
 
                 # Ensure representative forecast deviation and data quality examples exist for exploration

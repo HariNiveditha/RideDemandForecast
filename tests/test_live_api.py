@@ -173,4 +173,3 @@ def test_layer2_forecast_errors_timeseries_endpoint(client):
     assert data["horizon_minutes"] == 60
     assert "timeseries" in data
     assert len(data["timeseries"]) == 30
-

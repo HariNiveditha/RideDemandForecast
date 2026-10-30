@@ -22,7 +22,7 @@ def compute_forecast_metrics(
 ) -> ForecastMetricSummary:
     """Compute core forecast evaluation metrics following the strict error convention:
     error = actual - predicted.
-    
+
     Positive mean bias indicates underprediction (actual demand exceeded forecast).
     Negative mean bias indicates overprediction (forecast exceeded actual demand).
     """

@@ -46,6 +46,65 @@ type FleetMetrics = {
     total_unmet_rides: number
     affected_zones: number[]
   }
+  demand_source?: DemandSource
+}
+
+/** Demand source selector values. 'historical' is the default behaviour. */
+type ForecastHorizon = 'historical' | 60 | 180 | 360
+
+/** Mirrors the `demand_source` block returned by POST /fleet/recommendations. */
+type DemandSource = {
+  type: 'historical' | 'forecast' | 'historical_fallback'
+  requested_horizon_minutes: number | null
+  horizon_minutes: number | null
+  forecast_origin: string | null
+  target_timestamp: string | null
+  model_version: string | null
+  zones_forecasted: number
+  zones_from_history: number
+  total_predicted_rides: number | null
+  description: string
+  forecast_error: string | null
+  // Data-freshness disclosure: separates the dataset hour from the system clock.
+  // Optional because older/cached responses may not carry it.
+  data_basis?: string
+  dataset_latest_timestamp?: string | null
+  system_time?: string | null
+  is_live?: boolean
+  freshness_note?: string
+  origin_is_dataset_latest?: boolean
+  target_beyond_dataset_end?: boolean
+}
+
+/**
+ * Short, human-readable statement of where the demand numbers came from.
+ * Always separates the dataset's newest hour from the current system time so a
+ * dataset-anchored number is never mistaken for a live one.
+ */
+function describeDataBasis(source: DemandSource): string {
+  const basis = source.is_live ? 'live demand feed' : 'historical dataset (not live)'
+  const latest = source.dataset_latest_timestamp ? `; latest demand data ${source.dataset_latest_timestamp}` : ''
+  const clock = source.system_time ? `; response generated ${source.system_time}` : ''
+  return `${basis}${latest}${clock}.`
+}
+
+function describeDemandSource(source: DemandSource): string {
+  if (source.type === 'forecast') {
+    const anchor = source.origin_is_dataset_latest
+      ? ', measured from the latest available data hour'
+      : ''
+    return (
+      `Demand forecast, ${source.horizon_minutes} minutes ahead ` +
+      `(origin ${source.forecast_origin} → target ${source.target_timestamp}${anchor})`
+    )
+  }
+  if (source.type === 'historical_fallback') {
+    const reason = source.forecast_error ? ` — ${source.forecast_error}` : ''
+    return (
+      `Historical hourly average — the requested ${source.requested_horizon_minutes}-minute forecast was unavailable${reason}`
+    )
+  }
+  return 'Historical hourly average (no forecast requested)'
 }
 
 interface FleetManagementProps {
@@ -77,6 +136,10 @@ function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
 
+  // Demand source used when generating recommendations.
+  // 'historical' keeps the original backend behaviour (default).
+  const [demandHorizon, setDemandHorizon] = useState<ForecastHorizon>('historical')
+
   // Collapsible section state
   const [zoneSectionExpanded, setZoneSectionExpanded] = useState(false)
   const [demandSectionExpanded, setDemandSectionExpanded] = useState(false)
@@ -88,29 +151,40 @@ function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
     }
   }, [fleetState?.fleet_size])
 
-  const fetchRecommendations = useCallback(async (simulationId: string) => {
-    if (!simulationId) return
-    const resp = await fetch(`${backendUrl}/fleet/recommendations`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ simulation_id: simulationId }),
-    })
-    if (!resp.ok) {
-      const detail = await resp.text()
-      throw new Error(detail || `Recommendations request failed (HTTP ${resp.status})`)
-    }
-    const data = await resp.json()
-    setMetrics({
-      zones: Array.isArray(data.zones) ? data.zones : [],
-      recommended_movements: Array.isArray(data.recommended_movements)
-        ? data.recommended_movements
-        : [],
-      unmet_demand_estimate: data.unmet_demand_estimate ?? {
-        total_unmet_rides: 0,
-        affected_zones: [],
-      },
-    })
-  }, [backendUrl])
+  const fetchRecommendations = useCallback(
+    async (simulationId: string, horizon: ForecastHorizon = demandHorizon) => {
+      if (!simulationId) return
+      const body: Record<string, unknown> = { simulation_id: simulationId }
+      // Omitting horizon_minutes keeps the historical-demand default on the backend.
+      if (horizon !== 'historical') body.horizon_minutes = horizon
+      const resp = await fetch(`${backendUrl}/fleet/recommendations`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+      if (!resp.ok) {
+        const payload = (await resp.json().catch(() => null)) as { detail?: unknown } | null
+        const detail = payload?.detail
+        throw new Error(
+          typeof detail === 'string' ? detail : `Recommendations request failed (HTTP ${resp.status})`,
+        )
+      }
+      const data = await resp.json()
+      setMetrics({
+        zones: Array.isArray(data.zones) ? data.zones : [],
+        recommended_movements: Array.isArray(data.recommended_movements)
+          ? data.recommended_movements
+          : [],
+        unmet_demand_estimate: data.unmet_demand_estimate ?? {
+          total_unmet_rides: 0,
+          affected_zones: [],
+        },
+        demand_source: data.demand_source ?? undefined,
+      })
+      return (data.demand_source ?? undefined) as DemandSource | undefined
+    },
+    [backendUrl, demandHorizon],
+  )
 
   const fetchFleetCurrent = useCallback(async (showLoading = true) => {
     if (showLoading) setLoading('refreshing')
@@ -133,9 +207,12 @@ function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
       if (data.simulation_id) {
         try {
           await fetchRecommendations(data.simulation_id)
-        } catch {
+        } catch (recError) {
           // Keep the current fleet state visible even if recommendations are unavailable.
           setMetrics(null)
+          setError(
+            recError instanceof Error ? recError.message : 'Recommendations could not be loaded',
+          )
         }
       }
     } catch (e: unknown) {
@@ -172,8 +249,11 @@ function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
       if (simulationId) {
         try {
           await fetchRecommendations(simulationId)
-        } catch {
+        } catch (recError) {
           setMetrics(null)
+          setError(
+            recError instanceof Error ? recError.message : 'Recommendations could not be loaded',
+          )
         }
       }
     } catch (e: unknown) {
@@ -192,8 +272,12 @@ function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
     setError(null)
     setNotice(null)
     try {
-      await fetchRecommendations(fleetState.simulation_id)
-      setNotice('Recommendations refreshed. No cab movements were executed.')
+      const source = await fetchRecommendations(fleetState.simulation_id)
+      setNotice(
+        source
+          ? `Recommendations refreshed using ${describeDemandSource(source)}. No cab movements were executed.`
+          : 'Recommendations refreshed. No cab movements were executed.',
+      )
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : 'Failed to generate recommendations')
     } finally {
@@ -433,7 +517,10 @@ function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
             <div className="summary-card"><div>Busy</div><div>{formatNumber(totalBusy)}</div></div>
             <div className="summary-card"><div>Repositioning</div><div>{formatNumber(totalRepositioning)}</div></div>
             <div className="summary-card"><div>Zones</div><div>{zoneEntries.length}</div></div>
-            <div className="summary-card"><div>Predicted Rides</div><div>{formatNumber(totalPredicted)}</div></div>
+            <div className="summary-card">
+              <div>Predicted Rides{metrics?.demand_source?.type === 'forecast' ? ' (historical)' : ''}</div>
+              <div>{formatNumber(totalPredicted)}</div>
+            </div>
           </div>
           <small className="fleet-conservation">
             Fleet accounting: {formatNumber(totalCabs)} of {formatNumber(fleetState?.fleet_size)} cabs represented by zone totals.
@@ -460,6 +547,23 @@ function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
               <option value={25000}>25,000 (Abundant Supply)</option>
             </select>
           </label>
+          <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 500 }}>
+            Demand Source:
+            <select
+              value={demandHorizon}
+              onChange={(e) => {
+                const value = e.target.value
+                setDemandHorizon(value === 'historical' ? 'historical' : Number(value) as ForecastHorizon)
+              }}
+              disabled={isBusy}
+              style={{ padding: '6px 10px', borderRadius: '4px', border: '1px solid #ccc', background: 'white' }}
+            >
+              <option value="historical">Historical demand (default)</option>
+              <option value={60}>Forecast — 60 minutes</option>
+              <option value={180}>Forecast — 180 minutes</option>
+              <option value={360}>Forecast — 360 minutes</option>
+            </select>
+          </label>
           <button className="primary-button" onClick={handleAdvance} disabled={isBusy}>
             {loading === 'advancing' ? 'Advancing' : 'Advance Simulation'}
           </button>
@@ -477,6 +581,21 @@ function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
         {/* Repositioning Recommendations moved directly below controls */}
         <StateCard title="Repositioning Recommendations" tone="empty">
           <p>{metrics?.recommended_movements.length} proposed movement(s). Generating recommendations does not execute them.</p>
+          {metrics?.demand_source && (
+            <p className="fleet-note">
+              Demand source: {describeDemandSource(metrics.demand_source)}.
+              {metrics.demand_source.type === 'forecast' &&
+                ` ${formatNumber(metrics.demand_source.zones_forecasted)} zone(s) use forecast demand; ` +
+                `${formatNumber(metrics.demand_source.zones_from_history)} zone(s) use historical demand.`}
+            </p>
+          )}
+          {metrics?.demand_source && (
+            <p className="fleet-note">
+              Data basis: {describeDataBasis(metrics.demand_source)}
+              {metrics.demand_source.target_beyond_dataset_end &&
+                ' Target hour is past the end of the dataset, so the model is extrapolating.'}
+            </p>
+          )}
           <ul className="recommendations-list">
             {metrics?.recommended_movements.map((movement, index) => (
               <li key={`${movement.from_zone}-${movement.to_zone}-${index}`}>

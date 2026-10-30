@@ -47,11 +47,11 @@ def load_zone_lookup(path: Optional[str] = None) -> pd.DataFrame:
 
 def build_regular_hourly_grid(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Construct a full regularized hourly grid for all active taxi zones.
-    
+
     Missing hourly intervals for any taxi zone are filled with ride_count = 0.0,
     reflecting real periods with zero yellow taxi demand.
     City-wide weather variables are aligned and forward-filled if missing.
-    
+
     Returns:
         grid_df: Complete dataframe indexed by [PULocationID, pickup_hour].
         weather_df: Unique hourly weather dataframe indexed by pickup_hour.
@@ -96,7 +96,7 @@ def build_multi_horizon_dataset(
     horizon_minutes: int,
 ) -> pd.DataFrame:
     """Build a leak-free dataset targeting horizon_minutes ahead.
-    
+
     For forecast origin T:
         target_timestamp = T + step hours (e.g. T + 1h, T + 3h, T + 6h)
         target = ride_count at target_timestamp
@@ -178,7 +178,7 @@ def split_chronological(
     test_cutoff: str = TEST_CUTOFF,
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Strict chronological split by forecast_origin timestamp.
-    
+
     Train: forecast_origin < val_cutoff
     Val:   val_cutoff <= forecast_origin < test_cutoff
     Test:  forecast_origin >= test_cutoff

@@ -246,7 +246,7 @@ function Analytics() {
   }, [activeTab, historicalData])
 
   if (loading) {
-    return <StateCard tone="loading" title="Loading Layer 2 Analytics…" description="Loading anomaly detection engine and multi-horizon forecast performance." />
+    return <StateCard tone="loading" title="Loading Demand Analytics…" description="Loading anomaly detection and multi-horizon forecast performance." />
   }
 
   if (error) {
@@ -257,7 +257,7 @@ function Analytics() {
 
   return (
     <section className="forecast-section" style={{ maxWidth: 1200, margin: '0 auto', paddingBottom: 60 }}>
-      <SectionHeading eyebrow="LAYER 2 · ANOMALY DETECTION & ERROR ANALYSIS" title="Demand Diagnostics & Performance" />
+      <SectionHeading eyebrow="ANOMALY DETECTION & ERROR ANALYSIS" title="Demand Diagnostics & Performance" />
 
       {/* Primary Tab Navigation */}
       <div style={{ display: 'flex', gap: 10, margin: '20px 0 24px', borderBottom: '1px solid var(--line)', paddingBottom: 14 }}>

@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 class MultiHorizonDemandModel:
     """Direct multi-horizon demand forecasting model.
-    
+
     Fits separate, leak-free estimators for each prediction horizon (e.g. 60, 180, 360 minutes ahead).
     """
 
@@ -95,7 +95,7 @@ class MultiHorizonDemandModel:
         horizon_minutes: int,
     ) -> np.ndarray:
         """Generate point forecasts for a specific horizon.
-        
+
         Applies physical non-negativity constraint (demand >= 0.0).
         """
         if horizon_minutes not in self.models:

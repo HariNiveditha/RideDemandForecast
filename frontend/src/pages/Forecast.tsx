@@ -138,7 +138,7 @@ function Forecast() {
     }
 
     setLoading(true)
-    setStatus('Querying Layer 1 multi-horizon forecasting models...')
+    setStatus('Generating multi-horizon demand forecasts...')
 
     const selectedTime = time || '12:00'
     const originIso = `${date}T${selectedTime}:00`
@@ -222,11 +222,11 @@ function Forecast() {
 
   return (
     <section className="forecast-section">
-      <SectionHeading eyebrow="LAYER 1 INFERENCE" title="Multi-Horizon Ride Demand Forecast">
+      <SectionHeading eyebrow="DEMAND FORECASTING" title="Multi-Horizon Ride Demand Forecast">
         <div className="heading-chips">
           <span className="model-chip">
             <span className="status-dot" />
-            Layer 1 Direct Models · 1h, 3h & 6h
+            Direct Forecast Models · 1h, 3h & 6h
           </span>
           <span className="range-chip">
             Data window: {dateRange.start} to {dateRange.end}
@@ -327,7 +327,7 @@ function Forecast() {
       {loading && !forecastResult ? (
         <StateCard
           tone="loading"
-          title="Executing Layer 1 Multi-Horizon Models"
+          title="Running Multi-Horizon Demand Forecast"
           description="Running leak-free direct estimators with calibrated conformal uncertainty bounds..."
         />
       ) : forecastResult && selectedZone ? (
@@ -407,7 +407,7 @@ function Forecast() {
                       if (val === null || val === undefined) return ['', '']
                       const num = Number(val).toFixed(1)
                       if (name === 'actual') return [`${num} rides`, 'Actual Demand (Observed)']
-                      if (name === 'predicted') return [`${num} rides`, 'Layer 1 Predicted Demand']
+                      if (name === 'predicted') return [`${num} rides`, 'Forecasted Demand']
                       if (name === 'upperBound') return [`${num} rides`, '80% Upper Bound']
                       if (name === 'lowerBound') return [`${num} rides`, '80% Lower Bound']
                       return [num, String(name)]
@@ -469,8 +469,8 @@ function Forecast() {
           <div className="forecast-table-container">
             <div className="panel-heading" style={{ marginBottom: 12 }}>
               <div>
-                <span className="eyebrow">CONTRACT EXPORT TABLE</span>
-                <h3>Layer 3 Consumable Forecast Records</h3>
+                <span className="eyebrow">FORECAST RECORDS</span>
+                <h3>Forecast Records for Fleet Allocation</h3>
               </div>
               <span className="muted-pill">{forecastResult.forecasts.length} horizons</span>
             </div>
@@ -528,8 +528,8 @@ function Forecast() {
         <div className="forecast-empty">
           <StateCard
             compact
-            title="Ready for multi-horizon inference"
-            description="Select a NYC taxi zone, forecast origin time, and horizons to run Layer 1 prediction models."
+            title="Ready to generate forecasts"
+            description="Select a NYC taxi zone, forecast origin time, and horizons to generate multi-horizon demand forecasts."
           />
         </div>
       )}
