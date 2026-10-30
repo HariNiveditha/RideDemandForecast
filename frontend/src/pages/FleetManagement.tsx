@@ -67,7 +67,7 @@ function normalizeFleetState(data: ApiFleetState): FleetState {
   }
 }
 
-function FleetManagement({ backendUrl = 'http://localhost:8000' }: FleetManagementProps) {
+function FleetManagement({ backendUrl = '/api' }: FleetManagementProps) {
   const [initialized, setInitialized] = useState(false)
   const [fleetState, setFleetState] = useState<FleetState | null>(null)
   const [metrics, setMetrics] = useState<FleetMetrics | null>(null)
