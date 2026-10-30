@@ -592,7 +592,7 @@
 .range-chip {
     background: #edf6f7;
     color: #4d6d7d;
-    border: 1px solid #d6e7eb;
+    border: 1x solid #d6e7eb;
 }
 
 .heading-chips {
@@ -1369,4 +1369,192 @@
     color: #835c00;
     font-size: 11px;
     margin-top: 10px;
+}
+
+/* === Collapsible Section Styles === */
+.collapsible-section {
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.collapsible-button {
+    width: 100%;
+    padding: 16px 20px;
+    background: none;
+    border: 0;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background .15s ease;
+}
+
+.collapsible-button:hover {
+    background: #fafafa;
+}
+
+.collapsible-button:focus-visible {
+    outline: 2px solid var(--asphalt);
+    outline-offset: 2px;
+}
+
+.collapsible-button.collapsed .collapsible-chevron path {
+    transform: rotate(0deg);
+}
+
+.collapsible-button:not(.collapsed) .collapsible-chevron path {
+    transform: rotate(180deg);
+}
+
+.collapsible-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.collapsible-chevron {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+}
+
+.collapsible-chevron path {
+    transition: transform .2s ease;
+    fill: currentColor;
+}
+
+.collapsible-content {
+    max-height: 2000px;
+    overflow: hidden;
+    transition: max-height .3s ease-out;
+    padding: 20px;
+}
+
+.collapsible-content.expanded {
+    max-height: 2000px;
+    padding: 20px;
+}
+
+/* === Zone Tables === */
+.zone-table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.zone-availability-table,
+.recommendations-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.zone-availability-table th,
+.recommendations-table th,
+.zone-availability-table td,
+.recommendations-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+}
+
+.zone-availability-table th,
+.recommendations-table th {
+    background: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 2px solid var(--line);
+    color: var(--navy);
+    font-weight: 600;
+}
+
+.zone-row,
+.recommendation-row {
+    transition: background .15s ease;
+}
+
+.zone-row:hover,
+.recommendation-row:hover {
+    background: #fafafa;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    border-bottom: 2px solid var(--line);
+    padding: 8px 10px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+/* === Search and Filters === */
+.zone-search-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.zone-search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    font-size: 12px;
+    background: #fff;
+    outline: none;
+}
+
+.zone-search-input:focus {
+    border-color: #51aaa8;
+    box-shadow: 0 0 0 3px #e5f4f2;
+}
+
+.zone-filter-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.zone-filter-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+}
+
+.zone-filter-btn:hover {
+    border-color: #708398;
+}
+
+.zone-filter-btn.active {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: #e6f7f5;
+}
+
+/* === Empty states === */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-size: 12px;
 }

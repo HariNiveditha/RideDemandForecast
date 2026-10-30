@@ -1,10 +1,11 @@
-import { ArrowUpRight, BarChart3, LayoutDashboard, Network, Target, X } from 'lucide-react'
+import { ArrowUpRight, BarChart3, LayoutDashboard, Network, Target, Truck, X } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import { CheckerStrip, TaxiIcon } from './TaxiIcons'
 
 const navItems = [
   { label: 'Overview', to: '/', icon: LayoutDashboard, end: true },
   { label: 'Forecast', to: '/forecast', icon: Target },
+  { label: 'Fleet Management', to: '/fleet', icon: Truck },
   { label: 'Analytics', to: '/analytics', icon: BarChart3 },
   { label: 'Model', to: '/model', icon: Network },
 ]

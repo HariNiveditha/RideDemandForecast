@@ -10,6 +10,17 @@ import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
+# Fleet simulation module
+from fleet_simulation import (
+    _make_initial_state,
+    advance_simulation,
+    compute_allocation_recommendations,
+    DEMAND_PROPORTIONS,
+    VALID_ZONE_IDS,
+    NUM_ZONES,
+    RANDOM_SEED,
+    DEFAULT_FLEET_SIZE,
+)
 
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "rf_model.pkl"
@@ -58,6 +69,7 @@ WEATHER_FIELDS = [
 model = None
 history = None
 history_by_key = None
+fleet_state = _make_initial_state()
 
 
 class PredictionRequest(BaseModel):
@@ -107,6 +119,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(title="RideCast prediction API", version="1.0.0", lifespan=lifespan)
+
 
 
 @app.get("/metrics")
@@ -613,3 +626,162 @@ def get_forecast_errors_timeseries(
         "count": len(points),
     }
 
+from typing import Optional
+
+# ============================================================================
+# Fleet Management API Endpoints
+# ============================================================================
+
+class FleetInitRequest(BaseModel):
+    fleet_size: Optional[int] = None
+    seed: Optional[int] = None
+
+@app.post("/fleet/init", response_model=None)
+def fleet_init(
+    req: Optional[FleetInitRequest] = None,
+    fleet_size: Optional[int] = None,
+    seed: Optional[int] = None,
+) -> dict:
+    """
+    Initialize (or re-initialize) the fleet simulation state.
+
+    - If a state already exists, it is replaced.
+    - The state persists across requests.
+    - Fleet uses historical demand proportions for zone distribution.
+    """
+    global fleet_state
+    try:
+        body_fs = req.fleet_size if req is not None else None
+        body_seed = req.seed if req is not None else None
+        fs = body_fs or fleet_size or DEFAULT_FLEET_SIZE
+        sd = body_seed or seed or RANDOM_SEED
+        fleet_state = _make_initial_state(fleet_size=fs, seed=sd)
+
+        # Consistent demand prediction using historical-data interval calculation
+        from fleet_simulation import _predict_demand_for_interval, SIMULATION_INTERVAL_HOURS
+        fleet_state["predicted_rides"] = _predict_demand_for_interval(
+            fleet_state, SIMULATION_INTERVAL_HOURS
+        )
+
+        return {
+            "status": "initialized",
+            "fleet_size": fleet_state["fleet_size"],
+            "simulation_id": fleet_state["simulation_id"],
+            "timestamp": fleet_state["timestamp"].isoformat(),
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Fleet initialization error: {str(e)}")
+
+
+@app.get("/fleet/current")
+def fleet_current() -> dict:
+    """
+    Retrieve the current fleet state.
+
+    Returns per-zone idle, busy, and repositioning cab counts,
+    plus total fleet conservation check.
+    """
+    global fleet_state
+    if fleet_state is None:
+        raise HTTPException(status_code=503, detail="Fleet simulation state not initialized.")
+    return {
+        "simulation_id": fleet_state["simulation_id"],
+        "timestamp": fleet_state["timestamp"].isoformat(),
+        "fleet_size": fleet_state["fleet_size"],
+        "predicted_rides": fleet_state.get("predicted_rides", {}),
+        "availability": {
+            zone: {
+                "idle_cabs": fleet_state["idle_cabs"].get(zone, 0),
+                "busy_cabs": fleet_state["busy_cabs"].get(zone, 0),
+                "repositioning_cabs": fleet_state["repositioning_cabs"].get(zone, 0),
+                "total_cabs": fleet_state["total_cabs_by_zone"].get(zone, 0),
+            }
+            for zone in fleet_state["zones"]
+        },
+        "fleet_totals": {
+            "total_fleet": fleet_state["fleet_size"],
+            "total_idle": sum(fleet_state["idle_cabs"].values()),
+            "total_busy": sum(fleet_state["busy_cabs"].values()),
+            "total_repositioning": sum(fleet_state["repositioning_cabs"].values()),
+            "conservation_check": sum(fleet_state["total_cabs_by_zone"].values())
+            == fleet_state["fleet_size"],
+        },
+    }
+
+
+@app.post("/fleet/advance")
+def fleet_advance() -> dict:
+    """
+    Advance the simulation by one interval.
+
+    Models trip completions, repositioning, and new demand-based assignments.
+    Uses the previous state (not independent regeneration).
+    """
+    global fleet_state
+    if fleet_state is None:
+        raise HTTPException(status_code=503, detail="Fleet simulation state not initialized.")
+    fleet_state = advance_simulation(fleet_state)
+    return {
+        "status": "advanced",
+        "timestamp": fleet_state["timestamp"].isoformat(),
+        "conservation_check": sum(fleet_state["total_cabs_by_zone"].values()) == fleet_state["fleet_size"],
+    }
+
+
+@app.post("/fleet/reset")
+def fleet_reset() -> dict:
+    """
+    Explicitly reset the simulation to the initial state.
+
+    Preserves current configured fleet size.
+    """
+    global fleet_state
+    current_size = (
+        fleet_state.get("fleet_size", DEFAULT_FLEET_SIZE)
+        if fleet_state
+        else DEFAULT_FLEET_SIZE
+    )
+    fleet_state = _make_initial_state(fleet_size=current_size)
+    from fleet_simulation import _predict_demand_for_interval, SIMULATION_INTERVAL_HOURS
+    fleet_state["predicted_rides"] = _predict_demand_for_interval(
+        fleet_state, SIMULATION_INTERVAL_HOURS
+    )
+    return {
+        "status": "reset",
+        "simulation_id": fleet_state["simulation_id"],
+        "timestamp": fleet_state["timestamp"].isoformat(),
+    }
+
+
+@app.post("/fleet/recommendations")
+def fleet_recommendations() -> dict:
+    """
+    Generate demand-aware cab allocation recommendations.
+
+    Identifies zones with predicted shortages and surplus idle cabs,
+    and recommends movements from donor to shortage zones.
+    """
+    global fleet_state
+    if fleet_state is None:
+        raise HTTPException(status_code=503, detail="Fleet simulation state not initialized.")
+    rec = compute_allocation_recommendations(fleet_state)
+    return rec
+
+
+@app.get("/fleet/export")
+def fleet_export() -> dict:
+    """
+    Export fleet snapshots as a list of per-zone records.
+
+    Useful for reproducible evaluation and CSV/JSON export.
+    """
+    global fleet_state
+    if fleet_state is None:
+        raise HTTPException(status_code=503, detail="Fleet simulation state not initialized.")
+    from fleet_simulation import _snapshot_for_export
+    snapshots = _snapshot_for_export(fleet_state)
+    return {
+        "simulation_id": fleet_state["simulation_id"],
+        "snapshot_count": len(snapshots),
+        "snapshots": snapshots,
+    }
