@@ -11,7 +11,7 @@ import './App.css'
 
 const pageMeta: Record<string, { title: string; label: string }> = {
   '/': { title: 'Overview', label: 'OPERATIONS' },
-  '/forecast': { title: 'Forecast', label: 'LIVE INFERENCE' },
+  '/forecast': { title: 'Forecast', label: 'DEMAND FORECAST' },
   '/analytics': { title: 'Analytics', label: 'PERFORMANCE' },
   '/fleet': { title: 'Fleet', label: 'FLEET' },
   '/model': { title: 'Model', label: 'WORKSPACE' },

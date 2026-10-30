@@ -1,0 +1,83 @@
+{
+  "description": "Official data contract for Layer 1 multi-horizon zone-level taxi ride demand forecasting. Consumable by Layer 3 fleet supply estimation.",
+  "properties": {
+    "zone_id": {
+      "description": "NYC Taxi & Limousine Commission official Taxi Zone ID (PULocationID).",
+      "exclusiveMinimum": 0,
+      "title": "Zone Id",
+      "type": "integer"
+    },
+    "forecast_origin": {
+      "description": "ISO 8601 timestamp string (YYYY-MM-DDTHH:MM:SS) representing when the forecast was generated.",
+      "title": "Forecast Origin",
+      "type": "string"
+    },
+    "target_timestamp": {
+      "description": "ISO 8601 timestamp string representing the start of the 1-hour interval being predicted.",
+      "title": "Target Timestamp",
+      "type": "string"
+    },
+    "horizon_minutes": {
+      "description": "Lead time in minutes from forecast_origin to target_timestamp (e.g. 60, 180, 360).",
+      "exclusiveMinimum": 0,
+      "title": "Horizon Minutes",
+      "type": "integer"
+    },
+    "predicted_rides": {
+      "description": "Predicted passenger ride demand (expected completed pickups) during the target hour.",
+      "minimum": 0.0,
+      "title": "Predicted Rides",
+      "type": "number"
+    },
+    "lower_bound": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Calibrated lower prediction bound (e.g. 80% confidence). Clamped at 0.0.",
+      "title": "Lower Bound"
+    },
+    "upper_bound": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Calibrated upper prediction bound (e.g. 80% confidence). >= lower_bound.",
+      "title": "Upper Bound"
+    },
+    "model_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "layer1-multihorizon-v1.0",
+      "description": "Identifier of the forecasting model generating this prediction.",
+      "title": "Model Version"
+    }
+  },
+  "required": [
+    "zone_id",
+    "forecast_origin",
+    "target_timestamp",
+    "horizon_minutes",
+    "predicted_rides"
+  ],
+  "title": "Layer1DemandForecastRecord",
+  "type": "object"
+}

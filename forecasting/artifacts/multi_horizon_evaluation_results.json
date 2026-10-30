@@ -1,0 +1,6680 @@
+{
+  "60": {
+    "horizon_minutes": 60,
+    "horizon_hours": 1,
+    "baselines": {
+      "Baseline: Same Hour Last Week (target lag-168)": {
+        "mae": 12.298,
+        "rmse": 22.158,
+        "wape_pct": 15.56,
+        "r2": 0.9294,
+        "count": 189097,
+        "total_actual_rides": 14947880.0
+      },
+      "Baseline: Same Hour Yesterday (target lag-24)": {
+        "mae": 18.5,
+        "rmse": 37.32,
+        "wape_pct": 23.4,
+        "r2": 0.7997,
+        "count": 189097,
+        "total_actual_rides": 14947880.0
+      },
+      "Baseline: Origin Persistence (origin lag-0)": {
+        "mae": 14.847,
+        "rmse": 24.788,
+        "wape_pct": 18.78,
+        "r2": 0.9116,
+        "count": 189097,
+        "total_actual_rides": 14947880.0
+      },
+      "Baseline: 24h Rolling Mean": {
+        "mae": 30.333,
+        "rmse": 50.671,
+        "wape_pct": 38.37,
+        "r2": 0.6307,
+        "count": 189097,
+        "total_actual_rides": 14947880.0
+      },
+      "Baseline: Historical Zone-DoW-Hour Profile": {
+        "mae": 11.972,
+        "rmse": 24.706,
+        "wape_pct": 15.15,
+        "r2": 0.9122,
+        "count": 189097,
+        "total_actual_rides": 14947880.0
+      }
+    },
+    "model_metrics": {
+      "mae": 9.82,
+      "rmse": 17.941,
+      "wape_pct": 12.42,
+      "r2": 0.9537,
+      "count": 189097,
+      "total_actual_rides": 14947880.0
+    },
+    "uncertainty_metrics": {
+      "target_confidence_pct": 80.0,
+      "empirical_test_coverage_pct": 79.98,
+      "mean_interval_width": 27.45,
+      "q_low": -14.96,
+      "q_high": 14.35,
+      "test_sample_size": 189097
+    },
+    "borough_metrics": {
+      "Bronx": {
+        "mae": 7.772,
+        "rmse": 10.976,
+        "wape_pct": 12.3,
+        "r2": 0.9349,
+        "count": 30917,
+        "total_actual_rides": 1954095.0
+      },
+      "Brooklyn": {
+        "mae": 11.014,
+        "rmse": 17.509,
+        "wape_pct": 11.49,
+        "r2": 0.9625,
+        "count": 43859,
+        "total_actual_rides": 4204433.0
+      },
+      "EWR": {
+        "mae": 0.725,
+        "rmse": 0.887,
+        "wape_pct": 228.67,
+        "r2": -1.051,
+        "count": 719,
+        "total_actual_rides": 228.0
+      },
+      "Manhattan": {
+        "mae": 14.2,
+        "rmse": 25.648,
+        "wape_pct": 12.0,
+        "r2": 0.9354,
+        "count": 48173,
+        "total_actual_rides": 5701238.0
+      },
+      "Queens": {
+        "mae": 8.063,
+        "rmse": 15.344,
+        "wape_pct": 13.91,
+        "r2": 0.946,
+        "count": 49611,
+        "total_actual_rides": 2875359.0
+      },
+      "Staten Island": {
+        "mae": 3.293,
+        "rmse": 4.617,
+        "wape_pct": 22.43,
+        "r2": 0.8845,
+        "count": 14380,
+        "total_actual_rides": 211152.0
+      },
+      "Unknown": {
+        "mae": 1.172,
+        "rmse": 3.855,
+        "wape_pct": 122.61,
+        "r2": 0.0604,
+        "count": 1438,
+        "total_actual_rides": 1375.0
+      }
+    },
+    "zone_metrics": {
+      "1": {
+        "mae": 0.725,
+        "rmse": 0.887,
+        "wape_pct": 228.67,
+        "r2": -1.051,
+        "count": 719,
+        "total_actual_rides": 228.0
+      },
+      "2": {
+        "mae": 0.679,
+        "rmse": 0.815,
+        "wape_pct": 739.76,
+        "r2": -6.4721,
+        "count": 719,
+        "total_actual_rides": 66.0
+      },
+      "3": {
+        "mae": 6.532,
+        "rmse": 8.476,
+        "wape_pct": 13.51,
+        "r2": 0.8201,
+        "count": 719,
+        "total_actual_rides": 34768.0
+      },
+      "4": {
+        "mae": 11.437,
+        "rmse": 17.335,
+        "wape_pct": 14.81,
+        "r2": 0.8083,
+        "count": 719,
+        "total_actual_rides": 55511.0
+      },
+      "5": {
+        "mae": 2.149,
+        "rmse": 2.77,
+        "wape_pct": 38.55,
+        "r2": 0.4393,
+        "count": 719,
+        "total_actual_rides": 4008.0
+      },
+      "6": {
+        "mae": 3.121,
+        "rmse": 4.078,
+        "wape_pct": 27.02,
+        "r2": 0.6134,
+        "count": 719,
+        "total_actual_rides": 8306.0
+      },
+      "7": {
+        "mae": 20.001,
+        "rmse": 26.155,
+        "wape_pct": 9.44,
+        "r2": 0.8891,
+        "count": 719,
+        "total_actual_rides": 152330.0
+      },
+      "8": {
+        "mae": 1.044,
+        "rmse": 1.472,
+        "wape_pct": 92.89,
+        "r2": 0.1337,
+        "count": 719,
+        "total_actual_rides": 808.0
+      },
+      "9": {
+        "mae": 3.901,
+        "rmse": 5.036,
+        "wape_pct": 21.74,
+        "r2": 0.6899,
+        "count": 719,
+        "total_actual_rides": 12900.0
+      },
+      "10": {
+        "mae": 9.07,
+        "rmse": 11.844,
+        "wape_pct": 11.69,
+        "r2": 0.8424,
+        "count": 719,
+        "total_actual_rides": 55805.0
+      },
+      "11": {
+        "mae": 4.364,
+        "rmse": 5.825,
+        "wape_pct": 19.47,
+        "r2": 0.7307,
+        "count": 719,
+        "total_actual_rides": 16112.0
+      },
+      "12": {
+        "mae": 1.847,
+        "rmse": 2.589,
+        "wape_pct": 62.31,
+        "r2": 0.3918,
+        "count": 719,
+        "total_actual_rides": 2131.0
+      },
+      "13": {
+        "mae": 14.305,
+        "rmse": 21.245,
+        "wape_pct": 13.48,
+        "r2": 0.9135,
+        "count": 719,
+        "total_actual_rides": 76300.0
+      },
+      "14": {
+        "mae": 12.222,
+        "rmse": 16.505,
+        "wape_pct": 10.43,
+        "r2": 0.8995,
+        "count": 719,
+        "total_actual_rides": 84244.0
+      },
+      "15": {
+        "mae": 3.368,
+        "rmse": 4.423,
+        "wape_pct": 24.36,
+        "r2": 0.7005,
+        "count": 719,
+        "total_actual_rides": 9939.0
+      },
+      "16": {
+        "mae": 6.465,
+        "rmse": 8.584,
+        "wape_pct": 16.32,
+        "r2": 0.7778,
+        "count": 719,
+        "total_actual_rides": 28489.0
+      },
+      "17": {
+        "mae": 17.755,
+        "rmse": 23.728,
+        "wape_pct": 9.23,
+        "r2": 0.9259,
+        "count": 719,
+        "total_actual_rides": 138236.0
+      },
+      "18": {
+        "mae": 9.966,
+        "rmse": 12.792,
+        "wape_pct": 10.16,
+        "r2": 0.8714,
+        "count": 719,
+        "total_actual_rides": 70494.0
+      },
+      "19": {
+        "mae": 3.734,
+        "rmse": 4.816,
+        "wape_pct": 23.25,
+        "r2": 0.6751,
+        "count": 719,
+        "total_actual_rides": 11545.0
+      },
+      "20": {
+        "mae": 7.973,
+        "rmse": 10.333,
+        "wape_pct": 13.05,
+        "r2": 0.8557,
+        "count": 719,
+        "total_actual_rides": 43936.0
+      },
+      "21": {
+        "mae": 7.688,
+        "rmse": 10.034,
+        "wape_pct": 14.17,
+        "r2": 0.8307,
+        "count": 719,
+        "total_actual_rides": 39021.0
+      },
+      "22": {
+        "mae": 8.845,
+        "rmse": 11.727,
+        "wape_pct": 12.21,
+        "r2": 0.895,
+        "count": 719,
+        "total_actual_rides": 52094.0
+      },
+      "23": {
+        "mae": 5.329,
+        "rmse": 6.92,
+        "wape_pct": 18.82,
+        "r2": 0.7734,
+        "count": 719,
+        "total_actual_rides": 20360.0
+      },
+      "24": {
+        "mae": 5.509,
+        "rmse": 7.301,
+        "wape_pct": 18.15,
+        "r2": 0.6772,
+        "count": 719,
+        "total_actual_rides": 21823.0
+      },
+      "25": {
+        "mae": 13.576,
+        "rmse": 19.586,
+        "wape_pct": 12.06,
+        "r2": 0.8656,
+        "count": 719,
+        "total_actual_rides": 80944.0
+      },
+      "26": {
+        "mae": 13.704,
+        "rmse": 20.04,
+        "wape_pct": 13.8,
+        "r2": 0.9224,
+        "count": 719,
+        "total_actual_rides": 71377.0
+      },
+      "27": {
+        "mae": 2.314,
+        "rmse": 4.41,
+        "wape_pct": 66.93,
+        "r2": 0.4889,
+        "count": 719,
+        "total_actual_rides": 2486.0
+      },
+      "28": {
+        "mae": 7.044,
+        "rmse": 9.29,
+        "wape_pct": 14.42,
+        "r2": 0.8321,
+        "count": 719,
+        "total_actual_rides": 35121.0
+      },
+      "29": {
+        "mae": 7.238,
+        "rmse": 9.614,
+        "wape_pct": 16.95,
+        "r2": 0.8348,
+        "count": 719,
+        "total_actual_rides": 30707.0
+      },
+      "30": {
+        "mae": 1.139,
+        "rmse": 1.726,
+        "wape_pct": 87.01,
+        "r2": -0.0385,
+        "count": 719,
+        "total_actual_rides": 941.0
+      },
+      "31": {
+        "mae": 4.033,
+        "rmse": 6.192,
+        "wape_pct": 33.48,
+        "r2": 0.7684,
+        "count": 719,
+        "total_actual_rides": 8662.0
+      },
+      "32": {
+        "mae": 7.46,
+        "rmse": 9.692,
+        "wape_pct": 12.88,
+        "r2": 0.814,
+        "count": 719,
+        "total_actual_rides": 41646.0
+      },
+      "33": {
+        "mae": 12.906,
+        "rmse": 17.533,
+        "wape_pct": 12.16,
+        "r2": 0.9086,
+        "count": 719,
+        "total_actual_rides": 76299.0
+      },
+      "34": {
+        "mae": 4.871,
+        "rmse": 6.921,
+        "wape_pct": 27.52,
+        "r2": 0.7501,
+        "count": 719,
+        "total_actual_rides": 12725.0
+      },
+      "35": {
+        "mae": 13.81,
+        "rmse": 18.123,
+        "wape_pct": 9.27,
+        "r2": 0.8976,
+        "count": 719,
+        "total_actual_rides": 107089.0
+      },
+      "36": {
+        "mae": 18.167,
+        "rmse": 27.043,
+        "wape_pct": 11.5,
+        "r2": 0.9032,
+        "count": 719,
+        "total_actual_rides": 113563.0
+      },
+      "37": {
+        "mae": 28.357,
+        "rmse": 44.541,
+        "wape_pct": 10.87,
+        "r2": 0.897,
+        "count": 719,
+        "total_actual_rides": 187598.0
+      },
+      "38": {
+        "mae": 5.275,
+        "rmse": 7.023,
+        "wape_pct": 20.24,
+        "r2": 0.6554,
+        "count": 719,
+        "total_actual_rides": 18736.0
+      },
+      "39": {
+        "mae": 15.239,
+        "rmse": 19.989,
+        "wape_pct": 8.59,
+        "r2": 0.9007,
+        "count": 719,
+        "total_actual_rides": 127619.0
+      },
+      "40": {
+        "mae": 8.378,
+        "rmse": 11.696,
+        "wape_pct": 15.78,
+        "r2": 0.8595,
+        "count": 719,
+        "total_actual_rides": 38187.0
+      },
+      "41": {
+        "mae": 12.875,
+        "rmse": 17.294,
+        "wape_pct": 9.11,
+        "r2": 0.9167,
+        "count": 719,
+        "total_actual_rides": 101596.0
+      },
+      "42": {
+        "mae": 17.756,
+        "rmse": 22.759,
+        "wape_pct": 8.73,
+        "r2": 0.8912,
+        "count": 719,
+        "total_actual_rides": 146171.0
+      },
+      "43": {
+        "mae": 7.94,
+        "rmse": 12.342,
+        "wape_pct": 21.17,
+        "r2": 0.8091,
+        "count": 719,
+        "total_actual_rides": 26968.0
+      },
+      "44": {
+        "mae": 2.6,
+        "rmse": 3.54,
+        "wape_pct": 34.14,
+        "r2": 0.5056,
+        "count": 719,
+        "total_actual_rides": 5476.0
+      },
+      "45": {
+        "mae": 8.072,
+        "rmse": 11.012,
+        "wape_pct": 17.24,
+        "r2": 0.8068,
+        "count": 719,
+        "total_actual_rides": 33665.0
+      },
+      "46": {
+        "mae": 2.365,
+        "rmse": 3.362,
+        "wape_pct": 38.45,
+        "r2": 0.6333,
+        "count": 719,
+        "total_actual_rides": 4422.0
+      },
+      "47": {
+        "mae": 8.922,
+        "rmse": 11.627,
+        "wape_pct": 11.99,
+        "r2": 0.8169,
+        "count": 719,
+        "total_actual_rides": 53517.0
+      },
+      "48": {
+        "mae": 21.259,
+        "rmse": 28.751,
+        "wape_pct": 10.96,
+        "r2": 0.8759,
+        "count": 719,
+        "total_actual_rides": 139476.0
+      },
+      "49": {
+        "mae": 14.514,
+        "rmse": 19.196,
+        "wape_pct": 11.35,
+        "r2": 0.9091,
+        "count": 719,
+        "total_actual_rides": 91976.0
+      },
+      "50": {
+        "mae": 16.754,
+        "rmse": 23.463,
+        "wape_pct": 13.58,
+        "r2": 0.826,
+        "count": 719,
+        "total_actual_rides": 88678.0
+      },
+      "51": {
+        "mae": 10.337,
+        "rmse": 13.354,
+        "wape_pct": 11.92,
+        "r2": 0.9023,
+        "count": 719,
+        "total_actual_rides": 62341.0
+      },
+      "52": {
+        "mae": 5.388,
+        "rmse": 7.133,
+        "wape_pct": 17.54,
+        "r2": 0.8169,
+        "count": 719,
+        "total_actual_rides": 22089.0
+      },
+      "53": {
+        "mae": 4.971,
+        "rmse": 6.291,
+        "wape_pct": 17.45,
+        "r2": 0.7332,
+        "count": 719,
+        "total_actual_rides": 20486.0
+      },
+      "54": {
+        "mae": 3.27,
+        "rmse": 4.264,
+        "wape_pct": 27.33,
+        "r2": 0.6236,
+        "count": 719,
+        "total_actual_rides": 8604.0
+      },
+      "55": {
+        "mae": 9.81,
+        "rmse": 14.035,
+        "wape_pct": 15.32,
+        "r2": 0.8035,
+        "count": 719,
+        "total_actual_rides": 46028.0
+      },
+      "56": {
+        "mae": 7.943,
+        "rmse": 10.494,
+        "wape_pct": 12.61,
+        "r2": 0.8374,
+        "count": 719,
+        "total_actual_rides": 45277.0
+      },
+      "57": {
+        "mae": 2.002,
+        "rmse": 2.641,
+        "wape_pct": 44.09,
+        "r2": -0.0336,
+        "count": 719,
+        "total_actual_rides": 3264.0
+      },
+      "58": {
+        "mae": 2.354,
+        "rmse": 3.044,
+        "wape_pct": 33.62,
+        "r2": 0.3627,
+        "count": 719,
+        "total_actual_rides": 5035.0
+      },
+      "59": {
+        "mae": 2.096,
+        "rmse": 3.005,
+        "wape_pct": 53.92,
+        "r2": 0.4932,
+        "count": 719,
+        "total_actual_rides": 2795.0
+      },
+      "60": {
+        "mae": 7.419,
+        "rmse": 9.654,
+        "wape_pct": 13.57,
+        "r2": 0.7891,
+        "count": 719,
+        "total_actual_rides": 39313.0
+      },
+      "61": {
+        "mae": 25.071,
+        "rmse": 34.596,
+        "wape_pct": 7.81,
+        "r2": 0.9369,
+        "count": 719,
+        "total_actual_rides": 230955.0
+      },
+      "62": {
+        "mae": 9.046,
+        "rmse": 11.625,
+        "wape_pct": 11.33,
+        "r2": 0.8593,
+        "count": 719,
+        "total_actual_rides": 57409.0
+      },
+      "63": {
+        "mae": 9.112,
+        "rmse": 12.001,
+        "wape_pct": 12.18,
+        "r2": 0.8268,
+        "count": 719,
+        "total_actual_rides": 53773.0
+      },
+      "64": {
+        "mae": 3.153,
+        "rmse": 4.086,
+        "wape_pct": 25.64,
+        "r2": 0.6592,
+        "count": 719,
+        "total_actual_rides": 8839.0
+      },
+      "65": {
+        "mae": 11.317,
+        "rmse": 15.58,
+        "wape_pct": 12.56,
+        "r2": 0.8873,
+        "count": 719,
+        "total_actual_rides": 64775.0
+      },
+      "66": {
+        "mae": 10.947,
+        "rmse": 15.158,
+        "wape_pct": 14.43,
+        "r2": 0.8934,
+        "count": 719,
+        "total_actual_rides": 54537.0
+      },
+      "67": {
+        "mae": 5.317,
+        "rmse": 7.057,
+        "wape_pct": 15.52,
+        "r2": 0.8467,
+        "count": 719,
+        "total_actual_rides": 24641.0
+      },
+      "68": {
+        "mae": 21.653,
+        "rmse": 29.116,
+        "wape_pct": 10.55,
+        "r2": 0.9117,
+        "count": 719,
+        "total_actual_rides": 147573.0
+      },
+      "69": {
+        "mae": 11.51,
+        "rmse": 14.766,
+        "wape_pct": 11.06,
+        "r2": 0.8482,
+        "count": 719,
+        "total_actual_rides": 74805.0
+      },
+      "70": {
+        "mae": 6.249,
+        "rmse": 8.009,
+        "wape_pct": 15.08,
+        "r2": 0.776,
+        "count": 719,
+        "total_actual_rides": 29790.0
+      },
+      "71": {
+        "mae": 11.651,
+        "rmse": 15.394,
+        "wape_pct": 10.96,
+        "r2": 0.8384,
+        "count": 719,
+        "total_actual_rides": 76408.0
+      },
+      "72": {
+        "mae": 11.986,
+        "rmse": 15.486,
+        "wape_pct": 9.63,
+        "r2": 0.8813,
+        "count": 719,
+        "total_actual_rides": 89528.0
+      },
+      "73": {
+        "mae": 4.007,
+        "rmse": 5.23,
+        "wape_pct": 19.34,
+        "r2": 0.7173,
+        "count": 719,
+        "total_actual_rides": 14899.0
+      },
+      "74": {
+        "mae": 13.903,
+        "rmse": 18.038,
+        "wape_pct": 8.9,
+        "r2": 0.9056,
+        "count": 719,
+        "total_actual_rides": 112264.0
+      },
+      "75": {
+        "mae": 13.182,
+        "rmse": 17.226,
+        "wape_pct": 9.9,
+        "r2": 0.891,
+        "count": 719,
+        "total_actual_rides": 95701.0
+      },
+      "76": {
+        "mae": 19.956,
+        "rmse": 25.812,
+        "wape_pct": 7.69,
+        "r2": 0.9266,
+        "count": 719,
+        "total_actual_rides": 186533.0
+      },
+      "77": {
+        "mae": 8.666,
+        "rmse": 10.98,
+        "wape_pct": 11.34,
+        "r2": 0.847,
+        "count": 719,
+        "total_actual_rides": 54944.0
+      },
+      "78": {
+        "mae": 9.351,
+        "rmse": 12.148,
+        "wape_pct": 10.55,
+        "r2": 0.8473,
+        "count": 719,
+        "total_actual_rides": 63727.0
+      },
+      "79": {
+        "mae": 44.981,
+        "rmse": 96.49,
+        "wape_pct": 14.63,
+        "r2": 0.8232,
+        "count": 719,
+        "total_actual_rides": 221023.0
+      },
+      "80": {
+        "mae": 20.397,
+        "rmse": 31.751,
+        "wape_pct": 13.21,
+        "r2": 0.8754,
+        "count": 719,
+        "total_actual_rides": 111051.0
+      },
+      "81": {
+        "mae": 7.991,
+        "rmse": 10.516,
+        "wape_pct": 12.56,
+        "r2": 0.8254,
+        "count": 719,
+        "total_actual_rides": 45754.0
+      },
+      "82": {
+        "mae": 13.738,
+        "rmse": 18.455,
+        "wape_pct": 9.45,
+        "r2": 0.8905,
+        "count": 719,
+        "total_actual_rides": 104515.0
+      },
+      "83": {
+        "mae": 6.393,
+        "rmse": 8.102,
+        "wape_pct": 15.74,
+        "r2": 0.6486,
+        "count": 719,
+        "total_actual_rides": 29198.0
+      },
+      "84": {
+        "mae": 2.771,
+        "rmse": 3.628,
+        "wape_pct": 34.65,
+        "r2": 0.4322,
+        "count": 719,
+        "total_actual_rides": 5751.0
+      },
+      "85": {
+        "mae": 8.63,
+        "rmse": 11.169,
+        "wape_pct": 11.93,
+        "r2": 0.8472,
+        "count": 719,
+        "total_actual_rides": 52016.0
+      },
+      "86": {
+        "mae": 5.991,
+        "rmse": 7.814,
+        "wape_pct": 13.73,
+        "r2": 0.821,
+        "count": 719,
+        "total_actual_rides": 31371.0
+      },
+      "87": {
+        "mae": 14.986,
+        "rmse": 20.021,
+        "wape_pct": 11.77,
+        "r2": 0.9154,
+        "count": 719,
+        "total_actual_rides": 91539.0
+      },
+      "88": {
+        "mae": 7.502,
+        "rmse": 10.405,
+        "wape_pct": 17.48,
+        "r2": 0.8291,
+        "count": 719,
+        "total_actual_rides": 30865.0
+      },
+      "89": {
+        "mae": 16.312,
+        "rmse": 21.616,
+        "wape_pct": 9.03,
+        "r2": 0.9062,
+        "count": 719,
+        "total_actual_rides": 129950.0
+      },
+      "90": {
+        "mae": 16.672,
+        "rmse": 23.145,
+        "wape_pct": 11.28,
+        "r2": 0.8966,
+        "count": 719,
+        "total_actual_rides": 106285.0
+      },
+      "91": {
+        "mae": 10.974,
+        "rmse": 14.347,
+        "wape_pct": 9.26,
+        "r2": 0.9051,
+        "count": 719,
+        "total_actual_rides": 85214.0
+      },
+      "92": {
+        "mae": 10.164,
+        "rmse": 13.233,
+        "wape_pct": 11.47,
+        "r2": 0.8599,
+        "count": 719,
+        "total_actual_rides": 63698.0
+      },
+      "93": {
+        "mae": 7.515,
+        "rmse": 17.897,
+        "wape_pct": 53.54,
+        "r2": 0.364,
+        "count": 719,
+        "total_actual_rides": 10091.0
+      },
+      "94": {
+        "mae": 6.72,
+        "rmse": 8.702,
+        "wape_pct": 14.55,
+        "r2": 0.7459,
+        "count": 719,
+        "total_actual_rides": 33213.0
+      },
+      "95": {
+        "mae": 12.366,
+        "rmse": 16.551,
+        "wape_pct": 9.63,
+        "r2": 0.9212,
+        "count": 719,
+        "total_actual_rides": 92298.0
+      },
+      "96": {
+        "mae": 2.009,
+        "rmse": 2.982,
+        "wape_pct": 51.61,
+        "r2": 0.4439,
+        "count": 719,
+        "total_actual_rides": 2799.0
+      },
+      "97": {
+        "mae": 15.306,
+        "rmse": 22.203,
+        "wape_pct": 11.07,
+        "r2": 0.9092,
+        "count": 719,
+        "total_actual_rides": 99421.0
+      },
+      "98": {
+        "mae": 4.222,
+        "rmse": 5.503,
+        "wape_pct": 21.87,
+        "r2": 0.6917,
+        "count": 719,
+        "total_actual_rides": 13882.0
+      },
+      "99": {
+        "mae": 0.78,
+        "rmse": 0.961,
+        "wape_pct": 155.7,
+        "r2": -0.6545,
+        "count": 719,
+        "total_actual_rides": 360.0
+      },
+      "100": {
+        "mae": 11.997,
+        "rmse": 16.626,
+        "wape_pct": 11.63,
+        "r2": 0.9025,
+        "count": 719,
+        "total_actual_rides": 74162.0
+      },
+      "101": {
+        "mae": 3.76,
+        "rmse": 4.929,
+        "wape_pct": 24.06,
+        "r2": 0.656,
+        "count": 719,
+        "total_actual_rides": 11236.0
+      },
+      "102": {
+        "mae": 6.627,
+        "rmse": 8.956,
+        "wape_pct": 13.04,
+        "r2": 0.858,
+        "count": 719,
+        "total_actual_rides": 36552.0
+      },
+      "105": {
+        "mae": 0.697,
+        "rmse": 0.805,
+        "wape_pct": 25053.11,
+        "r2": -232.6771,
+        "count": 719,
+        "total_actual_rides": 2.0
+      },
+      "106": {
+        "mae": 8.606,
+        "rmse": 12.137,
+        "wape_pct": 20.16,
+        "r2": 0.731,
+        "count": 719,
+        "total_actual_rides": 30692.0
+      },
+      "107": {
+        "mae": 18.008,
+        "rmse": 24.556,
+        "wape_pct": 11.41,
+        "r2": 0.9038,
+        "count": 719,
+        "total_actual_rides": 113437.0
+      },
+      "108": {
+        "mae": 5.234,
+        "rmse": 6.811,
+        "wape_pct": 16.55,
+        "r2": 0.7764,
+        "count": 719,
+        "total_actual_rides": 22741.0
+      },
+      "109": {
+        "mae": 3.379,
+        "rmse": 4.484,
+        "wape_pct": 25.79,
+        "r2": 0.6507,
+        "count": 719,
+        "total_actual_rides": 9418.0
+      },
+      "110": {
+        "mae": 0.699,
+        "rmse": 0.81,
+        "wape_pct": 1396.55,
+        "r2": -12.0309,
+        "count": 719,
+        "total_actual_rides": 36.0
+      },
+      "111": {
+        "mae": 1.036,
+        "rmse": 1.55,
+        "wape_pct": 92.17,
+        "r2": 0.0604,
+        "count": 719,
+        "total_actual_rides": 808.0
+      },
+      "112": {
+        "mae": 17.769,
+        "rmse": 23.912,
+        "wape_pct": 10.82,
+        "r2": 0.9204,
+        "count": 719,
+        "total_actual_rides": 118060.0
+      },
+      "113": {
+        "mae": 14.339,
+        "rmse": 20.201,
+        "wape_pct": 11.25,
+        "r2": 0.9017,
+        "count": 719,
+        "total_actual_rides": 91680.0
+      },
+      "114": {
+        "mae": 18.817,
+        "rmse": 29.979,
+        "wape_pct": 14.15,
+        "r2": 0.9076,
+        "count": 719,
+        "total_actual_rides": 95599.0
+      },
+      "115": {
+        "mae": 3.542,
+        "rmse": 4.594,
+        "wape_pct": 21.58,
+        "r2": 0.6849,
+        "count": 719,
+        "total_actual_rides": 11798.0
+      },
+      "116": {
+        "mae": 11.278,
+        "rmse": 15.11,
+        "wape_pct": 11.63,
+        "r2": 0.8279,
+        "count": 719,
+        "total_actual_rides": 69699.0
+      },
+      "117": {
+        "mae": 6.443,
+        "rmse": 8.454,
+        "wape_pct": 15.86,
+        "r2": 0.7819,
+        "count": 719,
+        "total_actual_rides": 29202.0
+      },
+      "118": {
+        "mae": 4.357,
+        "rmse": 5.744,
+        "wape_pct": 19.92,
+        "r2": 0.8385,
+        "count": 719,
+        "total_actual_rides": 15727.0
+      },
+      "119": {
+        "mae": 9.249,
+        "rmse": 11.939,
+        "wape_pct": 13.0,
+        "r2": 0.7897,
+        "count": 719,
+        "total_actual_rides": 51172.0
+      },
+      "120": {
+        "mae": 1.498,
+        "rmse": 2.259,
+        "wape_pct": 63.97,
+        "r2": 0.0813,
+        "count": 719,
+        "total_actual_rides": 1684.0
+      },
+      "121": {
+        "mae": 6.151,
+        "rmse": 8.399,
+        "wape_pct": 14.52,
+        "r2": 0.8243,
+        "count": 719,
+        "total_actual_rides": 30466.0
+      },
+      "122": {
+        "mae": 4.896,
+        "rmse": 6.369,
+        "wape_pct": 18.03,
+        "r2": 0.6933,
+        "count": 719,
+        "total_actual_rides": 19530.0
+      },
+      "123": {
+        "mae": 8.504,
+        "rmse": 11.59,
+        "wape_pct": 14.37,
+        "r2": 0.8759,
+        "count": 719,
+        "total_actual_rides": 42537.0
+      },
+      "124": {
+        "mae": 5.423,
+        "rmse": 7.038,
+        "wape_pct": 18.44,
+        "r2": 0.7243,
+        "count": 719,
+        "total_actual_rides": 21145.0
+      },
+      "125": {
+        "mae": 11.109,
+        "rmse": 15.14,
+        "wape_pct": 15.76,
+        "r2": 0.8536,
+        "count": 719,
+        "total_actual_rides": 50692.0
+      },
+      "126": {
+        "mae": 7.79,
+        "rmse": 10.481,
+        "wape_pct": 12.03,
+        "r2": 0.7869,
+        "count": 719,
+        "total_actual_rides": 46560.0
+      },
+      "127": {
+        "mae": 9.886,
+        "rmse": 13.177,
+        "wape_pct": 12.63,
+        "r2": 0.825,
+        "count": 719,
+        "total_actual_rides": 56293.0
+      },
+      "128": {
+        "mae": 2.232,
+        "rmse": 3.03,
+        "wape_pct": 41.28,
+        "r2": 0.3266,
+        "count": 719,
+        "total_actual_rides": 3887.0
+      },
+      "129": {
+        "mae": 15.375,
+        "rmse": 20.019,
+        "wape_pct": 9.67,
+        "r2": 0.846,
+        "count": 719,
+        "total_actual_rides": 114308.0
+      },
+      "130": {
+        "mae": 13.028,
+        "rmse": 17.68,
+        "wape_pct": 9.18,
+        "r2": 0.923,
+        "count": 719,
+        "total_actual_rides": 102079.0
+      },
+      "131": {
+        "mae": 5.16,
+        "rmse": 6.954,
+        "wape_pct": 15.8,
+        "r2": 0.8261,
+        "count": 719,
+        "total_actual_rides": 23476.0
+      },
+      "132": {
+        "mae": 45.346,
+        "rmse": 60.702,
+        "wape_pct": 17.3,
+        "r2": 0.8019,
+        "count": 719,
+        "total_actual_rides": 188478.0
+      },
+      "133": {
+        "mae": 6.378,
+        "rmse": 9.053,
+        "wape_pct": 15.5,
+        "r2": 0.7987,
+        "count": 719,
+        "total_actual_rides": 29593.0
+      },
+      "134": {
+        "mae": 5.866,
+        "rmse": 7.557,
+        "wape_pct": 14.06,
+        "r2": 0.8353,
+        "count": 719,
+        "total_actual_rides": 30001.0
+      },
+      "135": {
+        "mae": 5.542,
+        "rmse": 7.201,
+        "wape_pct": 16.19,
+        "r2": 0.8131,
+        "count": 719,
+        "total_actual_rides": 24619.0
+      },
+      "136": {
+        "mae": 7.642,
+        "rmse": 9.928,
+        "wape_pct": 14.03,
+        "r2": 0.7872,
+        "count": 719,
+        "total_actual_rides": 39158.0
+      },
+      "137": {
+        "mae": 15.19,
+        "rmse": 20.75,
+        "wape_pct": 11.85,
+        "r2": 0.8966,
+        "count": 719,
+        "total_actual_rides": 92128.0
+      },
+      "138": {
+        "mae": 47.005,
+        "rmse": 70.218,
+        "wape_pct": 20.94,
+        "r2": 0.805,
+        "count": 719,
+        "total_actual_rides": 161400.0
+      },
+      "139": {
+        "mae": 6.22,
+        "rmse": 8.067,
+        "wape_pct": 14.97,
+        "r2": 0.7721,
+        "count": 719,
+        "total_actual_rides": 29877.0
+      },
+      "140": {
+        "mae": 12.863,
+        "rmse": 17.852,
+        "wape_pct": 10.77,
+        "r2": 0.9263,
+        "count": 719,
+        "total_actual_rides": 85835.0
+      },
+      "141": {
+        "mae": 14.834,
+        "rmse": 20.305,
+        "wape_pct": 10.82,
+        "r2": 0.9101,
+        "count": 719,
+        "total_actual_rides": 98554.0
+      },
+      "142": {
+        "mae": 13.875,
+        "rmse": 18.639,
+        "wape_pct": 10.56,
+        "r2": 0.9192,
+        "count": 719,
+        "total_actual_rides": 94505.0
+      },
+      "143": {
+        "mae": 11.898,
+        "rmse": 16.649,
+        "wape_pct": 11.23,
+        "r2": 0.9205,
+        "count": 719,
+        "total_actual_rides": 76208.0
+      },
+      "144": {
+        "mae": 18.057,
+        "rmse": 26.276,
+        "wape_pct": 12.26,
+        "r2": 0.9111,
+        "count": 719,
+        "total_actual_rides": 105925.0
+      },
+      "145": {
+        "mae": 16.628,
+        "rmse": 22.979,
+        "wape_pct": 11.68,
+        "r2": 0.8773,
+        "count": 719,
+        "total_actual_rides": 102393.0
+      },
+      "146": {
+        "mae": 7.976,
+        "rmse": 10.498,
+        "wape_pct": 14.81,
+        "r2": 0.7926,
+        "count": 719,
+        "total_actual_rides": 38717.0
+      },
+      "147": {
+        "mae": 7.038,
+        "rmse": 9.177,
+        "wape_pct": 14.77,
+        "r2": 0.7281,
+        "count": 719,
+        "total_actual_rides": 34263.0
+      },
+      "148": {
+        "mae": 33.506,
+        "rmse": 77.529,
+        "wape_pct": 15.97,
+        "r2": 0.8289,
+        "count": 719,
+        "total_actual_rides": 150889.0
+      },
+      "149": {
+        "mae": 6.969,
+        "rmse": 9.382,
+        "wape_pct": 14.48,
+        "r2": 0.8632,
+        "count": 719,
+        "total_actual_rides": 34612.0
+      },
+      "150": {
+        "mae": 4.992,
+        "rmse": 6.751,
+        "wape_pct": 20.64,
+        "r2": 0.7209,
+        "count": 719,
+        "total_actual_rides": 17388.0
+      },
+      "151": {
+        "mae": 7.921,
+        "rmse": 10.224,
+        "wape_pct": 12.33,
+        "r2": 0.8667,
+        "count": 719,
+        "total_actual_rides": 46177.0
+      },
+      "152": {
+        "mae": 7.197,
+        "rmse": 9.473,
+        "wape_pct": 15.1,
+        "r2": 0.7689,
+        "count": 719,
+        "total_actual_rides": 34270.0
+      },
+      "153": {
+        "mae": 4.114,
+        "rmse": 5.511,
+        "wape_pct": 20.03,
+        "r2": 0.7774,
+        "count": 719,
+        "total_actual_rides": 14770.0
+      },
+      "154": {
+        "mae": 1.79,
+        "rmse": 2.596,
+        "wape_pct": 60.5,
+        "r2": 0.3067,
+        "count": 719,
+        "total_actual_rides": 2127.0
+      },
+      "155": {
+        "mae": 7.923,
+        "rmse": 10.492,
+        "wape_pct": 11.86,
+        "r2": 0.9186,
+        "count": 719,
+        "total_actual_rides": 48023.0
+      },
+      "156": {
+        "mae": 4.626,
+        "rmse": 5.98,
+        "wape_pct": 16.53,
+        "r2": 0.7951,
+        "count": 719,
+        "total_actual_rides": 20126.0
+      },
+      "157": {
+        "mae": 8.176,
+        "rmse": 14.02,
+        "wape_pct": 15.41,
+        "r2": 0.74,
+        "count": 719,
+        "total_actual_rides": 38136.0
+      },
+      "158": {
+        "mae": 18.551,
+        "rmse": 28.256,
+        "wape_pct": 13.06,
+        "r2": 0.9037,
+        "count": 719,
+        "total_actual_rides": 102121.0
+      },
+      "159": {
+        "mae": 9.716,
+        "rmse": 12.517,
+        "wape_pct": 10.81,
+        "r2": 0.8655,
+        "count": 719,
+        "total_actual_rides": 64606.0
+      },
+      "160": {
+        "mae": 5.987,
+        "rmse": 7.801,
+        "wape_pct": 13.86,
+        "r2": 0.8348,
+        "count": 719,
+        "total_actual_rides": 31062.0
+      },
+      "161": {
+        "mae": 25.529,
+        "rmse": 41.686,
+        "wape_pct": 13.54,
+        "r2": 0.9239,
+        "count": 719,
+        "total_actual_rides": 135556.0
+      },
+      "162": {
+        "mae": 19.344,
+        "rmse": 30.398,
+        "wape_pct": 12.55,
+        "r2": 0.9258,
+        "count": 719,
+        "total_actual_rides": 110858.0
+      },
+      "163": {
+        "mae": 16.896,
+        "rmse": 23.126,
+        "wape_pct": 11.35,
+        "r2": 0.9168,
+        "count": 719,
+        "total_actual_rides": 107019.0
+      },
+      "164": {
+        "mae": 19.481,
+        "rmse": 26.57,
+        "wape_pct": 10.3,
+        "r2": 0.9204,
+        "count": 719,
+        "total_actual_rides": 136005.0
+      },
+      "165": {
+        "mae": 8.569,
+        "rmse": 11.609,
+        "wape_pct": 13.07,
+        "r2": 0.9107,
+        "count": 719,
+        "total_actual_rides": 47152.0
+      },
+      "166": {
+        "mae": 8.902,
+        "rmse": 11.705,
+        "wape_pct": 12.22,
+        "r2": 0.859,
+        "count": 719,
+        "total_actual_rides": 52394.0
+      },
+      "167": {
+        "mae": 9.385,
+        "rmse": 12.105,
+        "wape_pct": 11.28,
+        "r2": 0.8424,
+        "count": 719,
+        "total_actual_rides": 59828.0
+      },
+      "168": {
+        "mae": 12.58,
+        "rmse": 16.49,
+        "wape_pct": 9.8,
+        "r2": 0.8534,
+        "count": 719,
+        "total_actual_rides": 92293.0
+      },
+      "169": {
+        "mae": 10.224,
+        "rmse": 13.192,
+        "wape_pct": 9.96,
+        "r2": 0.87,
+        "count": 719,
+        "total_actual_rides": 73822.0
+      },
+      "170": {
+        "mae": 18.749,
+        "rmse": 25.426,
+        "wape_pct": 9.78,
+        "r2": 0.9339,
+        "count": 719,
+        "total_actual_rides": 137825.0
+      },
+      "171": {
+        "mae": 5.969,
+        "rmse": 7.774,
+        "wape_pct": 15.75,
+        "r2": 0.7884,
+        "count": 719,
+        "total_actual_rides": 27250.0
+      },
+      "172": {
+        "mae": 3.103,
+        "rmse": 4.08,
+        "wape_pct": 26.22,
+        "r2": 0.6645,
+        "count": 719,
+        "total_actual_rides": 8509.0
+      },
+      "173": {
+        "mae": 6.931,
+        "rmse": 9.082,
+        "wape_pct": 14.66,
+        "r2": 0.7123,
+        "count": 719,
+        "total_actual_rides": 33992.0
+      },
+      "174": {
+        "mae": 8.474,
+        "rmse": 11.098,
+        "wape_pct": 9.64,
+        "r2": 0.8975,
+        "count": 719,
+        "total_actual_rides": 63210.0
+      },
+      "175": {
+        "mae": 3.369,
+        "rmse": 4.41,
+        "wape_pct": 25.47,
+        "r2": 0.6785,
+        "count": 719,
+        "total_actual_rides": 9511.0
+      },
+      "176": {
+        "mae": 2.38,
+        "rmse": 3.129,
+        "wape_pct": 33.91,
+        "r2": 0.4841,
+        "count": 719,
+        "total_actual_rides": 5046.0
+      },
+      "177": {
+        "mae": 11.53,
+        "rmse": 14.995,
+        "wape_pct": 10.76,
+        "r2": 0.8685,
+        "count": 719,
+        "total_actual_rides": 77038.0
+      },
+      "178": {
+        "mae": 4.774,
+        "rmse": 6.366,
+        "wape_pct": 21.47,
+        "r2": 0.8136,
+        "count": 719,
+        "total_actual_rides": 15989.0
+      },
+      "179": {
+        "mae": 8.972,
+        "rmse": 11.976,
+        "wape_pct": 12.34,
+        "r2": 0.8389,
+        "count": 719,
+        "total_actual_rides": 52270.0
+      },
+      "180": {
+        "mae": 5.48,
+        "rmse": 7.196,
+        "wape_pct": 15.85,
+        "r2": 0.7648,
+        "count": 719,
+        "total_actual_rides": 24863.0
+      },
+      "181": {
+        "mae": 20.448,
+        "rmse": 31.046,
+        "wape_pct": 10.25,
+        "r2": 0.906,
+        "count": 719,
+        "total_actual_rides": 143485.0
+      },
+      "182": {
+        "mae": 6.904,
+        "rmse": 9.033,
+        "wape_pct": 12.47,
+        "r2": 0.862,
+        "count": 719,
+        "total_actual_rides": 39810.0
+      },
+      "183": {
+        "mae": 5.012,
+        "rmse": 6.523,
+        "wape_pct": 17.43,
+        "r2": 0.7555,
+        "count": 719,
+        "total_actual_rides": 20680.0
+      },
+      "184": {
+        "mae": 4.0,
+        "rmse": 7.167,
+        "wape_pct": 51.25,
+        "r2": 0.4843,
+        "count": 719,
+        "total_actual_rides": 5611.0
+      },
+      "185": {
+        "mae": 7.997,
+        "rmse": 10.684,
+        "wape_pct": 11.47,
+        "r2": 0.8919,
+        "count": 719,
+        "total_actual_rides": 50139.0
+      },
+      "186": {
+        "mae": 19.809,
+        "rmse": 30.495,
+        "wape_pct": 14.34,
+        "r2": 0.8154,
+        "count": 719,
+        "total_actual_rides": 99323.0
+      },
+      "187": {
+        "mae": 3.364,
+        "rmse": 4.321,
+        "wape_pct": 24.34,
+        "r2": 0.6351,
+        "count": 719,
+        "total_actual_rides": 9937.0
+      },
+      "188": {
+        "mae": 14.717,
+        "rmse": 19.545,
+        "wape_pct": 8.26,
+        "r2": 0.9239,
+        "count": 719,
+        "total_actual_rides": 128163.0
+      },
+      "189": {
+        "mae": 10.942,
+        "rmse": 15.102,
+        "wape_pct": 14.51,
+        "r2": 0.8899,
+        "count": 719,
+        "total_actual_rides": 54206.0
+      },
+      "190": {
+        "mae": 5.208,
+        "rmse": 8.357,
+        "wape_pct": 33.01,
+        "r2": 0.7404,
+        "count": 719,
+        "total_actual_rides": 11342.0
+      },
+      "191": {
+        "mae": 7.412,
+        "rmse": 9.645,
+        "wape_pct": 12.18,
+        "r2": 0.8576,
+        "count": 719,
+        "total_actual_rides": 43760.0
+      },
+      "192": {
+        "mae": 5.21,
+        "rmse": 6.831,
+        "wape_pct": 19.35,
+        "r2": 0.7292,
+        "count": 719,
+        "total_actual_rides": 19356.0
+      },
+      "193": {
+        "mae": 5.263,
+        "rmse": 6.814,
+        "wape_pct": 18.41,
+        "r2": 0.7142,
+        "count": 719,
+        "total_actual_rides": 20549.0
+      },
+      "194": {
+        "mae": 2.409,
+        "rmse": 4.542,
+        "wape_pct": 69.91,
+        "r2": 0.3568,
+        "count": 719,
+        "total_actual_rides": 2477.0
+      },
+      "195": {
+        "mae": 7.397,
+        "rmse": 10.1,
+        "wape_pct": 17.0,
+        "r2": 0.8439,
+        "count": 719,
+        "total_actual_rides": 31281.0
+      },
+      "196": {
+        "mae": 7.27,
+        "rmse": 9.511,
+        "wape_pct": 13.52,
+        "r2": 0.8823,
+        "count": 719,
+        "total_actual_rides": 38671.0
+      },
+      "197": {
+        "mae": 9.779,
+        "rmse": 12.836,
+        "wape_pct": 10.9,
+        "r2": 0.8613,
+        "count": 719,
+        "total_actual_rides": 64536.0
+      },
+      "198": {
+        "mae": 13.051,
+        "rmse": 17.512,
+        "wape_pct": 10.19,
+        "r2": 0.8736,
+        "count": 719,
+        "total_actual_rides": 92082.0
+      },
+      "199": {
+        "mae": 0.695,
+        "rmse": 0.804,
+        "wape_pct": 16658.76,
+        "r2": -154.5205,
+        "count": 719,
+        "total_actual_rides": 3.0
+      },
+      "200": {
+        "mae": 6.195,
+        "rmse": 8.688,
+        "wape_pct": 18.16,
+        "r2": 0.7938,
+        "count": 719,
+        "total_actual_rides": 24529.0
+      },
+      "201": {
+        "mae": 5.294,
+        "rmse": 7.675,
+        "wape_pct": 31.18,
+        "r2": 0.6168,
+        "count": 719,
+        "total_actual_rides": 12206.0
+      },
+      "202": {
+        "mae": 3.132,
+        "rmse": 4.086,
+        "wape_pct": 26.07,
+        "r2": 0.5342,
+        "count": 719,
+        "total_actual_rides": 8637.0
+      },
+      "203": {
+        "mae": 5.985,
+        "rmse": 7.687,
+        "wape_pct": 15.15,
+        "r2": 0.7714,
+        "count": 719,
+        "total_actual_rides": 28414.0
+      },
+      "204": {
+        "mae": 2.124,
+        "rmse": 2.815,
+        "wape_pct": 44.41,
+        "r2": 0.2694,
+        "count": 719,
+        "total_actual_rides": 3439.0
+      },
+      "205": {
+        "mae": 10.066,
+        "rmse": 12.874,
+        "wape_pct": 10.47,
+        "r2": 0.878,
+        "count": 719,
+        "total_actual_rides": 69154.0
+      },
+      "206": {
+        "mae": 5.877,
+        "rmse": 7.518,
+        "wape_pct": 14.57,
+        "r2": 0.8258,
+        "count": 719,
+        "total_actual_rides": 28992.0
+      },
+      "207": {
+        "mae": 2.494,
+        "rmse": 3.666,
+        "wape_pct": 45.0,
+        "r2": 0.6735,
+        "count": 719,
+        "total_actual_rides": 3986.0
+      },
+      "208": {
+        "mae": 8.574,
+        "rmse": 11.355,
+        "wape_pct": 12.04,
+        "r2": 0.8586,
+        "count": 719,
+        "total_actual_rides": 51205.0
+      },
+      "209": {
+        "mae": 7.147,
+        "rmse": 9.924,
+        "wape_pct": 16.48,
+        "r2": 0.8281,
+        "count": 719,
+        "total_actual_rides": 31187.0
+      },
+      "210": {
+        "mae": 8.261,
+        "rmse": 11.504,
+        "wape_pct": 12.15,
+        "r2": 0.881,
+        "count": 719,
+        "total_actual_rides": 48880.0
+      },
+      "211": {
+        "mae": 16.121,
+        "rmse": 22.464,
+        "wape_pct": 12.45,
+        "r2": 0.9128,
+        "count": 719,
+        "total_actual_rides": 93103.0
+      },
+      "212": {
+        "mae": 7.531,
+        "rmse": 9.922,
+        "wape_pct": 13.07,
+        "r2": 0.7759,
+        "count": 719,
+        "total_actual_rides": 41431.0
+      },
+      "213": {
+        "mae": 11.022,
+        "rmse": 14.496,
+        "wape_pct": 9.21,
+        "r2": 0.9113,
+        "count": 719,
+        "total_actual_rides": 86024.0
+      },
+      "214": {
+        "mae": 3.611,
+        "rmse": 4.666,
+        "wape_pct": 22.08,
+        "r2": 0.7199,
+        "count": 719,
+        "total_actual_rides": 11762.0
+      },
+      "215": {
+        "mae": 8.741,
+        "rmse": 11.627,
+        "wape_pct": 11.61,
+        "r2": 0.8541,
+        "count": 719,
+        "total_actual_rides": 54147.0
+      },
+      "216": {
+        "mae": 11.906,
+        "rmse": 15.345,
+        "wape_pct": 9.97,
+        "r2": 0.8738,
+        "count": 719,
+        "total_actual_rides": 85868.0
+      },
+      "217": {
+        "mae": 6.059,
+        "rmse": 8.441,
+        "wape_pct": 21.02,
+        "r2": 0.8342,
+        "count": 719,
+        "total_actual_rides": 20723.0
+      },
+      "218": {
+        "mae": 7.005,
+        "rmse": 8.918,
+        "wape_pct": 14.31,
+        "r2": 0.7959,
+        "count": 719,
+        "total_actual_rides": 35189.0
+      },
+      "219": {
+        "mae": 6.082,
+        "rmse": 7.772,
+        "wape_pct": 13.71,
+        "r2": 0.8183,
+        "count": 719,
+        "total_actual_rides": 31891.0
+      },
+      "220": {
+        "mae": 7.731,
+        "rmse": 10.167,
+        "wape_pct": 11.11,
+        "r2": 0.8999,
+        "count": 719,
+        "total_actual_rides": 50015.0
+      },
+      "221": {
+        "mae": 4.85,
+        "rmse": 6.471,
+        "wape_pct": 17.05,
+        "r2": 0.7634,
+        "count": 719,
+        "total_actual_rides": 20460.0
+      },
+      "222": {
+        "mae": 4.715,
+        "rmse": 5.975,
+        "wape_pct": 16.51,
+        "r2": 0.7937,
+        "count": 719,
+        "total_actual_rides": 20534.0
+      },
+      "223": {
+        "mae": 11.89,
+        "rmse": 15.717,
+        "wape_pct": 11.58,
+        "r2": 0.8562,
+        "count": 719,
+        "total_actual_rides": 73834.0
+      },
+      "224": {
+        "mae": 6.023,
+        "rmse": 7.803,
+        "wape_pct": 17.31,
+        "r2": 0.8189,
+        "count": 719,
+        "total_actual_rides": 25013.0
+      },
+      "225": {
+        "mae": 17.655,
+        "rmse": 23.858,
+        "wape_pct": 8.99,
+        "r2": 0.9215,
+        "count": 719,
+        "total_actual_rides": 141217.0
+      },
+      "226": {
+        "mae": 12.211,
+        "rmse": 16.34,
+        "wape_pct": 9.88,
+        "r2": 0.9035,
+        "count": 719,
+        "total_actual_rides": 88889.0
+      },
+      "227": {
+        "mae": 7.033,
+        "rmse": 9.278,
+        "wape_pct": 14.7,
+        "r2": 0.7949,
+        "count": 719,
+        "total_actual_rides": 34392.0
+      },
+      "228": {
+        "mae": 11.891,
+        "rmse": 15.654,
+        "wape_pct": 11.5,
+        "r2": 0.8891,
+        "count": 719,
+        "total_actual_rides": 74319.0
+      },
+      "229": {
+        "mae": 14.543,
+        "rmse": 19.257,
+        "wape_pct": 11.42,
+        "r2": 0.9042,
+        "count": 719,
+        "total_actual_rides": 91554.0
+      },
+      "230": {
+        "mae": 19.552,
+        "rmse": 27.753,
+        "wape_pct": 10.83,
+        "r2": 0.8969,
+        "count": 719,
+        "total_actual_rides": 129807.0
+      },
+      "231": {
+        "mae": 23.436,
+        "rmse": 32.031,
+        "wape_pct": 10.26,
+        "r2": 0.9285,
+        "count": 719,
+        "total_actual_rides": 164276.0
+      },
+      "232": {
+        "mae": 14.252,
+        "rmse": 19.847,
+        "wape_pct": 12.5,
+        "r2": 0.8728,
+        "count": 719,
+        "total_actual_rides": 81964.0
+      },
+      "233": {
+        "mae": 13.435,
+        "rmse": 18.456,
+        "wape_pct": 11.55,
+        "r2": 0.9108,
+        "count": 719,
+        "total_actual_rides": 83645.0
+      },
+      "234": {
+        "mae": 22.293,
+        "rmse": 32.143,
+        "wape_pct": 10.09,
+        "r2": 0.9333,
+        "count": 719,
+        "total_actual_rides": 158854.0
+      },
+      "235": {
+        "mae": 9.925,
+        "rmse": 12.846,
+        "wape_pct": 10.8,
+        "r2": 0.8499,
+        "count": 719,
+        "total_actual_rides": 66081.0
+      },
+      "236": {
+        "mae": 18.454,
+        "rmse": 28.134,
+        "wape_pct": 11.85,
+        "r2": 0.9093,
+        "count": 719,
+        "total_actual_rides": 111943.0
+      },
+      "237": {
+        "mae": 19.931,
+        "rmse": 29.585,
+        "wape_pct": 11.5,
+        "r2": 0.9236,
+        "count": 719,
+        "total_actual_rides": 124578.0
+      },
+      "238": {
+        "mae": 12.531,
+        "rmse": 17.313,
+        "wape_pct": 10.92,
+        "r2": 0.8979,
+        "count": 719,
+        "total_actual_rides": 82479.0
+      },
+      "239": {
+        "mae": 14.443,
+        "rmse": 19.775,
+        "wape_pct": 10.65,
+        "r2": 0.9104,
+        "count": 719,
+        "total_actual_rides": 97523.0
+      },
+      "240": {
+        "mae": 3.554,
+        "rmse": 4.788,
+        "wape_pct": 26.43,
+        "r2": 0.5455,
+        "count": 719,
+        "total_actual_rides": 9667.0
+      },
+      "241": {
+        "mae": 9.051,
+        "rmse": 11.786,
+        "wape_pct": 11.23,
+        "r2": 0.8356,
+        "count": 719,
+        "total_actual_rides": 57962.0
+      },
+      "242": {
+        "mae": 10.149,
+        "rmse": 13.554,
+        "wape_pct": 12.05,
+        "r2": 0.8889,
+        "count": 719,
+        "total_actual_rides": 60568.0
+      },
+      "243": {
+        "mae": 11.409,
+        "rmse": 14.611,
+        "wape_pct": 10.25,
+        "r2": 0.8704,
+        "count": 719,
+        "total_actual_rides": 80014.0
+      },
+      "244": {
+        "mae": 14.558,
+        "rmse": 18.715,
+        "wape_pct": 9.2,
+        "r2": 0.8848,
+        "count": 719,
+        "total_actual_rides": 113758.0
+      },
+      "245": {
+        "mae": 3.544,
+        "rmse": 4.583,
+        "wape_pct": 23.87,
+        "r2": 0.6122,
+        "count": 719,
+        "total_actual_rides": 10675.0
+      },
+      "246": {
+        "mae": 21.045,
+        "rmse": 28.63,
+        "wape_pct": 10.86,
+        "r2": 0.9293,
+        "count": 719,
+        "total_actual_rides": 139353.0
+      },
+      "247": {
+        "mae": 13.817,
+        "rmse": 21.894,
+        "wape_pct": 14.07,
+        "r2": 0.7897,
+        "count": 719,
+        "total_actual_rides": 70605.0
+      },
+      "248": {
+        "mae": 7.263,
+        "rmse": 9.251,
+        "wape_pct": 12.8,
+        "r2": 0.8017,
+        "count": 719,
+        "total_actual_rides": 40816.0
+      },
+      "249": {
+        "mae": 27.972,
+        "rmse": 44.883,
+        "wape_pct": 13.01,
+        "r2": 0.9111,
+        "count": 719,
+        "total_actual_rides": 154585.0
+      },
+      "250": {
+        "mae": 7.789,
+        "rmse": 10.244,
+        "wape_pct": 13.69,
+        "r2": 0.8061,
+        "count": 719,
+        "total_actual_rides": 40906.0
+      },
+      "251": {
+        "mae": 3.661,
+        "rmse": 4.774,
+        "wape_pct": 24.0,
+        "r2": 0.6616,
+        "count": 719,
+        "total_actual_rides": 10966.0
+      },
+      "252": {
+        "mae": 5.079,
+        "rmse": 6.704,
+        "wape_pct": 19.03,
+        "r2": 0.7435,
+        "count": 719,
+        "total_actual_rides": 19187.0
+      },
+      "253": {
+        "mae": 2.464,
+        "rmse": 6.484,
+        "wape_pct": 108.21,
+        "r2": -0.07,
+        "count": 719,
+        "total_actual_rides": 1637.0
+      },
+      "254": {
+        "mae": 11.226,
+        "rmse": 14.151,
+        "wape_pct": 10.21,
+        "r2": 0.8847,
+        "count": 719,
+        "total_actual_rides": 79035.0
+      },
+      "255": {
+        "mae": 23.27,
+        "rmse": 34.708,
+        "wape_pct": 11.66,
+        "r2": 0.9344,
+        "count": 719,
+        "total_actual_rides": 143531.0
+      },
+      "256": {
+        "mae": 19.608,
+        "rmse": 28.281,
+        "wape_pct": 11.06,
+        "r2": 0.9243,
+        "count": 719,
+        "total_actual_rides": 127436.0
+      },
+      "257": {
+        "mae": 5.759,
+        "rmse": 7.686,
+        "wape_pct": 18.41,
+        "r2": 0.7826,
+        "count": 719,
+        "total_actual_rides": 22497.0
+      },
+      "258": {
+        "mae": 8.259,
+        "rmse": 10.807,
+        "wape_pct": 11.79,
+        "r2": 0.8472,
+        "count": 719,
+        "total_actual_rides": 50374.0
+      },
+      "259": {
+        "mae": 8.615,
+        "rmse": 11.091,
+        "wape_pct": 12.47,
+        "r2": 0.7961,
+        "count": 719,
+        "total_actual_rides": 49668.0
+      },
+      "260": {
+        "mae": 9.808,
+        "rmse": 12.738,
+        "wape_pct": 11.47,
+        "r2": 0.8027,
+        "count": 719,
+        "total_actual_rides": 61493.0
+      },
+      "261": {
+        "mae": 9.397,
+        "rmse": 12.768,
+        "wape_pct": 13.13,
+        "r2": 0.8822,
+        "count": 719,
+        "total_actual_rides": 51455.0
+      },
+      "262": {
+        "mae": 9.869,
+        "rmse": 13.534,
+        "wape_pct": 12.02,
+        "r2": 0.9097,
+        "count": 719,
+        "total_actual_rides": 59029.0
+      },
+      "263": {
+        "mae": 12.243,
+        "rmse": 16.532,
+        "wape_pct": 10.88,
+        "r2": 0.8885,
+        "count": 719,
+        "total_actual_rides": 80938.0
+      },
+      "264": {
+        "mae": 0.81,
+        "rmse": 2.164,
+        "wape_pct": 856.48,
+        "r2": -0.0845,
+        "count": 719,
+        "total_actual_rides": 68.0
+      },
+      "265": {
+        "mae": 1.535,
+        "rmse": 5.004,
+        "wape_pct": 84.43,
+        "r2": 0.0306,
+        "count": 719,
+        "total_actual_rides": 1307.0
+      }
+    }
+  },
+  "180": {
+    "horizon_minutes": 180,
+    "horizon_hours": 3,
+    "baselines": {
+      "Baseline: Same Hour Last Week (target lag-168)": {
+        "mae": 12.303,
+        "rmse": 22.165,
+        "wape_pct": 15.54,
+        "r2": 0.9294,
+        "count": 188571,
+        "total_actual_rides": 14933275.0
+      },
+      "Baseline: Same Hour Yesterday (target lag-24)": {
+        "mae": 18.51,
+        "rmse": 37.35,
+        "wape_pct": 23.37,
+        "r2": 0.7996,
+        "count": 188571,
+        "total_actual_rides": 14933275.0
+      },
+      "Baseline: Origin Persistence (origin lag-0)": {
+        "mae": 29.452,
+        "rmse": 50.992,
+        "wape_pct": 37.19,
+        "r2": 0.6265,
+        "count": 188571,
+        "total_actual_rides": 14933275.0
+      },
+      "Baseline: 24h Rolling Mean": {
+        "mae": 30.768,
+        "rmse": 51.509,
+        "wape_pct": 38.85,
+        "r2": 0.6189,
+        "count": 188571,
+        "total_actual_rides": 14933275.0
+      },
+      "Baseline: Historical Zone-DoW-Hour Profile": {
+        "mae": 11.967,
+        "rmse": 24.712,
+        "wape_pct": 15.11,
+        "r2": 0.9123,
+        "count": 188571,
+        "total_actual_rides": 14933275.0
+      }
+    },
+    "model_metrics": {
+      "mae": 11.673,
+      "rmse": 21.606,
+      "wape_pct": 14.74,
+      "r2": 0.9329,
+      "count": 188571,
+      "total_actual_rides": 14933275.0
+    },
+    "uncertainty_metrics": {
+      "target_confidence_pct": 80.0,
+      "empirical_test_coverage_pct": 78.47,
+      "mean_interval_width": 30.38,
+      "q_low": -17.337,
+      "q_high": 15.415,
+      "test_sample_size": 188571
+    },
+    "borough_metrics": {
+      "Bronx": {
+        "mae": 8.877,
+        "rmse": 12.831,
+        "wape_pct": 14.02,
+        "r2": 0.9111,
+        "count": 30831,
+        "total_actual_rides": 1951805.0
+      },
+      "Brooklyn": {
+        "mae": 13.42,
+        "rmse": 22.006,
+        "wape_pct": 13.98,
+        "r2": 0.9408,
+        "count": 43737,
+        "total_actual_rides": 4199440.0
+      },
+      "EWR": {
+        "mae": 0.886,
+        "rmse": 1.002,
+        "wape_pct": 278.75,
+        "r2": -1.6131,
+        "count": 717,
+        "total_actual_rides": 228.0
+      },
+      "Manhattan": {
+        "mae": 17.336,
+        "rmse": 30.967,
+        "wape_pct": 14.62,
+        "r2": 0.9059,
+        "count": 48039,
+        "total_actual_rides": 5697080.0
+      },
+      "Queens": {
+        "mae": 9.187,
+        "rmse": 17.599,
+        "wape_pct": 15.82,
+        "r2": 0.9291,
+        "count": 49473,
+        "total_actual_rides": 2872376.0
+      },
+      "Staten Island": {
+        "mae": 3.528,
+        "rmse": 4.955,
+        "wape_pct": 23.98,
+        "r2": 0.8671,
+        "count": 14340,
+        "total_actual_rides": 210971.0
+      },
+      "Unknown": {
+        "mae": 1.396,
+        "rmse": 4.544,
+        "wape_pct": 145.64,
+        "r2": -0.302,
+        "count": 1434,
+        "total_actual_rides": 1375.0
+      }
+    },
+    "zone_metrics": {
+      "1": {
+        "mae": 0.886,
+        "rmse": 1.002,
+        "wape_pct": 278.75,
+        "r2": -1.6131,
+        "count": 717,
+        "total_actual_rides": 228.0
+      },
+      "2": {
+        "mae": 0.953,
+        "rmse": 1.023,
+        "wape_pct": 1034.89,
+        "r2": -10.7466,
+        "count": 717,
+        "total_actual_rides": 66.0
+      },
+      "3": {
+        "mae": 7.114,
+        "rmse": 9.252,
+        "wape_pct": 14.69,
+        "r2": 0.7851,
+        "count": 717,
+        "total_actual_rides": 34728.0
+      },
+      "4": {
+        "mae": 13.713,
+        "rmse": 21.303,
+        "wape_pct": 17.73,
+        "r2": 0.7103,
+        "count": 717,
+        "total_actual_rides": 55438.0
+      },
+      "5": {
+        "mae": 2.247,
+        "rmse": 2.898,
+        "wape_pct": 40.22,
+        "r2": 0.3854,
+        "count": 717,
+        "total_actual_rides": 4006.0
+      },
+      "6": {
+        "mae": 3.284,
+        "rmse": 4.281,
+        "wape_pct": 28.37,
+        "r2": 0.5731,
+        "count": 717,
+        "total_actual_rides": 8299.0
+      },
+      "7": {
+        "mae": 26.526,
+        "rmse": 34.54,
+        "wape_pct": 12.5,
+        "r2": 0.8056,
+        "count": 717,
+        "total_actual_rides": 152168.0
+      },
+      "8": {
+        "mae": 1.123,
+        "rmse": 1.536,
+        "wape_pct": 99.63,
+        "r2": 0.0576,
+        "count": 717,
+        "total_actual_rides": 808.0
+      },
+      "9": {
+        "mae": 3.996,
+        "rmse": 5.254,
+        "wape_pct": 22.22,
+        "r2": 0.6611,
+        "count": 717,
+        "total_actual_rides": 12892.0
+      },
+      "10": {
+        "mae": 10.59,
+        "rmse": 13.849,
+        "wape_pct": 13.62,
+        "r2": 0.7839,
+        "count": 717,
+        "total_actual_rides": 55731.0
+      },
+      "11": {
+        "mae": 4.609,
+        "rmse": 6.197,
+        "wape_pct": 20.52,
+        "r2": 0.694,
+        "count": 717,
+        "total_actual_rides": 16102.0
+      },
+      "12": {
+        "mae": 1.939,
+        "rmse": 2.731,
+        "wape_pct": 65.24,
+        "r2": 0.3236,
+        "count": 717,
+        "total_actual_rides": 2131.0
+      },
+      "13": {
+        "mae": 17.139,
+        "rmse": 26.38,
+        "wape_pct": 16.11,
+        "r2": 0.8662,
+        "count": 717,
+        "total_actual_rides": 76291.0
+      },
+      "14": {
+        "mae": 15.208,
+        "rmse": 20.981,
+        "wape_pct": 12.95,
+        "r2": 0.8368,
+        "count": 717,
+        "total_actual_rides": 84183.0
+      },
+      "15": {
+        "mae": 3.594,
+        "rmse": 4.726,
+        "wape_pct": 25.95,
+        "r2": 0.6576,
+        "count": 717,
+        "total_actual_rides": 9930.0
+      },
+      "16": {
+        "mae": 7.125,
+        "rmse": 9.49,
+        "wape_pct": 17.95,
+        "r2": 0.7275,
+        "count": 717,
+        "total_actual_rides": 28462.0
+      },
+      "17": {
+        "mae": 23.103,
+        "rmse": 30.508,
+        "wape_pct": 12.0,
+        "r2": 0.8774,
+        "count": 717,
+        "total_actual_rides": 138051.0
+      },
+      "18": {
+        "mae": 11.821,
+        "rmse": 15.386,
+        "wape_pct": 12.04,
+        "r2": 0.8135,
+        "count": 717,
+        "total_actual_rides": 70395.0
+      },
+      "19": {
+        "mae": 3.92,
+        "rmse": 5.079,
+        "wape_pct": 24.36,
+        "r2": 0.637,
+        "count": 717,
+        "total_actual_rides": 11540.0
+      },
+      "20": {
+        "mae": 8.834,
+        "rmse": 11.469,
+        "wape_pct": 14.43,
+        "r2": 0.8215,
+        "count": 717,
+        "total_actual_rides": 43900.0
+      },
+      "21": {
+        "mae": 8.359,
+        "rmse": 11.134,
+        "wape_pct": 15.37,
+        "r2": 0.7909,
+        "count": 717,
+        "total_actual_rides": 38983.0
+      },
+      "22": {
+        "mae": 10.036,
+        "rmse": 13.503,
+        "wape_pct": 13.82,
+        "r2": 0.8604,
+        "count": 717,
+        "total_actual_rides": 52055.0
+      },
+      "23": {
+        "mae": 5.462,
+        "rmse": 7.106,
+        "wape_pct": 19.25,
+        "r2": 0.7601,
+        "count": 717,
+        "total_actual_rides": 20349.0
+      },
+      "24": {
+        "mae": 5.923,
+        "rmse": 7.842,
+        "wape_pct": 19.48,
+        "r2": 0.6264,
+        "count": 717,
+        "total_actual_rides": 21798.0
+      },
+      "25": {
+        "mae": 16.472,
+        "rmse": 24.032,
+        "wape_pct": 14.6,
+        "r2": 0.7968,
+        "count": 717,
+        "total_actual_rides": 80887.0
+      },
+      "26": {
+        "mae": 16.884,
+        "rmse": 24.761,
+        "wape_pct": 16.97,
+        "r2": 0.8814,
+        "count": 717,
+        "total_actual_rides": 71343.0
+      },
+      "27": {
+        "mae": 2.675,
+        "rmse": 5.403,
+        "wape_pct": 77.18,
+        "r2": 0.2346,
+        "count": 717,
+        "total_actual_rides": 2485.0
+      },
+      "28": {
+        "mae": 7.706,
+        "rmse": 10.287,
+        "wape_pct": 15.74,
+        "r2": 0.7931,
+        "count": 717,
+        "total_actual_rides": 35099.0
+      },
+      "29": {
+        "mae": 8.005,
+        "rmse": 10.824,
+        "wape_pct": 18.7,
+        "r2": 0.7901,
+        "count": 717,
+        "total_actual_rides": 30689.0
+      },
+      "30": {
+        "mae": 1.195,
+        "rmse": 1.798,
+        "wape_pct": 91.16,
+        "r2": -0.1253,
+        "count": 717,
+        "total_actual_rides": 940.0
+      },
+      "31": {
+        "mae": 4.407,
+        "rmse": 6.88,
+        "wape_pct": 36.51,
+        "r2": 0.7145,
+        "count": 717,
+        "total_actual_rides": 8654.0
+      },
+      "32": {
+        "mae": 8.13,
+        "rmse": 10.5,
+        "wape_pct": 14.01,
+        "r2": 0.7808,
+        "count": 717,
+        "total_actual_rides": 41600.0
+      },
+      "33": {
+        "mae": 15.23,
+        "rmse": 20.753,
+        "wape_pct": 14.32,
+        "r2": 0.8715,
+        "count": 717,
+        "total_actual_rides": 76261.0
+      },
+      "34": {
+        "mae": 5.284,
+        "rmse": 7.561,
+        "wape_pct": 29.78,
+        "r2": 0.7014,
+        "count": 717,
+        "total_actual_rides": 12722.0
+      },
+      "35": {
+        "mae": 16.374,
+        "rmse": 21.642,
+        "wape_pct": 10.98,
+        "r2": 0.8539,
+        "count": 717,
+        "total_actual_rides": 106909.0
+      },
+      "36": {
+        "mae": 23.503,
+        "rmse": 35.686,
+        "wape_pct": 14.87,
+        "r2": 0.8316,
+        "count": 717,
+        "total_actual_rides": 113342.0
+      },
+      "37": {
+        "mae": 36.708,
+        "rmse": 56.486,
+        "wape_pct": 14.06,
+        "r2": 0.8347,
+        "count": 717,
+        "total_actual_rides": 187182.0
+      },
+      "38": {
+        "mae": 5.696,
+        "rmse": 7.701,
+        "wape_pct": 21.82,
+        "r2": 0.5849,
+        "count": 717,
+        "total_actual_rides": 18715.0
+      },
+      "39": {
+        "mae": 18.69,
+        "rmse": 24.607,
+        "wape_pct": 10.52,
+        "r2": 0.8493,
+        "count": 717,
+        "total_actual_rides": 127404.0
+      },
+      "40": {
+        "mae": 9.745,
+        "rmse": 13.602,
+        "wape_pct": 18.3,
+        "r2": 0.8094,
+        "count": 717,
+        "total_actual_rides": 38174.0
+      },
+      "41": {
+        "mae": 16.401,
+        "rmse": 21.724,
+        "wape_pct": 11.59,
+        "r2": 0.8685,
+        "count": 717,
+        "total_actual_rides": 101453.0
+      },
+      "42": {
+        "mae": 22.781,
+        "rmse": 29.415,
+        "wape_pct": 11.19,
+        "r2": 0.8179,
+        "count": 717,
+        "total_actual_rides": 145919.0
+      },
+      "43": {
+        "mae": 8.877,
+        "rmse": 14.905,
+        "wape_pct": 23.61,
+        "r2": 0.7213,
+        "count": 717,
+        "total_actual_rides": 26960.0
+      },
+      "44": {
+        "mae": 2.761,
+        "rmse": 3.823,
+        "wape_pct": 36.17,
+        "r2": 0.4222,
+        "count": 717,
+        "total_actual_rides": 5474.0
+      },
+      "45": {
+        "mae": 8.891,
+        "rmse": 12.36,
+        "wape_pct": 18.95,
+        "r2": 0.7562,
+        "count": 717,
+        "total_actual_rides": 33632.0
+      },
+      "46": {
+        "mae": 2.597,
+        "rmse": 3.736,
+        "wape_pct": 42.13,
+        "r2": 0.5476,
+        "count": 717,
+        "total_actual_rides": 4419.0
+      },
+      "47": {
+        "mae": 10.088,
+        "rmse": 13.278,
+        "wape_pct": 13.53,
+        "r2": 0.7605,
+        "count": 717,
+        "total_actual_rides": 53445.0
+      },
+      "48": {
+        "mae": 27.547,
+        "rmse": 36.997,
+        "wape_pct": 14.18,
+        "r2": 0.7941,
+        "count": 717,
+        "total_actual_rides": 139286.0
+      },
+      "49": {
+        "mae": 18.176,
+        "rmse": 23.565,
+        "wape_pct": 14.18,
+        "r2": 0.8627,
+        "count": 717,
+        "total_actual_rides": 91893.0
+      },
+      "50": {
+        "mae": 20.468,
+        "rmse": 29.669,
+        "wape_pct": 16.56,
+        "r2": 0.7204,
+        "count": 717,
+        "total_actual_rides": 88618.0
+      },
+      "51": {
+        "mae": 11.97,
+        "rmse": 15.776,
+        "wape_pct": 13.78,
+        "r2": 0.8633,
+        "count": 717,
+        "total_actual_rides": 62285.0
+      },
+      "52": {
+        "mae": 6.017,
+        "rmse": 7.936,
+        "wape_pct": 19.54,
+        "r2": 0.7724,
+        "count": 717,
+        "total_actual_rides": 22081.0
+      },
+      "53": {
+        "mae": 5.332,
+        "rmse": 6.882,
+        "wape_pct": 18.68,
+        "r2": 0.6791,
+        "count": 717,
+        "total_actual_rides": 20469.0
+      },
+      "54": {
+        "mae": 3.468,
+        "rmse": 4.501,
+        "wape_pct": 28.91,
+        "r2": 0.5796,
+        "count": 717,
+        "total_actual_rides": 8599.0
+      },
+      "55": {
+        "mae": 11.556,
+        "rmse": 17.19,
+        "wape_pct": 18.02,
+        "r2": 0.705,
+        "count": 717,
+        "total_actual_rides": 45970.0
+      },
+      "56": {
+        "mae": 8.964,
+        "rmse": 12.013,
+        "wape_pct": 14.21,
+        "r2": 0.7862,
+        "count": 717,
+        "total_actual_rides": 45230.0
+      },
+      "57": {
+        "mae": 2.158,
+        "rmse": 2.806,
+        "wape_pct": 47.54,
+        "r2": -0.1638,
+        "count": 717,
+        "total_actual_rides": 3255.0
+      },
+      "58": {
+        "mae": 2.444,
+        "rmse": 3.154,
+        "wape_pct": 34.85,
+        "r2": 0.3153,
+        "count": 717,
+        "total_actual_rides": 5029.0
+      },
+      "59": {
+        "mae": 2.259,
+        "rmse": 3.373,
+        "wape_pct": 58.0,
+        "r2": 0.3627,
+        "count": 717,
+        "total_actual_rides": 2793.0
+      },
+      "60": {
+        "mae": 8.246,
+        "rmse": 10.852,
+        "wape_pct": 15.06,
+        "r2": 0.7328,
+        "count": 717,
+        "total_actual_rides": 39256.0
+      },
+      "61": {
+        "mae": 33.612,
+        "rmse": 45.296,
+        "wape_pct": 10.45,
+        "r2": 0.8918,
+        "count": 717,
+        "total_actual_rides": 230578.0
+      },
+      "62": {
+        "mae": 9.907,
+        "rmse": 12.678,
+        "wape_pct": 12.39,
+        "r2": 0.8318,
+        "count": 717,
+        "total_actual_rides": 57351.0
+      },
+      "63": {
+        "mae": 10.487,
+        "rmse": 13.891,
+        "wape_pct": 14.0,
+        "r2": 0.7672,
+        "count": 717,
+        "total_actual_rides": 53707.0
+      },
+      "64": {
+        "mae": 3.294,
+        "rmse": 4.252,
+        "wape_pct": 26.74,
+        "r2": 0.6302,
+        "count": 717,
+        "total_actual_rides": 8833.0
+      },
+      "65": {
+        "mae": 14.131,
+        "rmse": 19.515,
+        "wape_pct": 15.65,
+        "r2": 0.8227,
+        "count": 717,
+        "total_actual_rides": 64728.0
+      },
+      "66": {
+        "mae": 12.237,
+        "rmse": 17.509,
+        "wape_pct": 16.09,
+        "r2": 0.8573,
+        "count": 717,
+        "total_actual_rides": 54524.0
+      },
+      "67": {
+        "mae": 5.919,
+        "rmse": 7.935,
+        "wape_pct": 17.23,
+        "r2": 0.8053,
+        "count": 717,
+        "total_actual_rides": 24629.0
+      },
+      "68": {
+        "mae": 27.555,
+        "rmse": 37.274,
+        "wape_pct": 13.4,
+        "r2": 0.8546,
+        "count": 717,
+        "total_actual_rides": 147480.0
+      },
+      "69": {
+        "mae": 13.584,
+        "rmse": 17.968,
+        "wape_pct": 13.04,
+        "r2": 0.7745,
+        "count": 717,
+        "total_actual_rides": 74703.0
+      },
+      "70": {
+        "mae": 6.722,
+        "rmse": 8.832,
+        "wape_pct": 16.2,
+        "r2": 0.7265,
+        "count": 717,
+        "total_actual_rides": 29759.0
+      },
+      "71": {
+        "mae": 13.901,
+        "rmse": 18.349,
+        "wape_pct": 13.07,
+        "r2": 0.7703,
+        "count": 717,
+        "total_actual_rides": 76257.0
+      },
+      "72": {
+        "mae": 15.009,
+        "rmse": 19.501,
+        "wape_pct": 12.04,
+        "r2": 0.8116,
+        "count": 717,
+        "total_actual_rides": 89375.0
+      },
+      "73": {
+        "mae": 4.149,
+        "rmse": 5.532,
+        "wape_pct": 19.99,
+        "r2": 0.6829,
+        "count": 717,
+        "total_actual_rides": 14884.0
+      },
+      "74": {
+        "mae": 16.931,
+        "rmse": 22.161,
+        "wape_pct": 10.83,
+        "r2": 0.8569,
+        "count": 717,
+        "total_actual_rides": 112130.0
+      },
+      "75": {
+        "mae": 15.922,
+        "rmse": 20.847,
+        "wape_pct": 11.94,
+        "r2": 0.8397,
+        "count": 717,
+        "total_actual_rides": 95600.0
+      },
+      "76": {
+        "mae": 26.417,
+        "rmse": 34.717,
+        "wape_pct": 10.17,
+        "r2": 0.8671,
+        "count": 717,
+        "total_actual_rides": 186253.0
+      },
+      "77": {
+        "mae": 9.772,
+        "rmse": 12.461,
+        "wape_pct": 12.77,
+        "r2": 0.8029,
+        "count": 717,
+        "total_actual_rides": 54850.0
+      },
+      "78": {
+        "mae": 10.648,
+        "rmse": 14.11,
+        "wape_pct": 12.0,
+        "r2": 0.7931,
+        "count": 717,
+        "total_actual_rides": 63633.0
+      },
+      "79": {
+        "mae": 55.431,
+        "rmse": 106.949,
+        "wape_pct": 18.0,
+        "r2": 0.783,
+        "count": 717,
+        "total_actual_rides": 220758.0
+      },
+      "80": {
+        "mae": 26.313,
+        "rmse": 40.339,
+        "wape_pct": 17.02,
+        "r2": 0.799,
+        "count": 717,
+        "total_actual_rides": 110875.0
+      },
+      "81": {
+        "mae": 8.535,
+        "rmse": 11.344,
+        "wape_pct": 13.39,
+        "r2": 0.7962,
+        "count": 717,
+        "total_actual_rides": 45699.0
+      },
+      "82": {
+        "mae": 16.385,
+        "rmse": 22.725,
+        "wape_pct": 11.25,
+        "r2": 0.8333,
+        "count": 717,
+        "total_actual_rides": 104389.0
+      },
+      "83": {
+        "mae": 6.937,
+        "rmse": 8.921,
+        "wape_pct": 17.06,
+        "r2": 0.5725,
+        "count": 717,
+        "total_actual_rides": 29157.0
+      },
+      "84": {
+        "mae": 2.949,
+        "rmse": 3.907,
+        "wape_pct": 36.81,
+        "r2": 0.3421,
+        "count": 717,
+        "total_actual_rides": 5743.0
+      },
+      "85": {
+        "mae": 9.618,
+        "rmse": 12.584,
+        "wape_pct": 13.28,
+        "r2": 0.806,
+        "count": 717,
+        "total_actual_rides": 51921.0
+      },
+      "86": {
+        "mae": 6.603,
+        "rmse": 8.554,
+        "wape_pct": 15.11,
+        "r2": 0.7852,
+        "count": 717,
+        "total_actual_rides": 31328.0
+      },
+      "87": {
+        "mae": 19.052,
+        "rmse": 26.477,
+        "wape_pct": 14.93,
+        "r2": 0.8515,
+        "count": 717,
+        "total_actual_rides": 91502.0
+      },
+      "88": {
+        "mae": 8.307,
+        "rmse": 11.57,
+        "wape_pct": 19.3,
+        "r2": 0.788,
+        "count": 717,
+        "total_actual_rides": 30853.0
+      },
+      "89": {
+        "mae": 19.12,
+        "rmse": 25.375,
+        "wape_pct": 10.56,
+        "r2": 0.8702,
+        "count": 717,
+        "total_actual_rides": 129798.0
+      },
+      "90": {
+        "mae": 21.895,
+        "rmse": 30.313,
+        "wape_pct": 14.78,
+        "r2": 0.8219,
+        "count": 717,
+        "total_actual_rides": 106221.0
+      },
+      "91": {
+        "mae": 12.888,
+        "rmse": 17.057,
+        "wape_pct": 10.86,
+        "r2": 0.8655,
+        "count": 717,
+        "total_actual_rides": 85105.0
+      },
+      "92": {
+        "mae": 11.533,
+        "rmse": 15.084,
+        "wape_pct": 13.0,
+        "r2": 0.8172,
+        "count": 717,
+        "total_actual_rides": 63628.0
+      },
+      "93": {
+        "mae": 8.85,
+        "rmse": 20.629,
+        "wape_pct": 62.93,
+        "r2": 0.1569,
+        "count": 717,
+        "total_actual_rides": 10083.0
+      },
+      "94": {
+        "mae": 7.349,
+        "rmse": 9.602,
+        "wape_pct": 15.89,
+        "r2": 0.6907,
+        "count": 717,
+        "total_actual_rides": 33155.0
+      },
+      "95": {
+        "mae": 15.089,
+        "rmse": 20.394,
+        "wape_pct": 11.73,
+        "r2": 0.8797,
+        "count": 717,
+        "total_actual_rides": 92240.0
+      },
+      "96": {
+        "mae": 2.185,
+        "rmse": 3.265,
+        "wape_pct": 56.01,
+        "r2": 0.3342,
+        "count": 717,
+        "total_actual_rides": 2797.0
+      },
+      "97": {
+        "mae": 18.622,
+        "rmse": 26.862,
+        "wape_pct": 13.44,
+        "r2": 0.8666,
+        "count": 717,
+        "total_actual_rides": 99364.0
+      },
+      "98": {
+        "mae": 4.46,
+        "rmse": 5.824,
+        "wape_pct": 23.05,
+        "r2": 0.6535,
+        "count": 717,
+        "total_actual_rides": 13873.0
+      },
+      "99": {
+        "mae": 0.869,
+        "rmse": 1.006,
+        "wape_pct": 173.51,
+        "r2": -0.809,
+        "count": 717,
+        "total_actual_rides": 359.0
+      },
+      "100": {
+        "mae": 14.148,
+        "rmse": 19.55,
+        "wape_pct": 13.69,
+        "r2": 0.8648,
+        "count": 717,
+        "total_actual_rides": 74107.0
+      },
+      "101": {
+        "mae": 3.856,
+        "rmse": 5.1,
+        "wape_pct": 24.64,
+        "r2": 0.6316,
+        "count": 717,
+        "total_actual_rides": 11222.0
+      },
+      "102": {
+        "mae": 7.343,
+        "rmse": 9.935,
+        "wape_pct": 14.41,
+        "r2": 0.8245,
+        "count": 717,
+        "total_actual_rides": 36524.0
+      },
+      "105": {
+        "mae": 1.024,
+        "rmse": 1.073,
+        "wape_pct": 36726.17,
+        "r2": -412.6165,
+        "count": 717,
+        "total_actual_rides": 2.0
+      },
+      "106": {
+        "mae": 9.416,
+        "rmse": 13.603,
+        "wape_pct": 22.01,
+        "r2": 0.6612,
+        "count": 717,
+        "total_actual_rides": 30670.0
+      },
+      "107": {
+        "mae": 22.324,
+        "rmse": 30.827,
+        "wape_pct": 14.12,
+        "r2": 0.8476,
+        "count": 717,
+        "total_actual_rides": 113377.0
+      },
+      "108": {
+        "mae": 5.717,
+        "rmse": 7.363,
+        "wape_pct": 18.04,
+        "r2": 0.7378,
+        "count": 717,
+        "total_actual_rides": 22721.0
+      },
+      "109": {
+        "mae": 3.692,
+        "rmse": 4.866,
+        "wape_pct": 28.12,
+        "r2": 0.5873,
+        "count": 717,
+        "total_actual_rides": 9414.0
+      },
+      "110": {
+        "mae": 0.992,
+        "rmse": 1.053,
+        "wape_pct": 1975.3,
+        "r2": -20.9802,
+        "count": 717,
+        "total_actual_rides": 36.0
+      },
+      "111": {
+        "mae": 1.083,
+        "rmse": 1.61,
+        "wape_pct": 96.2,
+        "r2": -0.0113,
+        "count": 717,
+        "total_actual_rides": 807.0
+      },
+      "112": {
+        "mae": 23.807,
+        "rmse": 32.321,
+        "wape_pct": 14.47,
+        "r2": 0.8543,
+        "count": 717,
+        "total_actual_rides": 117959.0
+      },
+      "113": {
+        "mae": 17.323,
+        "rmse": 24.442,
+        "wape_pct": 13.56,
+        "r2": 0.8555,
+        "count": 717,
+        "total_actual_rides": 91625.0
+      },
+      "114": {
+        "mae": 23.17,
+        "rmse": 36.354,
+        "wape_pct": 17.4,
+        "r2": 0.8642,
+        "count": 717,
+        "total_actual_rides": 95488.0
+      },
+      "115": {
+        "mae": 3.762,
+        "rmse": 4.841,
+        "wape_pct": 22.88,
+        "r2": 0.6489,
+        "count": 717,
+        "total_actual_rides": 11789.0
+      },
+      "116": {
+        "mae": 13.476,
+        "rmse": 18.419,
+        "wape_pct": 13.88,
+        "r2": 0.7435,
+        "count": 717,
+        "total_actual_rides": 69610.0
+      },
+      "117": {
+        "mae": 7.229,
+        "rmse": 9.668,
+        "wape_pct": 17.77,
+        "r2": 0.7141,
+        "count": 717,
+        "total_actual_rides": 29166.0
+      },
+      "118": {
+        "mae": 4.696,
+        "rmse": 6.202,
+        "wape_pct": 21.43,
+        "r2": 0.8116,
+        "count": 717,
+        "total_actual_rides": 15715.0
+      },
+      "119": {
+        "mae": 10.666,
+        "rmse": 13.958,
+        "wape_pct": 14.97,
+        "r2": 0.7118,
+        "count": 717,
+        "total_actual_rides": 51094.0
+      },
+      "120": {
+        "mae": 1.612,
+        "rmse": 2.568,
+        "wape_pct": 68.72,
+        "r2": -0.1847,
+        "count": 717,
+        "total_actual_rides": 1682.0
+      },
+      "121": {
+        "mae": 6.569,
+        "rmse": 8.989,
+        "wape_pct": 15.47,
+        "r2": 0.798,
+        "count": 717,
+        "total_actual_rides": 30444.0
+      },
+      "122": {
+        "mae": 5.313,
+        "rmse": 6.856,
+        "wape_pct": 19.52,
+        "r2": 0.6428,
+        "count": 717,
+        "total_actual_rides": 19513.0
+      },
+      "123": {
+        "mae": 9.757,
+        "rmse": 13.316,
+        "wape_pct": 16.46,
+        "r2": 0.8359,
+        "count": 717,
+        "total_actual_rides": 42503.0
+      },
+      "124": {
+        "mae": 5.713,
+        "rmse": 7.413,
+        "wape_pct": 19.38,
+        "r2": 0.6923,
+        "count": 717,
+        "total_actual_rides": 21134.0
+      },
+      "125": {
+        "mae": 13.4,
+        "rmse": 18.818,
+        "wape_pct": 18.96,
+        "r2": 0.7729,
+        "count": 717,
+        "total_actual_rides": 50674.0
+      },
+      "126": {
+        "mae": 8.666,
+        "rmse": 11.498,
+        "wape_pct": 13.36,
+        "r2": 0.7425,
+        "count": 717,
+        "total_actual_rides": 46501.0
+      },
+      "127": {
+        "mae": 11.695,
+        "rmse": 15.787,
+        "wape_pct": 14.92,
+        "r2": 0.7488,
+        "count": 717,
+        "total_actual_rides": 56197.0
+      },
+      "128": {
+        "mae": 2.342,
+        "rmse": 3.258,
+        "wape_pct": 43.25,
+        "r2": 0.2221,
+        "count": 717,
+        "total_actual_rides": 3882.0
+      },
+      "129": {
+        "mae": 18.379,
+        "rmse": 24.602,
+        "wape_pct": 11.54,
+        "r2": 0.766,
+        "count": 717,
+        "total_actual_rides": 114171.0
+      },
+      "130": {
+        "mae": 16.098,
+        "rmse": 21.849,
+        "wape_pct": 11.32,
+        "r2": 0.8821,
+        "count": 717,
+        "total_actual_rides": 101967.0
+      },
+      "131": {
+        "mae": 5.57,
+        "rmse": 7.561,
+        "wape_pct": 17.03,
+        "r2": 0.7938,
+        "count": 717,
+        "total_actual_rides": 23458.0
+      },
+      "132": {
+        "mae": 50.149,
+        "rmse": 67.072,
+        "wape_pct": 19.12,
+        "r2": 0.7582,
+        "count": 717,
+        "total_actual_rides": 188103.0
+      },
+      "133": {
+        "mae": 7.028,
+        "rmse": 9.955,
+        "wape_pct": 17.04,
+        "r2": 0.7557,
+        "count": 717,
+        "total_actual_rides": 29572.0
+      },
+      "134": {
+        "mae": 6.6,
+        "rmse": 8.525,
+        "wape_pct": 15.78,
+        "r2": 0.7892,
+        "count": 717,
+        "total_actual_rides": 29982.0
+      },
+      "135": {
+        "mae": 5.972,
+        "rmse": 7.852,
+        "wape_pct": 17.41,
+        "r2": 0.777,
+        "count": 717,
+        "total_actual_rides": 24598.0
+      },
+      "136": {
+        "mae": 8.29,
+        "rmse": 11.009,
+        "wape_pct": 15.19,
+        "r2": 0.7369,
+        "count": 717,
+        "total_actual_rides": 39123.0
+      },
+      "137": {
+        "mae": 18.016,
+        "rmse": 25.153,
+        "wape_pct": 14.03,
+        "r2": 0.8475,
+        "count": 717,
+        "total_actual_rides": 92070.0
+      },
+      "138": {
+        "mae": 51.486,
+        "rmse": 77.4,
+        "wape_pct": 22.87,
+        "r2": 0.7625,
+        "count": 717,
+        "total_actual_rides": 161395.0
+      },
+      "139": {
+        "mae": 6.83,
+        "rmse": 9.026,
+        "wape_pct": 16.41,
+        "r2": 0.7143,
+        "count": 717,
+        "total_actual_rides": 29835.0
+      },
+      "140": {
+        "mae": 15.74,
+        "rmse": 22.472,
+        "wape_pct": 13.15,
+        "r2": 0.8827,
+        "count": 717,
+        "total_actual_rides": 85804.0
+      },
+      "141": {
+        "mae": 17.383,
+        "rmse": 25.28,
+        "wape_pct": 12.65,
+        "r2": 0.8599,
+        "count": 717,
+        "total_actual_rides": 98509.0
+      },
+      "142": {
+        "mae": 16.274,
+        "rmse": 22.69,
+        "wape_pct": 12.35,
+        "r2": 0.8796,
+        "count": 717,
+        "total_actual_rides": 94468.0
+      },
+      "143": {
+        "mae": 13.737,
+        "rmse": 20.492,
+        "wape_pct": 12.93,
+        "r2": 0.879,
+        "count": 717,
+        "total_actual_rides": 76181.0
+      },
+      "144": {
+        "mae": 22.882,
+        "rmse": 33.228,
+        "wape_pct": 15.5,
+        "r2": 0.8577,
+        "count": 717,
+        "total_actual_rides": 105850.0
+      },
+      "145": {
+        "mae": 20.736,
+        "rmse": 28.558,
+        "wape_pct": 14.53,
+        "r2": 0.8098,
+        "count": 717,
+        "total_actual_rides": 102304.0
+      },
+      "146": {
+        "mae": 8.37,
+        "rmse": 11.158,
+        "wape_pct": 15.51,
+        "r2": 0.7646,
+        "count": 717,
+        "total_actual_rides": 38683.0
+      },
+      "147": {
+        "mae": 7.506,
+        "rmse": 9.797,
+        "wape_pct": 15.73,
+        "r2": 0.6896,
+        "count": 717,
+        "total_actual_rides": 34213.0
+      },
+      "148": {
+        "mae": 41.637,
+        "rmse": 89.93,
+        "wape_pct": 19.81,
+        "r2": 0.7701,
+        "count": 717,
+        "total_actual_rides": 150739.0
+      },
+      "149": {
+        "mae": 7.622,
+        "rmse": 10.468,
+        "wape_pct": 15.8,
+        "r2": 0.8291,
+        "count": 717,
+        "total_actual_rides": 34592.0
+      },
+      "150": {
+        "mae": 5.367,
+        "rmse": 7.289,
+        "wape_pct": 22.17,
+        "r2": 0.6749,
+        "count": 717,
+        "total_actual_rides": 17359.0
+      },
+      "151": {
+        "mae": 8.706,
+        "rmse": 11.366,
+        "wape_pct": 13.53,
+        "r2": 0.8343,
+        "count": 717,
+        "total_actual_rides": 46148.0
+      },
+      "152": {
+        "mae": 7.93,
+        "rmse": 10.435,
+        "wape_pct": 16.61,
+        "r2": 0.7192,
+        "count": 717,
+        "total_actual_rides": 34220.0
+      },
+      "153": {
+        "mae": 4.469,
+        "rmse": 5.951,
+        "wape_pct": 21.71,
+        "r2": 0.74,
+        "count": 717,
+        "total_actual_rides": 14758.0
+      },
+      "154": {
+        "mae": 1.925,
+        "rmse": 2.883,
+        "wape_pct": 64.95,
+        "r2": 0.1459,
+        "count": 717,
+        "total_actual_rides": 2125.0
+      },
+      "155": {
+        "mae": 8.403,
+        "rmse": 11.101,
+        "wape_pct": 12.55,
+        "r2": 0.9086,
+        "count": 717,
+        "total_actual_rides": 47994.0
+      },
+      "156": {
+        "mae": 5.02,
+        "rmse": 6.615,
+        "wape_pct": 17.9,
+        "r2": 0.7487,
+        "count": 717,
+        "total_actual_rides": 20105.0
+      },
+      "157": {
+        "mae": 9.33,
+        "rmse": 16.03,
+        "wape_pct": 17.56,
+        "r2": 0.6592,
+        "count": 717,
+        "total_actual_rides": 38104.0
+      },
+      "158": {
+        "mae": 23.377,
+        "rmse": 35.459,
+        "wape_pct": 16.42,
+        "r2": 0.848,
+        "count": 717,
+        "total_actual_rides": 102088.0
+      },
+      "159": {
+        "mae": 11.296,
+        "rmse": 14.547,
+        "wape_pct": 12.55,
+        "r2": 0.8176,
+        "count": 717,
+        "total_actual_rides": 64530.0
+      },
+      "160": {
+        "mae": 6.396,
+        "rmse": 8.61,
+        "wape_pct": 14.77,
+        "r2": 0.7976,
+        "count": 717,
+        "total_actual_rides": 31042.0
+      },
+      "161": {
+        "mae": 30.305,
+        "rmse": 49.686,
+        "wape_pct": 16.03,
+        "r2": 0.8918,
+        "count": 717,
+        "total_actual_rides": 135519.0
+      },
+      "162": {
+        "mae": 22.534,
+        "rmse": 36.238,
+        "wape_pct": 14.58,
+        "r2": 0.8944,
+        "count": 717,
+        "total_actual_rides": 110821.0
+      },
+      "163": {
+        "mae": 20.566,
+        "rmse": 28.903,
+        "wape_pct": 13.78,
+        "r2": 0.8694,
+        "count": 717,
+        "total_actual_rides": 106982.0
+      },
+      "164": {
+        "mae": 25.865,
+        "rmse": 35.263,
+        "wape_pct": 13.65,
+        "r2": 0.8593,
+        "count": 717,
+        "total_actual_rides": 135891.0
+      },
+      "165": {
+        "mae": 9.708,
+        "rmse": 13.545,
+        "wape_pct": 14.77,
+        "r2": 0.8782,
+        "count": 717,
+        "total_actual_rides": 47125.0
+      },
+      "166": {
+        "mae": 9.429,
+        "rmse": 12.522,
+        "wape_pct": 12.92,
+        "r2": 0.8385,
+        "count": 717,
+        "total_actual_rides": 52321.0
+      },
+      "167": {
+        "mae": 10.756,
+        "rmse": 14.085,
+        "wape_pct": 12.91,
+        "r2": 0.7861,
+        "count": 717,
+        "total_actual_rides": 59742.0
+      },
+      "168": {
+        "mae": 16.014,
+        "rmse": 20.835,
+        "wape_pct": 12.46,
+        "r2": 0.7648,
+        "count": 717,
+        "total_actual_rides": 92178.0
+      },
+      "169": {
+        "mae": 12.386,
+        "rmse": 15.996,
+        "wape_pct": 12.05,
+        "r2": 0.8084,
+        "count": 717,
+        "total_actual_rides": 73718.0
+      },
+      "170": {
+        "mae": 23.494,
+        "rmse": 32.55,
+        "wape_pct": 12.23,
+        "r2": 0.8912,
+        "count": 717,
+        "total_actual_rides": 137770.0
+      },
+      "171": {
+        "mae": 6.595,
+        "rmse": 8.692,
+        "wape_pct": 17.37,
+        "r2": 0.7349,
+        "count": 717,
+        "total_actual_rides": 27220.0
+      },
+      "172": {
+        "mae": 3.269,
+        "rmse": 4.322,
+        "wape_pct": 27.58,
+        "r2": 0.6234,
+        "count": 717,
+        "total_actual_rides": 8500.0
+      },
+      "173": {
+        "mae": 7.565,
+        "rmse": 10.026,
+        "wape_pct": 15.98,
+        "r2": 0.6486,
+        "count": 717,
+        "total_actual_rides": 33940.0
+      },
+      "174": {
+        "mae": 9.522,
+        "rmse": 12.868,
+        "wape_pct": 10.81,
+        "r2": 0.8615,
+        "count": 717,
+        "total_actual_rides": 63154.0
+      },
+      "175": {
+        "mae": 3.558,
+        "rmse": 4.73,
+        "wape_pct": 26.84,
+        "r2": 0.6296,
+        "count": 717,
+        "total_actual_rides": 9504.0
+      },
+      "176": {
+        "mae": 2.53,
+        "rmse": 3.299,
+        "wape_pct": 35.98,
+        "r2": 0.426,
+        "count": 717,
+        "total_actual_rides": 5042.0
+      },
+      "177": {
+        "mae": 14.016,
+        "rmse": 18.366,
+        "wape_pct": 13.07,
+        "r2": 0.8025,
+        "count": 717,
+        "total_actual_rides": 76918.0
+      },
+      "178": {
+        "mae": 5.237,
+        "rmse": 7.116,
+        "wape_pct": 23.49,
+        "r2": 0.7666,
+        "count": 717,
+        "total_actual_rides": 15984.0
+      },
+      "179": {
+        "mae": 10.289,
+        "rmse": 13.914,
+        "wape_pct": 14.13,
+        "r2": 0.7815,
+        "count": 717,
+        "total_actual_rides": 52222.0
+      },
+      "180": {
+        "mae": 5.919,
+        "rmse": 7.78,
+        "wape_pct": 17.09,
+        "r2": 0.7244,
+        "count": 717,
+        "total_actual_rides": 24832.0
+      },
+      "181": {
+        "mae": 27.43,
+        "rmse": 40.113,
+        "wape_pct": 13.72,
+        "r2": 0.8425,
+        "count": 717,
+        "total_actual_rides": 143382.0
+      },
+      "182": {
+        "mae": 7.833,
+        "rmse": 10.307,
+        "wape_pct": 14.12,
+        "r2": 0.8192,
+        "count": 717,
+        "total_actual_rides": 39784.0
+      },
+      "183": {
+        "mae": 5.411,
+        "rmse": 7.091,
+        "wape_pct": 18.78,
+        "r2": 0.7099,
+        "count": 717,
+        "total_actual_rides": 20662.0
+      },
+      "184": {
+        "mae": 4.692,
+        "rmse": 8.807,
+        "wape_pct": 60.0,
+        "r2": 0.2228,
+        "count": 717,
+        "total_actual_rides": 5607.0
+      },
+      "185": {
+        "mae": 8.916,
+        "rmse": 12.125,
+        "wape_pct": 12.76,
+        "r2": 0.86,
+        "count": 717,
+        "total_actual_rides": 50107.0
+      },
+      "186": {
+        "mae": 23.947,
+        "rmse": 36.854,
+        "wape_pct": 17.31,
+        "r2": 0.7303,
+        "count": 717,
+        "total_actual_rides": 99199.0
+      },
+      "187": {
+        "mae": 3.566,
+        "rmse": 4.594,
+        "wape_pct": 25.74,
+        "r2": 0.5855,
+        "count": 717,
+        "total_actual_rides": 9933.0
+      },
+      "188": {
+        "mae": 18.379,
+        "rmse": 24.037,
+        "wape_pct": 10.3,
+        "r2": 0.8847,
+        "count": 717,
+        "total_actual_rides": 127996.0
+      },
+      "189": {
+        "mae": 13.149,
+        "rmse": 18.617,
+        "wape_pct": 17.41,
+        "r2": 0.8325,
+        "count": 717,
+        "total_actual_rides": 54158.0
+      },
+      "190": {
+        "mae": 5.971,
+        "rmse": 9.944,
+        "wape_pct": 37.76,
+        "r2": 0.6327,
+        "count": 717,
+        "total_actual_rides": 11338.0
+      },
+      "191": {
+        "mae": 8.42,
+        "rmse": 10.969,
+        "wape_pct": 13.81,
+        "r2": 0.8148,
+        "count": 717,
+        "total_actual_rides": 43725.0
+      },
+      "192": {
+        "mae": 5.486,
+        "rmse": 7.368,
+        "wape_pct": 20.34,
+        "r2": 0.6839,
+        "count": 717,
+        "total_actual_rides": 19340.0
+      },
+      "193": {
+        "mae": 5.708,
+        "rmse": 7.505,
+        "wape_pct": 19.94,
+        "r2": 0.653,
+        "count": 717,
+        "total_actual_rides": 20522.0
+      },
+      "194": {
+        "mae": 2.62,
+        "rmse": 4.819,
+        "wape_pct": 75.84,
+        "r2": 0.2773,
+        "count": 717,
+        "total_actual_rides": 2477.0
+      },
+      "195": {
+        "mae": 8.238,
+        "rmse": 11.637,
+        "wape_pct": 18.9,
+        "r2": 0.7927,
+        "count": 717,
+        "total_actual_rides": 31249.0
+      },
+      "196": {
+        "mae": 7.726,
+        "rmse": 10.197,
+        "wape_pct": 14.33,
+        "r2": 0.864,
+        "count": 717,
+        "total_actual_rides": 38654.0
+      },
+      "197": {
+        "mae": 11.644,
+        "rmse": 15.264,
+        "wape_pct": 12.95,
+        "r2": 0.8032,
+        "count": 717,
+        "total_actual_rides": 64460.0
+      },
+      "198": {
+        "mae": 16.611,
+        "rmse": 22.349,
+        "wape_pct": 12.95,
+        "r2": 0.7938,
+        "count": 717,
+        "total_actual_rides": 91945.0
+      },
+      "199": {
+        "mae": 1.024,
+        "rmse": 1.072,
+        "wape_pct": 24463.05,
+        "r2": -274.7854,
+        "count": 717,
+        "total_actual_rides": 3.0
+      },
+      "200": {
+        "mae": 6.653,
+        "rmse": 9.392,
+        "wape_pct": 19.45,
+        "r2": 0.7582,
+        "count": 717,
+        "total_actual_rides": 24519.0
+      },
+      "201": {
+        "mae": 6.155,
+        "rmse": 9.093,
+        "wape_pct": 36.21,
+        "r2": 0.4629,
+        "count": 717,
+        "total_actual_rides": 12189.0
+      },
+      "202": {
+        "mae": 3.23,
+        "rmse": 4.25,
+        "wape_pct": 26.82,
+        "r2": 0.4936,
+        "count": 717,
+        "total_actual_rides": 8633.0
+      },
+      "203": {
+        "mae": 6.34,
+        "rmse": 8.31,
+        "wape_pct": 16.02,
+        "r2": 0.7322,
+        "count": 717,
+        "total_actual_rides": 28377.0
+      },
+      "204": {
+        "mae": 2.179,
+        "rmse": 2.891,
+        "wape_pct": 45.46,
+        "r2": 0.2287,
+        "count": 717,
+        "total_actual_rides": 3437.0
+      },
+      "205": {
+        "mae": 11.982,
+        "rmse": 15.86,
+        "wape_pct": 12.44,
+        "r2": 0.8142,
+        "count": 717,
+        "total_actual_rides": 69075.0
+      },
+      "206": {
+        "mae": 6.484,
+        "rmse": 8.382,
+        "wape_pct": 16.06,
+        "r2": 0.7831,
+        "count": 717,
+        "total_actual_rides": 28958.0
+      },
+      "207": {
+        "mae": 2.219,
+        "rmse": 3.126,
+        "wape_pct": 40.04,
+        "r2": 0.7633,
+        "count": 717,
+        "total_actual_rides": 3974.0
+      },
+      "208": {
+        "mae": 9.676,
+        "rmse": 13.057,
+        "wape_pct": 13.56,
+        "r2": 0.8122,
+        "count": 717,
+        "total_actual_rides": 51159.0
+      },
+      "209": {
+        "mae": 7.966,
+        "rmse": 11.05,
+        "wape_pct": 18.32,
+        "r2": 0.7862,
+        "count": 717,
+        "total_actual_rides": 31169.0
+      },
+      "210": {
+        "mae": 9.129,
+        "rmse": 13.22,
+        "wape_pct": 13.4,
+        "r2": 0.8422,
+        "count": 717,
+        "total_actual_rides": 48848.0
+      },
+      "211": {
+        "mae": 20.39,
+        "rmse": 28.327,
+        "wape_pct": 15.71,
+        "r2": 0.861,
+        "count": 717,
+        "total_actual_rides": 93059.0
+      },
+      "212": {
+        "mae": 8.318,
+        "rmse": 10.808,
+        "wape_pct": 14.42,
+        "r2": 0.7332,
+        "count": 717,
+        "total_actual_rides": 41374.0
+      },
+      "213": {
+        "mae": 13.794,
+        "rmse": 17.9,
+        "wape_pct": 11.51,
+        "r2": 0.8641,
+        "count": 717,
+        "total_actual_rides": 85944.0
+      },
+      "214": {
+        "mae": 3.796,
+        "rmse": 5.011,
+        "wape_pct": 23.15,
+        "r2": 0.6755,
+        "count": 717,
+        "total_actual_rides": 11757.0
+      },
+      "215": {
+        "mae": 9.749,
+        "rmse": 13.029,
+        "wape_pct": 12.93,
+        "r2": 0.8164,
+        "count": 717,
+        "total_actual_rides": 54078.0
+      },
+      "216": {
+        "mae": 15.051,
+        "rmse": 20.054,
+        "wape_pct": 12.58,
+        "r2": 0.7836,
+        "count": 717,
+        "total_actual_rides": 85760.0
+      },
+      "217": {
+        "mae": 6.826,
+        "rmse": 9.6,
+        "wape_pct": 23.64,
+        "r2": 0.7858,
+        "count": 717,
+        "total_actual_rides": 20699.0
+      },
+      "218": {
+        "mae": 7.549,
+        "rmse": 9.711,
+        "wape_pct": 15.4,
+        "r2": 0.7574,
+        "count": 717,
+        "total_actual_rides": 35137.0
+      },
+      "219": {
+        "mae": 6.529,
+        "rmse": 8.51,
+        "wape_pct": 14.69,
+        "r2": 0.7812,
+        "count": 717,
+        "total_actual_rides": 31860.0
+      },
+      "220": {
+        "mae": 8.564,
+        "rmse": 11.334,
+        "wape_pct": 12.29,
+        "r2": 0.8751,
+        "count": 717,
+        "total_actual_rides": 49971.0
+      },
+      "221": {
+        "mae": 5.229,
+        "rmse": 6.942,
+        "wape_pct": 18.35,
+        "r2": 0.7276,
+        "count": 717,
+        "total_actual_rides": 20429.0
+      },
+      "222": {
+        "mae": 5.023,
+        "rmse": 6.46,
+        "wape_pct": 17.57,
+        "r2": 0.7587,
+        "count": 717,
+        "total_actual_rides": 20502.0
+      },
+      "223": {
+        "mae": 14.788,
+        "rmse": 19.976,
+        "wape_pct": 14.38,
+        "r2": 0.767,
+        "count": 717,
+        "total_actual_rides": 73752.0
+      },
+      "224": {
+        "mae": 6.66,
+        "rmse": 8.577,
+        "wape_pct": 19.11,
+        "r2": 0.7809,
+        "count": 717,
+        "total_actual_rides": 24988.0
+      },
+      "225": {
+        "mae": 23.766,
+        "rmse": 32.023,
+        "wape_pct": 12.08,
+        "r2": 0.8584,
+        "count": 717,
+        "total_actual_rides": 141013.0
+      },
+      "226": {
+        "mae": 15.156,
+        "rmse": 20.736,
+        "wape_pct": 12.23,
+        "r2": 0.8435,
+        "count": 717,
+        "total_actual_rides": 88836.0
+      },
+      "227": {
+        "mae": 7.345,
+        "rmse": 9.961,
+        "wape_pct": 15.33,
+        "r2": 0.7628,
+        "count": 717,
+        "total_actual_rides": 34357.0
+      },
+      "228": {
+        "mae": 13.686,
+        "rmse": 18.613,
+        "wape_pct": 13.21,
+        "r2": 0.8426,
+        "count": 717,
+        "total_actual_rides": 74256.0
+      },
+      "229": {
+        "mae": 17.43,
+        "rmse": 24.247,
+        "wape_pct": 13.66,
+        "r2": 0.8472,
+        "count": 717,
+        "total_actual_rides": 91511.0
+      },
+      "230": {
+        "mae": 24.776,
+        "rmse": 35.362,
+        "wape_pct": 13.69,
+        "r2": 0.832,
+        "count": 717,
+        "total_actual_rides": 129714.0
+      },
+      "231": {
+        "mae": 29.551,
+        "rmse": 40.226,
+        "wape_pct": 12.9,
+        "r2": 0.8866,
+        "count": 717,
+        "total_actual_rides": 164228.0
+      },
+      "232": {
+        "mae": 17.245,
+        "rmse": 24.177,
+        "wape_pct": 15.1,
+        "r2": 0.8104,
+        "count": 717,
+        "total_actual_rides": 81911.0
+      },
+      "233": {
+        "mae": 16.453,
+        "rmse": 23.369,
+        "wape_pct": 14.11,
+        "r2": 0.8562,
+        "count": 717,
+        "total_actual_rides": 83621.0
+      },
+      "234": {
+        "mae": 28.778,
+        "rmse": 41.231,
+        "wape_pct": 12.99,
+        "r2": 0.8898,
+        "count": 717,
+        "total_actual_rides": 158788.0
+      },
+      "235": {
+        "mae": 11.862,
+        "rmse": 15.366,
+        "wape_pct": 12.89,
+        "r2": 0.7847,
+        "count": 717,
+        "total_actual_rides": 65991.0
+      },
+      "236": {
+        "mae": 22.266,
+        "rmse": 34.867,
+        "wape_pct": 14.27,
+        "r2": 0.8603,
+        "count": 717,
+        "total_actual_rides": 111908.0
+      },
+      "237": {
+        "mae": 24.075,
+        "rmse": 36.168,
+        "wape_pct": 13.86,
+        "r2": 0.8854,
+        "count": 717,
+        "total_actual_rides": 124553.0
+      },
+      "238": {
+        "mae": 14.384,
+        "rmse": 20.055,
+        "wape_pct": 12.51,
+        "r2": 0.8622,
+        "count": 717,
+        "total_actual_rides": 82434.0
+      },
+      "239": {
+        "mae": 17.341,
+        "rmse": 24.509,
+        "wape_pct": 12.76,
+        "r2": 0.8617,
+        "count": 717,
+        "total_actual_rides": 97467.0
+      },
+      "240": {
+        "mae": 3.776,
+        "rmse": 5.106,
+        "wape_pct": 28.05,
+        "r2": 0.4834,
+        "count": 717,
+        "total_actual_rides": 9652.0
+      },
+      "241": {
+        "mae": 10.317,
+        "rmse": 13.812,
+        "wape_pct": 12.78,
+        "r2": 0.7733,
+        "count": 717,
+        "total_actual_rides": 57892.0
+      },
+      "242": {
+        "mae": 11.338,
+        "rmse": 15.629,
+        "wape_pct": 13.43,
+        "r2": 0.8518,
+        "count": 717,
+        "total_actual_rides": 60514.0
+      },
+      "243": {
+        "mae": 14.125,
+        "rmse": 18.247,
+        "wape_pct": 12.68,
+        "r2": 0.7975,
+        "count": 717,
+        "total_actual_rides": 79899.0
+      },
+      "244": {
+        "mae": 17.385,
+        "rmse": 23.344,
+        "wape_pct": 10.97,
+        "r2": 0.8202,
+        "count": 717,
+        "total_actual_rides": 113607.0
+      },
+      "245": {
+        "mae": 3.842,
+        "rmse": 4.915,
+        "wape_pct": 25.82,
+        "r2": 0.5523,
+        "count": 717,
+        "total_actual_rides": 10668.0
+      },
+      "246": {
+        "mae": 27.011,
+        "rmse": 37.253,
+        "wape_pct": 13.91,
+        "r2": 0.8799,
+        "count": 717,
+        "total_actual_rides": 139271.0
+      },
+      "247": {
+        "mae": 16.669,
+        "rmse": 27.227,
+        "wape_pct": 16.95,
+        "r2": 0.6745,
+        "count": 717,
+        "total_actual_rides": 70514.0
+      },
+      "248": {
+        "mae": 8.17,
+        "rmse": 10.362,
+        "wape_pct": 14.37,
+        "r2": 0.7509,
+        "count": 717,
+        "total_actual_rides": 40751.0
+      },
+      "249": {
+        "mae": 37.963,
+        "rmse": 58.876,
+        "wape_pct": 17.62,
+        "r2": 0.8469,
+        "count": 717,
+        "total_actual_rides": 154486.0
+      },
+      "250": {
+        "mae": 8.738,
+        "rmse": 11.375,
+        "wape_pct": 15.33,
+        "r2": 0.7598,
+        "count": 717,
+        "total_actual_rides": 40866.0
+      },
+      "251": {
+        "mae": 3.923,
+        "rmse": 5.071,
+        "wape_pct": 25.67,
+        "r2": 0.6172,
+        "count": 717,
+        "total_actual_rides": 10958.0
+      },
+      "252": {
+        "mae": 5.4,
+        "rmse": 7.237,
+        "wape_pct": 20.19,
+        "r2": 0.7,
+        "count": 717,
+        "total_actual_rides": 19174.0
+      },
+      "253": {
+        "mae": 2.739,
+        "rmse": 7.201,
+        "wape_pct": 119.96,
+        "r2": -0.3166,
+        "count": 717,
+        "total_actual_rides": 1637.0
+      },
+      "254": {
+        "mae": 13.044,
+        "rmse": 17.202,
+        "wape_pct": 11.85,
+        "r2": 0.8289,
+        "count": 717,
+        "total_actual_rides": 78938.0
+      },
+      "255": {
+        "mae": 32.237,
+        "rmse": 46.901,
+        "wape_pct": 16.12,
+        "r2": 0.8802,
+        "count": 717,
+        "total_actual_rides": 143392.0
+      },
+      "256": {
+        "mae": 26.543,
+        "rmse": 38.035,
+        "wape_pct": 14.95,
+        "r2": 0.8631,
+        "count": 717,
+        "total_actual_rides": 127295.0
+      },
+      "257": {
+        "mae": 6.404,
+        "rmse": 8.545,
+        "wape_pct": 20.42,
+        "r2": 0.7305,
+        "count": 717,
+        "total_actual_rides": 22481.0
+      },
+      "258": {
+        "mae": 9.429,
+        "rmse": 12.457,
+        "wape_pct": 13.43,
+        "r2": 0.7959,
+        "count": 717,
+        "total_actual_rides": 50326.0
+      },
+      "259": {
+        "mae": 9.776,
+        "rmse": 12.597,
+        "wape_pct": 14.13,
+        "r2": 0.7356,
+        "count": 717,
+        "total_actual_rides": 49610.0
+      },
+      "260": {
+        "mae": 11.621,
+        "rmse": 15.265,
+        "wape_pct": 13.56,
+        "r2": 0.7146,
+        "count": 717,
+        "total_actual_rides": 61431.0
+      },
+      "261": {
+        "mae": 10.671,
+        "rmse": 14.443,
+        "wape_pct": 14.88,
+        "r2": 0.8486,
+        "count": 717,
+        "total_actual_rides": 51430.0
+      },
+      "262": {
+        "mae": 11.134,
+        "rmse": 16.506,
+        "wape_pct": 13.53,
+        "r2": 0.8653,
+        "count": 717,
+        "total_actual_rides": 58990.0
+      },
+      "263": {
+        "mae": 14.509,
+        "rmse": 20.365,
+        "wape_pct": 12.86,
+        "r2": 0.8298,
+        "count": 717,
+        "total_actual_rides": 80884.0
+      },
+      "264": {
+        "mae": 1.127,
+        "rmse": 2.301,
+        "wape_pct": 1188.82,
+        "r2": -0.2219,
+        "count": 717,
+        "total_actual_rides": 68.0
+      },
+      "265": {
+        "mae": 1.665,
+        "rmse": 6.001,
+        "wape_pct": 91.36,
+        "r2": -0.3905,
+        "count": 717,
+        "total_actual_rides": 1307.0
+      }
+    }
+  },
+  "360": {
+    "horizon_minutes": 360,
+    "horizon_hours": 6,
+    "baselines": {
+      "Baseline: Same Hour Last Week (target lag-168)": {
+        "mae": 12.333,
+        "rmse": 22.205,
+        "wape_pct": 15.52,
+        "r2": 0.9293,
+        "count": 187782,
+        "total_actual_rides": 14917936.0
+      },
+      "Baseline: Same Hour Yesterday (target lag-24)": {
+        "mae": 18.558,
+        "rmse": 37.421,
+        "wape_pct": 23.36,
+        "r2": 0.7992,
+        "count": 187782,
+        "total_actual_rides": 14917936.0
+      },
+      "Baseline: Origin Persistence (origin lag-0)": {
+        "mae": 44.832,
+        "rmse": 74.632,
+        "wape_pct": 56.43,
+        "r2": 0.2013,
+        "count": 187782,
+        "total_actual_rides": 14917936.0
+      },
+      "Baseline: 24h Rolling Mean": {
+        "mae": 31.075,
+        "rmse": 52.198,
+        "wape_pct": 39.12,
+        "r2": 0.6093,
+        "count": 187782,
+        "total_actual_rides": 14917936.0
+      },
+      "Baseline: Historical Zone-DoW-Hour Profile": {
+        "mae": 11.993,
+        "rmse": 24.756,
+        "wape_pct": 15.1,
+        "r2": 0.9121,
+        "count": 187782,
+        "total_actual_rides": 14917936.0
+      }
+    },
+    "model_metrics": {
+      "mae": 12.5,
+      "rmse": 23.086,
+      "wape_pct": 15.73,
+      "r2": 0.9236,
+      "count": 187782,
+      "total_actual_rides": 14917936.0
+    },
+    "uncertainty_metrics": {
+      "target_confidence_pct": 80.0,
+      "empirical_test_coverage_pct": 77.82,
+      "mean_interval_width": 31.44,
+      "q_low": -18.194,
+      "q_high": 15.748,
+      "test_sample_size": 187782
+    },
+    "borough_metrics": {
+      "Bronx": {
+        "mae": 9.23,
+        "rmse": 13.395,
+        "wape_pct": 14.54,
+        "r2": 0.903,
+        "count": 30702,
+        "total_actual_rides": 1949404.0
+      },
+      "Brooklyn": {
+        "mae": 14.478,
+        "rmse": 23.994,
+        "wape_pct": 15.03,
+        "r2": 0.9297,
+        "count": 43554,
+        "total_actual_rides": 4194873.0
+      },
+      "EWR": {
+        "mae": 0.973,
+        "rmse": 1.163,
+        "wape_pct": 306.11,
+        "r2": -2.5143,
+        "count": 714,
+        "total_actual_rides": 227.0
+      },
+      "Manhattan": {
+        "mae": 18.934,
+        "rmse": 33.158,
+        "wape_pct": 15.91,
+        "r2": 0.8921,
+        "count": 47838,
+        "total_actual_rides": 5692940.0
+      },
+      "Queens": {
+        "mae": 9.617,
+        "rmse": 18.31,
+        "wape_pct": 16.52,
+        "r2": 0.9234,
+        "count": 49266,
+        "total_actual_rides": 2868371.0
+      },
+      "Staten Island": {
+        "mae": 3.568,
+        "rmse": 4.96,
+        "wape_pct": 24.17,
+        "r2": 0.8669,
+        "count": 14280,
+        "total_actual_rides": 210746.0
+      },
+      "Unknown": {
+        "mae": 1.471,
+        "rmse": 4.677,
+        "wape_pct": 152.73,
+        "r2": -0.3737,
+        "count": 1428,
+        "total_actual_rides": 1375.0
+      }
+    },
+    "zone_metrics": {
+      "1": {
+        "mae": 0.973,
+        "rmse": 1.163,
+        "wape_pct": 306.11,
+        "r2": -2.5143,
+        "count": 714,
+        "total_actual_rides": 227.0
+      },
+      "2": {
+        "mae": 0.996,
+        "rmse": 1.165,
+        "wape_pct": 1076.95,
+        "r2": -14.1544,
+        "count": 714,
+        "total_actual_rides": 66.0
+      },
+      "3": {
+        "mae": 7.083,
+        "rmse": 9.174,
+        "wape_pct": 14.58,
+        "r2": 0.787,
+        "count": 714,
+        "total_actual_rides": 34680.0
+      },
+      "4": {
+        "mae": 14.594,
+        "rmse": 22.601,
+        "wape_pct": 18.81,
+        "r2": 0.6722,
+        "count": 714,
+        "total_actual_rides": 55384.0
+      },
+      "5": {
+        "mae": 2.312,
+        "rmse": 2.934,
+        "wape_pct": 41.29,
+        "r2": 0.3694,
+        "count": 714,
+        "total_actual_rides": 3999.0
+      },
+      "6": {
+        "mae": 3.306,
+        "rmse": 4.28,
+        "wape_pct": 28.47,
+        "r2": 0.5718,
+        "count": 714,
+        "total_actual_rides": 8291.0
+      },
+      "7": {
+        "mae": 28.576,
+        "rmse": 37.563,
+        "wape_pct": 13.43,
+        "r2": 0.7676,
+        "count": 714,
+        "total_actual_rides": 151976.0
+      },
+      "8": {
+        "mae": 1.233,
+        "rmse": 1.64,
+        "wape_pct": 108.97,
+        "r2": -0.072,
+        "count": 714,
+        "total_actual_rides": 808.0
+      },
+      "9": {
+        "mae": 4.083,
+        "rmse": 5.327,
+        "wape_pct": 22.63,
+        "r2": 0.6496,
+        "count": 714,
+        "total_actual_rides": 12879.0
+      },
+      "10": {
+        "mae": 11.025,
+        "rmse": 14.511,
+        "wape_pct": 14.15,
+        "r2": 0.7617,
+        "count": 714,
+        "total_actual_rides": 55623.0
+      },
+      "11": {
+        "mae": 4.691,
+        "rmse": 6.2,
+        "wape_pct": 20.83,
+        "r2": 0.6921,
+        "count": 714,
+        "total_actual_rides": 16083.0
+      },
+      "12": {
+        "mae": 2.031,
+        "rmse": 2.794,
+        "wape_pct": 68.05,
+        "r2": 0.2924,
+        "count": 714,
+        "total_actual_rides": 2131.0
+      },
+      "13": {
+        "mae": 18.489,
+        "rmse": 28.411,
+        "wape_pct": 17.31,
+        "r2": 0.8443,
+        "count": 714,
+        "total_actual_rides": 76267.0
+      },
+      "14": {
+        "mae": 16.646,
+        "rmse": 23.019,
+        "wape_pct": 14.13,
+        "r2": 0.802,
+        "count": 714,
+        "total_actual_rides": 84093.0
+      },
+      "15": {
+        "mae": 3.599,
+        "rmse": 4.721,
+        "wape_pct": 25.9,
+        "r2": 0.6572,
+        "count": 714,
+        "total_actual_rides": 9921.0
+      },
+      "16": {
+        "mae": 7.173,
+        "rmse": 9.519,
+        "wape_pct": 18.01,
+        "r2": 0.7242,
+        "count": 714,
+        "total_actual_rides": 28428.0
+      },
+      "17": {
+        "mae": 25.75,
+        "rmse": 34.135,
+        "wape_pct": 13.33,
+        "r2": 0.8456,
+        "count": 714,
+        "total_actual_rides": 137882.0
+      },
+      "18": {
+        "mae": 12.525,
+        "rmse": 16.217,
+        "wape_pct": 12.72,
+        "r2": 0.7899,
+        "count": 714,
+        "total_actual_rides": 70320.0
+      },
+      "19": {
+        "mae": 3.983,
+        "rmse": 5.12,
+        "wape_pct": 24.68,
+        "r2": 0.6302,
+        "count": 714,
+        "total_actual_rides": 11523.0
+      },
+      "20": {
+        "mae": 9.135,
+        "rmse": 11.791,
+        "wape_pct": 14.87,
+        "r2": 0.8095,
+        "count": 714,
+        "total_actual_rides": 43863.0
+      },
+      "21": {
+        "mae": 8.625,
+        "rmse": 11.353,
+        "wape_pct": 15.81,
+        "r2": 0.7808,
+        "count": 714,
+        "total_actual_rides": 38944.0
+      },
+      "22": {
+        "mae": 10.209,
+        "rmse": 13.586,
+        "wape_pct": 14.02,
+        "r2": 0.8578,
+        "count": 714,
+        "total_actual_rides": 52006.0
+      },
+      "23": {
+        "mae": 5.491,
+        "rmse": 7.078,
+        "wape_pct": 19.29,
+        "r2": 0.7611,
+        "count": 714,
+        "total_actual_rides": 20318.0
+      },
+      "24": {
+        "mae": 5.903,
+        "rmse": 7.796,
+        "wape_pct": 19.36,
+        "r2": 0.628,
+        "count": 714,
+        "total_actual_rides": 21770.0
+      },
+      "25": {
+        "mae": 18.358,
+        "rmse": 26.955,
+        "wape_pct": 16.22,
+        "r2": 0.7421,
+        "count": 714,
+        "total_actual_rides": 80825.0
+      },
+      "26": {
+        "mae": 18.43,
+        "rmse": 26.658,
+        "wape_pct": 18.46,
+        "r2": 0.8623,
+        "count": 714,
+        "total_actual_rides": 71303.0
+      },
+      "27": {
+        "mae": 2.923,
+        "rmse": 5.596,
+        "wape_pct": 84.03,
+        "r2": 0.1813,
+        "count": 714,
+        "total_actual_rides": 2484.0
+      },
+      "28": {
+        "mae": 7.949,
+        "rmse": 10.492,
+        "wape_pct": 16.19,
+        "r2": 0.7837,
+        "count": 714,
+        "total_actual_rides": 35051.0
+      },
+      "29": {
+        "mae": 8.205,
+        "rmse": 10.981,
+        "wape_pct": 19.11,
+        "r2": 0.7831,
+        "count": 714,
+        "total_actual_rides": 30656.0
+      },
+      "30": {
+        "mae": 1.298,
+        "rmse": 1.927,
+        "wape_pct": 98.72,
+        "r2": -0.2897,
+        "count": 714,
+        "total_actual_rides": 939.0
+      },
+      "31": {
+        "mae": 4.453,
+        "rmse": 6.989,
+        "wape_pct": 36.75,
+        "r2": 0.7057,
+        "count": 714,
+        "total_actual_rides": 8651.0
+      },
+      "32": {
+        "mae": 8.205,
+        "rmse": 10.601,
+        "wape_pct": 14.1,
+        "r2": 0.7748,
+        "count": 714,
+        "total_actual_rides": 41536.0
+      },
+      "33": {
+        "mae": 16.858,
+        "rmse": 23.293,
+        "wape_pct": 15.79,
+        "r2": 0.837,
+        "count": 714,
+        "total_actual_rides": 76222.0
+      },
+      "34": {
+        "mae": 5.337,
+        "rmse": 7.639,
+        "wape_pct": 29.97,
+        "r2": 0.6948,
+        "count": 714,
+        "total_actual_rides": 12717.0
+      },
+      "35": {
+        "mae": 18.748,
+        "rmse": 24.424,
+        "wape_pct": 12.54,
+        "r2": 0.812,
+        "count": 714,
+        "total_actual_rides": 106771.0
+      },
+      "36": {
+        "mae": 26.22,
+        "rmse": 39.918,
+        "wape_pct": 16.54,
+        "r2": 0.7889,
+        "count": 714,
+        "total_actual_rides": 113187.0
+      },
+      "37": {
+        "mae": 40.354,
+        "rmse": 60.236,
+        "wape_pct": 15.42,
+        "r2": 0.8117,
+        "count": 714,
+        "total_actual_rides": 186908.0
+      },
+      "38": {
+        "mae": 5.78,
+        "rmse": 7.834,
+        "wape_pct": 22.08,
+        "r2": 0.5684,
+        "count": 714,
+        "total_actual_rides": 18689.0
+      },
+      "39": {
+        "mae": 20.385,
+        "rmse": 27.23,
+        "wape_pct": 11.44,
+        "r2": 0.8138,
+        "count": 714,
+        "total_actual_rides": 127206.0
+      },
+      "40": {
+        "mae": 9.819,
+        "rmse": 13.727,
+        "wape_pct": 18.37,
+        "r2": 0.8048,
+        "count": 714,
+        "total_actual_rides": 38156.0
+      },
+      "41": {
+        "mae": 19.079,
+        "rmse": 25.191,
+        "wape_pct": 13.44,
+        "r2": 0.8217,
+        "count": 714,
+        "total_actual_rides": 101335.0
+      },
+      "42": {
+        "mae": 25.464,
+        "rmse": 32.456,
+        "wape_pct": 12.48,
+        "r2": 0.7753,
+        "count": 714,
+        "total_actual_rides": 145731.0
+      },
+      "43": {
+        "mae": 8.966,
+        "rmse": 15.09,
+        "wape_pct": 23.75,
+        "r2": 0.7137,
+        "count": 714,
+        "total_actual_rides": 26951.0
+      },
+      "44": {
+        "mae": 2.804,
+        "rmse": 3.874,
+        "wape_pct": 36.59,
+        "r2": 0.4047,
+        "count": 714,
+        "total_actual_rides": 5471.0
+      },
+      "45": {
+        "mae": 8.901,
+        "rmse": 12.41,
+        "wape_pct": 18.91,
+        "r2": 0.7525,
+        "count": 714,
+        "total_actual_rides": 33615.0
+      },
+      "46": {
+        "mae": 2.675,
+        "rmse": 3.826,
+        "wape_pct": 43.26,
+        "r2": 0.5257,
+        "count": 714,
+        "total_actual_rides": 4416.0
+      },
+      "47": {
+        "mae": 10.302,
+        "rmse": 13.496,
+        "wape_pct": 13.78,
+        "r2": 0.75,
+        "count": 714,
+        "total_actual_rides": 53371.0
+      },
+      "48": {
+        "mae": 30.969,
+        "rmse": 42.217,
+        "wape_pct": 15.9,
+        "r2": 0.73,
+        "count": 714,
+        "total_actual_rides": 139108.0
+      },
+      "49": {
+        "mae": 20.496,
+        "rmse": 27.116,
+        "wape_pct": 15.94,
+        "r2": 0.817,
+        "count": 714,
+        "total_actual_rides": 91808.0
+      },
+      "50": {
+        "mae": 22.626,
+        "rmse": 32.613,
+        "wape_pct": 18.25,
+        "r2": 0.6591,
+        "count": 714,
+        "total_actual_rides": 88543.0
+      },
+      "51": {
+        "mae": 12.309,
+        "rmse": 16.568,
+        "wape_pct": 14.12,
+        "r2": 0.848,
+        "count": 714,
+        "total_actual_rides": 62240.0
+      },
+      "52": {
+        "mae": 6.0,
+        "rmse": 7.936,
+        "wape_pct": 19.41,
+        "r2": 0.7707,
+        "count": 714,
+        "total_actual_rides": 22071.0
+      },
+      "53": {
+        "mae": 5.316,
+        "rmse": 6.823,
+        "wape_pct": 18.58,
+        "r2": 0.6832,
+        "count": 714,
+        "total_actual_rides": 20435.0
+      },
+      "54": {
+        "mae": 3.524,
+        "rmse": 4.562,
+        "wape_pct": 29.29,
+        "r2": 0.5664,
+        "count": 714,
+        "total_actual_rides": 8591.0
+      },
+      "55": {
+        "mae": 12.034,
+        "rmse": 17.995,
+        "wape_pct": 18.71,
+        "r2": 0.6749,
+        "count": 714,
+        "total_actual_rides": 45919.0
+      },
+      "56": {
+        "mae": 9.26,
+        "rmse": 12.241,
+        "wape_pct": 14.64,
+        "r2": 0.7767,
+        "count": 714,
+        "total_actual_rides": 45149.0
+      },
+      "57": {
+        "mae": 2.21,
+        "rmse": 2.872,
+        "wape_pct": 48.61,
+        "r2": -0.2172,
+        "count": 714,
+        "total_actual_rides": 3246.0
+      },
+      "58": {
+        "mae": 2.518,
+        "rmse": 3.211,
+        "wape_pct": 35.84,
+        "r2": 0.291,
+        "count": 714,
+        "total_actual_rides": 5016.0
+      },
+      "59": {
+        "mae": 2.362,
+        "rmse": 3.441,
+        "wape_pct": 60.42,
+        "r2": 0.3375,
+        "count": 714,
+        "total_actual_rides": 2791.0
+      },
+      "60": {
+        "mae": 8.346,
+        "rmse": 10.924,
+        "wape_pct": 15.2,
+        "r2": 0.7264,
+        "count": 714,
+        "total_actual_rides": 39207.0
+      },
+      "61": {
+        "mae": 34.595,
+        "rmse": 46.528,
+        "wape_pct": 10.72,
+        "r2": 0.8847,
+        "count": 714,
+        "total_actual_rides": 230353.0
+      },
+      "62": {
+        "mae": 10.244,
+        "rmse": 12.989,
+        "wape_pct": 12.77,
+        "r2": 0.8222,
+        "count": 714,
+        "total_actual_rides": 57263.0
+      },
+      "63": {
+        "mae": 10.814,
+        "rmse": 14.264,
+        "wape_pct": 14.4,
+        "r2": 0.7528,
+        "count": 714,
+        "total_actual_rides": 53621.0
+      },
+      "64": {
+        "mae": 3.334,
+        "rmse": 4.253,
+        "wape_pct": 26.97,
+        "r2": 0.6282,
+        "count": 714,
+        "total_actual_rides": 8826.0
+      },
+      "65": {
+        "mae": 15.314,
+        "rmse": 21.151,
+        "wape_pct": 16.9,
+        "r2": 0.7901,
+        "count": 714,
+        "total_actual_rides": 64688.0
+      },
+      "66": {
+        "mae": 13.032,
+        "rmse": 18.727,
+        "wape_pct": 17.07,
+        "r2": 0.8358,
+        "count": 714,
+        "total_actual_rides": 54507.0
+      },
+      "67": {
+        "mae": 5.901,
+        "rmse": 7.904,
+        "wape_pct": 17.13,
+        "r2": 0.806,
+        "count": 714,
+        "total_actual_rides": 24601.0
+      },
+      "68": {
+        "mae": 30.123,
+        "rmse": 40.178,
+        "wape_pct": 14.59,
+        "r2": 0.8294,
+        "count": 714,
+        "total_actual_rides": 147403.0
+      },
+      "69": {
+        "mae": 14.297,
+        "rmse": 18.893,
+        "wape_pct": 13.68,
+        "r2": 0.7474,
+        "count": 714,
+        "total_actual_rides": 74620.0
+      },
+      "70": {
+        "mae": 6.771,
+        "rmse": 8.94,
+        "wape_pct": 16.28,
+        "r2": 0.7182,
+        "count": 714,
+        "total_actual_rides": 29702.0
+      },
+      "71": {
+        "mae": 14.84,
+        "rmse": 19.765,
+        "wape_pct": 13.91,
+        "r2": 0.7306,
+        "count": 714,
+        "total_actual_rides": 76152.0
+      },
+      "72": {
+        "mae": 16.432,
+        "rmse": 21.78,
+        "wape_pct": 13.15,
+        "r2": 0.7632,
+        "count": 714,
+        "total_actual_rides": 89224.0
+      },
+      "73": {
+        "mae": 4.19,
+        "rmse": 5.546,
+        "wape_pct": 20.14,
+        "r2": 0.6807,
+        "count": 714,
+        "total_actual_rides": 14856.0
+      },
+      "74": {
+        "mae": 19.739,
+        "rmse": 25.727,
+        "wape_pct": 12.58,
+        "r2": 0.8048,
+        "count": 714,
+        "total_actual_rides": 112006.0
+      },
+      "75": {
+        "mae": 17.815,
+        "rmse": 23.39,
+        "wape_pct": 13.32,
+        "r2": 0.7962,
+        "count": 714,
+        "total_actual_rides": 95480.0
+      },
+      "76": {
+        "mae": 27.309,
+        "rmse": 35.567,
+        "wape_pct": 10.49,
+        "r2": 0.8593,
+        "count": 714,
+        "total_actual_rides": 185961.0
+      },
+      "77": {
+        "mae": 10.065,
+        "rmse": 12.929,
+        "wape_pct": 13.12,
+        "r2": 0.7855,
+        "count": 714,
+        "total_actual_rides": 54779.0
+      },
+      "78": {
+        "mae": 10.965,
+        "rmse": 14.382,
+        "wape_pct": 12.32,
+        "r2": 0.7827,
+        "count": 714,
+        "total_actual_rides": 63541.0
+      },
+      "79": {
+        "mae": 57.75,
+        "rmse": 105.962,
+        "wape_pct": 18.69,
+        "r2": 0.7868,
+        "count": 714,
+        "total_actual_rides": 220574.0
+      },
+      "80": {
+        "mae": 30.032,
+        "rmse": 46.362,
+        "wape_pct": 19.36,
+        "r2": 0.7338,
+        "count": 714,
+        "total_actual_rides": 110753.0
+      },
+      "81": {
+        "mae": 8.721,
+        "rmse": 11.526,
+        "wape_pct": 13.65,
+        "r2": 0.7883,
+        "count": 714,
+        "total_actual_rides": 45625.0
+      },
+      "82": {
+        "mae": 18.258,
+        "rmse": 24.742,
+        "wape_pct": 12.5,
+        "r2": 0.8004,
+        "count": 714,
+        "total_actual_rides": 104259.0
+      },
+      "83": {
+        "mae": 6.886,
+        "rmse": 8.838,
+        "wape_pct": 16.89,
+        "r2": 0.5768,
+        "count": 714,
+        "total_actual_rides": 29105.0
+      },
+      "84": {
+        "mae": 2.972,
+        "rmse": 3.908,
+        "wape_pct": 36.96,
+        "r2": 0.3381,
+        "count": 714,
+        "total_actual_rides": 5741.0
+      },
+      "85": {
+        "mae": 10.005,
+        "rmse": 13.048,
+        "wape_pct": 13.78,
+        "r2": 0.7896,
+        "count": 714,
+        "total_actual_rides": 51854.0
+      },
+      "86": {
+        "mae": 6.58,
+        "rmse": 8.556,
+        "wape_pct": 15.02,
+        "r2": 0.7837,
+        "count": 714,
+        "total_actual_rides": 31284.0
+      },
+      "87": {
+        "mae": 21.252,
+        "rmse": 29.78,
+        "wape_pct": 16.59,
+        "r2": 0.8109,
+        "count": 714,
+        "total_actual_rides": 91445.0
+      },
+      "88": {
+        "mae": 8.396,
+        "rmse": 11.669,
+        "wape_pct": 19.44,
+        "r2": 0.783,
+        "count": 714,
+        "total_actual_rides": 30841.0
+      },
+      "89": {
+        "mae": 20.324,
+        "rmse": 26.972,
+        "wape_pct": 11.19,
+        "r2": 0.852,
+        "count": 714,
+        "total_actual_rides": 129631.0
+      },
+      "90": {
+        "mae": 25.1,
+        "rmse": 34.554,
+        "wape_pct": 16.88,
+        "r2": 0.7663,
+        "count": 714,
+        "total_actual_rides": 106167.0
+      },
+      "91": {
+        "mae": 14.508,
+        "rmse": 19.069,
+        "wape_pct": 12.19,
+        "r2": 0.8304,
+        "count": 714,
+        "total_actual_rides": 84988.0
+      },
+      "92": {
+        "mae": 11.975,
+        "rmse": 15.842,
+        "wape_pct": 13.46,
+        "r2": 0.7972,
+        "count": 714,
+        "total_actual_rides": 63524.0
+      },
+      "93": {
+        "mae": 9.135,
+        "rmse": 20.733,
+        "wape_pct": 64.69,
+        "r2": 0.1506,
+        "count": 714,
+        "total_actual_rides": 10082.0
+      },
+      "94": {
+        "mae": 7.391,
+        "rmse": 9.693,
+        "wape_pct": 15.94,
+        "r2": 0.6822,
+        "count": 714,
+        "total_actual_rides": 33104.0
+      },
+      "95": {
+        "mae": 16.6,
+        "rmse": 22.446,
+        "wape_pct": 12.86,
+        "r2": 0.8531,
+        "count": 714,
+        "total_actual_rides": 92150.0
+      },
+      "96": {
+        "mae": 2.325,
+        "rmse": 3.368,
+        "wape_pct": 59.37,
+        "r2": 0.2922,
+        "count": 714,
+        "total_actual_rides": 2796.0
+      },
+      "97": {
+        "mae": 21.524,
+        "rmse": 31.225,
+        "wape_pct": 15.48,
+        "r2": 0.8186,
+        "count": 714,
+        "total_actual_rides": 99293.0
+      },
+      "98": {
+        "mae": 4.444,
+        "rmse": 5.803,
+        "wape_pct": 22.89,
+        "r2": 0.6538,
+        "count": 714,
+        "total_actual_rides": 13862.0
+      },
+      "99": {
+        "mae": 0.948,
+        "rmse": 1.143,
+        "wape_pct": 188.56,
+        "r2": -1.3281,
+        "count": 714,
+        "total_actual_rides": 359.0
+      },
+      "100": {
+        "mae": 15.039,
+        "rmse": 21.089,
+        "wape_pct": 14.5,
+        "r2": 0.8415,
+        "count": 714,
+        "total_actual_rides": 74063.0
+      },
+      "101": {
+        "mae": 3.968,
+        "rmse": 5.229,
+        "wape_pct": 25.28,
+        "r2": 0.6113,
+        "count": 714,
+        "total_actual_rides": 11209.0
+      },
+      "102": {
+        "mae": 7.491,
+        "rmse": 10.122,
+        "wape_pct": 14.66,
+        "r2": 0.8163,
+        "count": 714,
+        "total_actual_rides": 36493.0
+      },
+      "105": {
+        "mae": 1.044,
+        "rmse": 1.199,
+        "wape_pct": 37286.55,
+        "r2": -513.694,
+        "count": 714,
+        "total_actual_rides": 2.0
+      },
+      "106": {
+        "mae": 9.572,
+        "rmse": 13.735,
+        "wape_pct": 22.3,
+        "r2": 0.653,
+        "count": 714,
+        "total_actual_rides": 30643.0
+      },
+      "107": {
+        "mae": 26.25,
+        "rmse": 36.003,
+        "wape_pct": 16.54,
+        "r2": 0.7903,
+        "count": 714,
+        "total_actual_rides": 113317.0
+      },
+      "108": {
+        "mae": 5.715,
+        "rmse": 7.338,
+        "wape_pct": 17.98,
+        "r2": 0.7378,
+        "count": 714,
+        "total_actual_rides": 22694.0
+      },
+      "109": {
+        "mae": 3.727,
+        "rmse": 4.91,
+        "wape_pct": 28.29,
+        "r2": 0.5781,
+        "count": 714,
+        "total_actual_rides": 9406.0
+      },
+      "110": {
+        "mae": 1.026,
+        "rmse": 1.19,
+        "wape_pct": 2034.6,
+        "r2": -26.9286,
+        "count": 714,
+        "total_actual_rides": 36.0
+      },
+      "111": {
+        "mae": 1.207,
+        "rmse": 1.723,
+        "wape_pct": 106.77,
+        "r2": -0.157,
+        "count": 714,
+        "total_actual_rides": 807.0
+      },
+      "112": {
+        "mae": 27.838,
+        "rmse": 37.792,
+        "wape_pct": 16.87,
+        "r2": 0.7997,
+        "count": 714,
+        "total_actual_rides": 117849.0
+      },
+      "113": {
+        "mae": 20.573,
+        "rmse": 28.248,
+        "wape_pct": 16.04,
+        "r2": 0.8052,
+        "count": 714,
+        "total_actual_rides": 91583.0
+      },
+      "114": {
+        "mae": 25.37,
+        "rmse": 40.485,
+        "wape_pct": 18.98,
+        "r2": 0.8313,
+        "count": 714,
+        "total_actual_rides": 95434.0
+      },
+      "115": {
+        "mae": 3.814,
+        "rmse": 4.885,
+        "wape_pct": 23.13,
+        "r2": 0.6411,
+        "count": 714,
+        "total_actual_rides": 11772.0
+      },
+      "116": {
+        "mae": 14.128,
+        "rmse": 19.613,
+        "wape_pct": 14.51,
+        "r2": 0.7059,
+        "count": 714,
+        "total_actual_rides": 69523.0
+      },
+      "117": {
+        "mae": 7.483,
+        "rmse": 9.937,
+        "wape_pct": 18.35,
+        "r2": 0.6967,
+        "count": 714,
+        "total_actual_rides": 29120.0
+      },
+      "118": {
+        "mae": 4.726,
+        "rmse": 6.259,
+        "wape_pct": 21.48,
+        "r2": 0.8073,
+        "count": 714,
+        "total_actual_rides": 15709.0
+      },
+      "119": {
+        "mae": 10.871,
+        "rmse": 13.999,
+        "wape_pct": 15.21,
+        "r2": 0.7071,
+        "count": 714,
+        "total_actual_rides": 51021.0
+      },
+      "120": {
+        "mae": 1.739,
+        "rmse": 2.707,
+        "wape_pct": 73.88,
+        "r2": -0.3157,
+        "count": 714,
+        "total_actual_rides": 1681.0
+      },
+      "121": {
+        "mae": 6.602,
+        "rmse": 9.059,
+        "wape_pct": 15.5,
+        "r2": 0.7935,
+        "count": 714,
+        "total_actual_rides": 30410.0
+      },
+      "122": {
+        "mae": 5.366,
+        "rmse": 6.941,
+        "wape_pct": 19.67,
+        "r2": 0.6329,
+        "count": 714,
+        "total_actual_rides": 19472.0
+      },
+      "123": {
+        "mae": 10.063,
+        "rmse": 13.713,
+        "wape_pct": 16.92,
+        "r2": 0.8251,
+        "count": 714,
+        "total_actual_rides": 42469.0
+      },
+      "124": {
+        "mae": 5.696,
+        "rmse": 7.409,
+        "wape_pct": 19.26,
+        "r2": 0.6902,
+        "count": 714,
+        "total_actual_rides": 21112.0
+      },
+      "125": {
+        "mae": 13.815,
+        "rmse": 19.415,
+        "wape_pct": 19.48,
+        "r2": 0.7568,
+        "count": 714,
+        "total_actual_rides": 50646.0
+      },
+      "126": {
+        "mae": 8.929,
+        "rmse": 11.772,
+        "wape_pct": 13.74,
+        "r2": 0.7284,
+        "count": 714,
+        "total_actual_rides": 46409.0
+      },
+      "127": {
+        "mae": 12.09,
+        "rmse": 16.725,
+        "wape_pct": 15.38,
+        "r2": 0.7159,
+        "count": 714,
+        "total_actual_rides": 56120.0
+      },
+      "128": {
+        "mae": 2.431,
+        "rmse": 3.334,
+        "wape_pct": 44.74,
+        "r2": 0.1838,
+        "count": 714,
+        "total_actual_rides": 3879.0
+      },
+      "129": {
+        "mae": 20.103,
+        "rmse": 26.884,
+        "wape_pct": 12.59,
+        "r2": 0.7173,
+        "count": 714,
+        "total_actual_rides": 113978.0
+      },
+      "130": {
+        "mae": 17.848,
+        "rmse": 24.021,
+        "wape_pct": 12.51,
+        "r2": 0.8564,
+        "count": 714,
+        "total_actual_rides": 101861.0
+      },
+      "131": {
+        "mae": 5.584,
+        "rmse": 7.536,
+        "wape_pct": 17.02,
+        "r2": 0.7944,
+        "count": 714,
+        "total_actual_rides": 23428.0
+      },
+      "132": {
+        "mae": 51.059,
+        "rmse": 68.725,
+        "wape_pct": 19.41,
+        "r2": 0.7453,
+        "count": 714,
+        "total_actual_rides": 187849.0
+      },
+      "133": {
+        "mae": 7.108,
+        "rmse": 10.081,
+        "wape_pct": 17.18,
+        "r2": 0.7478,
+        "count": 714,
+        "total_actual_rides": 29545.0
+      },
+      "134": {
+        "mae": 6.59,
+        "rmse": 8.442,
+        "wape_pct": 15.72,
+        "r2": 0.7926,
+        "count": 714,
+        "total_actual_rides": 29930.0
+      },
+      "135": {
+        "mae": 5.971,
+        "rmse": 7.789,
+        "wape_pct": 17.37,
+        "r2": 0.7803,
+        "count": 714,
+        "total_actual_rides": 24551.0
+      },
+      "136": {
+        "mae": 8.475,
+        "rmse": 11.154,
+        "wape_pct": 15.49,
+        "r2": 0.7273,
+        "count": 714,
+        "total_actual_rides": 39075.0
+      },
+      "137": {
+        "mae": 20.722,
+        "rmse": 28.942,
+        "wape_pct": 16.08,
+        "r2": 0.7967,
+        "count": 714,
+        "total_actual_rides": 91997.0
+      },
+      "138": {
+        "mae": 52.802,
+        "rmse": 77.958,
+        "wape_pct": 23.37,
+        "r2": 0.7583,
+        "count": 714,
+        "total_actual_rides": 161347.0
+      },
+      "139": {
+        "mae": 6.824,
+        "rmse": 8.96,
+        "wape_pct": 16.36,
+        "r2": 0.7169,
+        "count": 714,
+        "total_actual_rides": 29786.0
+      },
+      "140": {
+        "mae": 17.342,
+        "rmse": 25.234,
+        "wape_pct": 14.44,
+        "r2": 0.8513,
+        "count": 714,
+        "total_actual_rides": 85737.0
+      },
+      "141": {
+        "mae": 19.739,
+        "rmse": 28.272,
+        "wape_pct": 14.32,
+        "r2": 0.8233,
+        "count": 714,
+        "total_actual_rides": 98440.0
+      },
+      "142": {
+        "mae": 18.377,
+        "rmse": 25.435,
+        "wape_pct": 13.9,
+        "r2": 0.8475,
+        "count": 714,
+        "total_actual_rides": 94406.0
+      },
+      "143": {
+        "mae": 15.06,
+        "rmse": 22.165,
+        "wape_pct": 14.13,
+        "r2": 0.8577,
+        "count": 714,
+        "total_actual_rides": 76125.0
+      },
+      "144": {
+        "mae": 26.369,
+        "rmse": 38.257,
+        "wape_pct": 17.79,
+        "r2": 0.8103,
+        "count": 714,
+        "total_actual_rides": 105804.0
+      },
+      "145": {
+        "mae": 23.674,
+        "rmse": 32.345,
+        "wape_pct": 16.54,
+        "r2": 0.7541,
+        "count": 714,
+        "total_actual_rides": 102202.0
+      },
+      "146": {
+        "mae": 8.579,
+        "rmse": 11.322,
+        "wape_pct": 15.86,
+        "r2": 0.7566,
+        "count": 714,
+        "total_actual_rides": 38612.0
+      },
+      "147": {
+        "mae": 7.654,
+        "rmse": 9.932,
+        "wape_pct": 16.0,
+        "r2": 0.6778,
+        "count": 714,
+        "total_actual_rides": 34165.0
+      },
+      "148": {
+        "mae": 45.949,
+        "rmse": 92.821,
+        "wape_pct": 21.78,
+        "r2": 0.7552,
+        "count": 714,
+        "total_actual_rides": 150640.0
+      },
+      "149": {
+        "mae": 7.781,
+        "rmse": 10.549,
+        "wape_pct": 16.07,
+        "r2": 0.8253,
+        "count": 714,
+        "total_actual_rides": 34567.0
+      },
+      "150": {
+        "mae": 5.403,
+        "rmse": 7.392,
+        "wape_pct": 22.24,
+        "r2": 0.6633,
+        "count": 714,
+        "total_actual_rides": 17349.0
+      },
+      "151": {
+        "mae": 8.839,
+        "rmse": 11.499,
+        "wape_pct": 13.69,
+        "r2": 0.8287,
+        "count": 714,
+        "total_actual_rides": 46109.0
+      },
+      "152": {
+        "mae": 7.875,
+        "rmse": 10.39,
+        "wape_pct": 16.46,
+        "r2": 0.7199,
+        "count": 714,
+        "total_actual_rides": 34169.0
+      },
+      "153": {
+        "mae": 4.509,
+        "rmse": 5.96,
+        "wape_pct": 21.83,
+        "r2": 0.738,
+        "count": 714,
+        "total_actual_rides": 14746.0
+      },
+      "154": {
+        "mae": 2.083,
+        "rmse": 3.035,
+        "wape_pct": 70.07,
+        "r2": 0.0555,
+        "count": 714,
+        "total_actual_rides": 2122.0
+      },
+      "155": {
+        "mae": 8.561,
+        "rmse": 11.31,
+        "wape_pct": 12.75,
+        "r2": 0.9046,
+        "count": 714,
+        "total_actual_rides": 47954.0
+      },
+      "156": {
+        "mae": 4.982,
+        "rmse": 6.518,
+        "wape_pct": 17.71,
+        "r2": 0.7547,
+        "count": 714,
+        "total_actual_rides": 20081.0
+      },
+      "157": {
+        "mae": 9.428,
+        "rmse": 16.027,
+        "wape_pct": 17.69,
+        "r2": 0.6581,
+        "count": 714,
+        "total_actual_rides": 38054.0
+      },
+      "158": {
+        "mae": 27.199,
+        "rmse": 41.208,
+        "wape_pct": 19.03,
+        "r2": 0.7937,
+        "count": 714,
+        "total_actual_rides": 102058.0
+      },
+      "159": {
+        "mae": 11.603,
+        "rmse": 14.826,
+        "wape_pct": 12.85,
+        "r2": 0.8085,
+        "count": 714,
+        "total_actual_rides": 64449.0
+      },
+      "160": {
+        "mae": 6.521,
+        "rmse": 8.612,
+        "wape_pct": 15.02,
+        "r2": 0.7961,
+        "count": 714,
+        "total_actual_rides": 31005.0
+      },
+      "161": {
+        "mae": 31.897,
+        "rmse": 53.076,
+        "wape_pct": 16.81,
+        "r2": 0.8763,
+        "count": 714,
+        "total_actual_rides": 135489.0
+      },
+      "162": {
+        "mae": 23.478,
+        "rmse": 38.397,
+        "wape_pct": 15.13,
+        "r2": 0.8811,
+        "count": 714,
+        "total_actual_rides": 110784.0
+      },
+      "163": {
+        "mae": 22.754,
+        "rmse": 32.272,
+        "wape_pct": 15.19,
+        "r2": 0.8359,
+        "count": 714,
+        "total_actual_rides": 106935.0
+      },
+      "164": {
+        "mae": 28.026,
+        "rmse": 39.245,
+        "wape_pct": 14.74,
+        "r2": 0.8244,
+        "count": 714,
+        "total_actual_rides": 135799.0
+      },
+      "165": {
+        "mae": 10.249,
+        "rmse": 14.199,
+        "wape_pct": 15.54,
+        "r2": 0.8656,
+        "count": 714,
+        "total_actual_rides": 47090.0
+      },
+      "166": {
+        "mae": 9.475,
+        "rmse": 12.501,
+        "wape_pct": 12.94,
+        "r2": 0.8375,
+        "count": 714,
+        "total_actual_rides": 52270.0
+      },
+      "167": {
+        "mae": 11.042,
+        "rmse": 14.34,
+        "wape_pct": 13.21,
+        "r2": 0.776,
+        "count": 714,
+        "total_actual_rides": 59660.0
+      },
+      "168": {
+        "mae": 18.272,
+        "rmse": 23.583,
+        "wape_pct": 14.17,
+        "r2": 0.6947,
+        "count": 714,
+        "total_actual_rides": 92049.0
+      },
+      "169": {
+        "mae": 13.27,
+        "rmse": 17.273,
+        "wape_pct": 12.87,
+        "r2": 0.7736,
+        "count": 714,
+        "total_actual_rides": 73630.0
+      },
+      "170": {
+        "mae": 25.707,
+        "rmse": 35.52,
+        "wape_pct": 13.33,
+        "r2": 0.8693,
+        "count": 714,
+        "total_actual_rides": 137699.0
+      },
+      "171": {
+        "mae": 6.631,
+        "rmse": 8.609,
+        "wape_pct": 17.42,
+        "r2": 0.7385,
+        "count": 714,
+        "total_actual_rides": 27180.0
+      },
+      "172": {
+        "mae": 3.327,
+        "rmse": 4.359,
+        "wape_pct": 27.97,
+        "r2": 0.6155,
+        "count": 714,
+        "total_actual_rides": 8493.0
+      },
+      "173": {
+        "mae": 7.713,
+        "rmse": 10.182,
+        "wape_pct": 16.25,
+        "r2": 0.6347,
+        "count": 714,
+        "total_actual_rides": 33882.0
+      },
+      "174": {
+        "mae": 10.188,
+        "rmse": 13.762,
+        "wape_pct": 11.54,
+        "r2": 0.8405,
+        "count": 714,
+        "total_actual_rides": 63056.0
+      },
+      "175": {
+        "mae": 3.566,
+        "rmse": 4.728,
+        "wape_pct": 26.82,
+        "r2": 0.6284,
+        "count": 714,
+        "total_actual_rides": 9496.0
+      },
+      "176": {
+        "mae": 2.544,
+        "rmse": 3.283,
+        "wape_pct": 36.07,
+        "r2": 0.4313,
+        "count": 714,
+        "total_actual_rides": 5035.0
+      },
+      "177": {
+        "mae": 14.962,
+        "rmse": 20.227,
+        "wape_pct": 13.91,
+        "r2": 0.7581,
+        "count": 714,
+        "total_actual_rides": 76821.0
+      },
+      "178": {
+        "mae": 5.423,
+        "rmse": 7.203,
+        "wape_pct": 24.25,
+        "r2": 0.7604,
+        "count": 714,
+        "total_actual_rides": 15970.0
+      },
+      "179": {
+        "mae": 10.808,
+        "rmse": 14.451,
+        "wape_pct": 14.79,
+        "r2": 0.7616,
+        "count": 714,
+        "total_actual_rides": 52173.0
+      },
+      "180": {
+        "mae": 5.884,
+        "rmse": 7.678,
+        "wape_pct": 16.94,
+        "r2": 0.7295,
+        "count": 714,
+        "total_actual_rides": 24798.0
+      },
+      "181": {
+        "mae": 28.854,
+        "rmse": 42.605,
+        "wape_pct": 14.38,
+        "r2": 0.8211,
+        "count": 714,
+        "total_actual_rides": 143266.0
+      },
+      "182": {
+        "mae": 7.883,
+        "rmse": 10.343,
+        "wape_pct": 14.16,
+        "r2": 0.8165,
+        "count": 714,
+        "total_actual_rides": 39738.0
+      },
+      "183": {
+        "mae": 5.387,
+        "rmse": 7.005,
+        "wape_pct": 18.63,
+        "r2": 0.7151,
+        "count": 714,
+        "total_actual_rides": 20639.0
+      },
+      "184": {
+        "mae": 4.889,
+        "rmse": 8.999,
+        "wape_pct": 62.28,
+        "r2": 0.1902,
+        "count": 714,
+        "total_actual_rides": 5605.0
+      },
+      "185": {
+        "mae": 9.25,
+        "rmse": 12.542,
+        "wape_pct": 13.2,
+        "r2": 0.8493,
+        "count": 714,
+        "total_actual_rides": 50046.0
+      },
+      "186": {
+        "mae": 25.277,
+        "rmse": 38.994,
+        "wape_pct": 18.21,
+        "r2": 0.6959,
+        "count": 714,
+        "total_actual_rides": 99129.0
+      },
+      "187": {
+        "mae": 3.603,
+        "rmse": 4.627,
+        "wape_pct": 25.93,
+        "r2": 0.5781,
+        "count": 714,
+        "total_actual_rides": 9919.0
+      },
+      "188": {
+        "mae": 19.711,
+        "rmse": 26.303,
+        "wape_pct": 11.01,
+        "r2": 0.8607,
+        "count": 714,
+        "total_actual_rides": 127832.0
+      },
+      "189": {
+        "mae": 13.963,
+        "rmse": 20.135,
+        "wape_pct": 18.42,
+        "r2": 0.8034,
+        "count": 714,
+        "total_actual_rides": 54118.0
+      },
+      "190": {
+        "mae": 6.202,
+        "rmse": 10.31,
+        "wape_pct": 39.06,
+        "r2": 0.6054,
+        "count": 714,
+        "total_actual_rides": 11336.0
+      },
+      "191": {
+        "mae": 8.61,
+        "rmse": 11.146,
+        "wape_pct": 14.08,
+        "r2": 0.8074,
+        "count": 714,
+        "total_actual_rides": 43663.0
+      },
+      "192": {
+        "mae": 5.504,
+        "rmse": 7.351,
+        "wape_pct": 20.34,
+        "r2": 0.6836,
+        "count": 714,
+        "total_actual_rides": 19316.0
+      },
+      "193": {
+        "mae": 5.756,
+        "rmse": 7.494,
+        "wape_pct": 20.06,
+        "r2": 0.6521,
+        "count": 714,
+        "total_actual_rides": 20488.0
+      },
+      "194": {
+        "mae": 2.768,
+        "rmse": 4.94,
+        "wape_pct": 79.78,
+        "r2": 0.2426,
+        "count": 714,
+        "total_actual_rides": 2477.0
+      },
+      "195": {
+        "mae": 8.454,
+        "rmse": 11.886,
+        "wape_pct": 19.33,
+        "r2": 0.7829,
+        "count": 714,
+        "total_actual_rides": 31224.0
+      },
+      "196": {
+        "mae": 7.747,
+        "rmse": 10.163,
+        "wape_pct": 14.33,
+        "r2": 0.8643,
+        "count": 714,
+        "total_actual_rides": 38612.0
+      },
+      "197": {
+        "mae": 12.46,
+        "rmse": 16.244,
+        "wape_pct": 13.82,
+        "r2": 0.7752,
+        "count": 714,
+        "total_actual_rides": 64356.0
+      },
+      "198": {
+        "mae": 19.028,
+        "rmse": 25.544,
+        "wape_pct": 14.8,
+        "r2": 0.7288,
+        "count": 714,
+        "total_actual_rides": 91797.0
+      },
+      "199": {
+        "mae": 1.043,
+        "rmse": 1.197,
+        "wape_pct": 24829.6,
+        "r2": -341.3613,
+        "count": 714,
+        "total_actual_rides": 3.0
+      },
+      "200": {
+        "mae": 6.647,
+        "rmse": 9.38,
+        "wape_pct": 19.37,
+        "r2": 0.7573,
+        "count": 714,
+        "total_actual_rides": 24506.0
+      },
+      "201": {
+        "mae": 6.335,
+        "rmse": 9.333,
+        "wape_pct": 37.15,
+        "r2": 0.434,
+        "count": 714,
+        "total_actual_rides": 12176.0
+      },
+      "202": {
+        "mae": 3.275,
+        "rmse": 4.288,
+        "wape_pct": 27.14,
+        "r2": 0.4844,
+        "count": 714,
+        "total_actual_rides": 8614.0
+      },
+      "203": {
+        "mae": 6.31,
+        "rmse": 8.123,
+        "wape_pct": 15.9,
+        "r2": 0.7425,
+        "count": 714,
+        "total_actual_rides": 28330.0
+      },
+      "204": {
+        "mae": 2.369,
+        "rmse": 3.042,
+        "wape_pct": 49.27,
+        "r2": 0.1441,
+        "count": 714,
+        "total_actual_rides": 3433.0
+      },
+      "205": {
+        "mae": 12.86,
+        "rmse": 16.842,
+        "wape_pct": 13.32,
+        "r2": 0.7894,
+        "count": 714,
+        "total_actual_rides": 68944.0
+      },
+      "206": {
+        "mae": 6.442,
+        "rmse": 8.223,
+        "wape_pct": 15.9,
+        "r2": 0.7899,
+        "count": 714,
+        "total_actual_rides": 28921.0
+      },
+      "207": {
+        "mae": 2.375,
+        "rmse": 3.218,
+        "wape_pct": 43.23,
+        "r2": 0.7425,
+        "count": 714,
+        "total_actual_rides": 3923.0
+      },
+      "208": {
+        "mae": 9.955,
+        "rmse": 13.455,
+        "wape_pct": 13.91,
+        "r2": 0.7987,
+        "count": 714,
+        "total_actual_rides": 51100.0
+      },
+      "209": {
+        "mae": 7.953,
+        "rmse": 10.937,
+        "wape_pct": 18.23,
+        "r2": 0.7894,
+        "count": 714,
+        "total_actual_rides": 31147.0
+      },
+      "210": {
+        "mae": 9.472,
+        "rmse": 13.349,
+        "wape_pct": 13.86,
+        "r2": 0.838,
+        "count": 714,
+        "total_actual_rides": 48804.0
+      },
+      "211": {
+        "mae": 22.764,
+        "rmse": 31.871,
+        "wape_pct": 17.47,
+        "r2": 0.8231,
+        "count": 714,
+        "total_actual_rides": 93012.0
+      },
+      "212": {
+        "mae": 8.485,
+        "rmse": 10.968,
+        "wape_pct": 14.66,
+        "r2": 0.7224,
+        "count": 714,
+        "total_actual_rides": 41317.0
+      },
+      "213": {
+        "mae": 15.451,
+        "rmse": 20.023,
+        "wape_pct": 12.85,
+        "r2": 0.8286,
+        "count": 714,
+        "total_actual_rides": 85829.0
+      },
+      "214": {
+        "mae": 3.911,
+        "rmse": 5.121,
+        "wape_pct": 23.78,
+        "r2": 0.6598,
+        "count": 714,
+        "total_actual_rides": 11744.0
+      },
+      "215": {
+        "mae": 10.297,
+        "rmse": 13.628,
+        "wape_pct": 13.62,
+        "r2": 0.7979,
+        "count": 714,
+        "total_actual_rides": 53988.0
+      },
+      "216": {
+        "mae": 17.053,
+        "rmse": 22.518,
+        "wape_pct": 14.22,
+        "r2": 0.7252,
+        "count": 714,
+        "total_actual_rides": 85610.0
+      },
+      "217": {
+        "mae": 7.132,
+        "rmse": 9.944,
+        "wape_pct": 24.62,
+        "r2": 0.7697,
+        "count": 714,
+        "total_actual_rides": 20686.0
+      },
+      "218": {
+        "mae": 7.675,
+        "rmse": 9.792,
+        "wape_pct": 15.63,
+        "r2": 0.7529,
+        "count": 714,
+        "total_actual_rides": 35057.0
+      },
+      "219": {
+        "mae": 6.575,
+        "rmse": 8.557,
+        "wape_pct": 14.77,
+        "r2": 0.7782,
+        "count": 714,
+        "total_actual_rides": 31791.0
+      },
+      "220": {
+        "mae": 8.631,
+        "rmse": 11.315,
+        "wape_pct": 12.34,
+        "r2": 0.8745,
+        "count": 714,
+        "total_actual_rides": 49928.0
+      },
+      "221": {
+        "mae": 5.21,
+        "rmse": 6.906,
+        "wape_pct": 18.22,
+        "r2": 0.7282,
+        "count": 714,
+        "total_actual_rides": 20412.0
+      },
+      "222": {
+        "mae": 5.03,
+        "rmse": 6.4,
+        "wape_pct": 17.53,
+        "r2": 0.7615,
+        "count": 714,
+        "total_actual_rides": 20481.0
+      },
+      "223": {
+        "mae": 15.966,
+        "rmse": 21.569,
+        "wape_pct": 15.48,
+        "r2": 0.7267,
+        "count": 714,
+        "total_actual_rides": 73628.0
+      },
+      "224": {
+        "mae": 6.655,
+        "rmse": 8.589,
+        "wape_pct": 19.04,
+        "r2": 0.7793,
+        "count": 714,
+        "total_actual_rides": 24959.0
+      },
+      "225": {
+        "mae": 27.703,
+        "rmse": 37.308,
+        "wape_pct": 14.05,
+        "r2": 0.8066,
+        "count": 714,
+        "total_actual_rides": 140824.0
+      },
+      "226": {
+        "mae": 16.638,
+        "rmse": 22.449,
+        "wape_pct": 13.39,
+        "r2": 0.8149,
+        "count": 714,
+        "total_actual_rides": 88737.0
+      },
+      "227": {
+        "mae": 7.531,
+        "rmse": 10.127,
+        "wape_pct": 15.67,
+        "r2": 0.7534,
+        "count": 714,
+        "total_actual_rides": 34305.0
+      },
+      "228": {
+        "mae": 14.695,
+        "rmse": 19.764,
+        "wape_pct": 14.14,
+        "r2": 0.8209,
+        "count": 714,
+        "total_actual_rides": 74190.0
+      },
+      "229": {
+        "mae": 19.791,
+        "rmse": 27.27,
+        "wape_pct": 15.45,
+        "r2": 0.8053,
+        "count": 714,
+        "total_actual_rides": 91442.0
+      },
+      "230": {
+        "mae": 27.541,
+        "rmse": 38.54,
+        "wape_pct": 15.17,
+        "r2": 0.799,
+        "count": 714,
+        "total_actual_rides": 129602.0
+      },
+      "231": {
+        "mae": 31.893,
+        "rmse": 42.975,
+        "wape_pct": 13.87,
+        "r2": 0.8694,
+        "count": 714,
+        "total_actual_rides": 164155.0
+      },
+      "232": {
+        "mae": 18.845,
+        "rmse": 27.142,
+        "wape_pct": 16.44,
+        "r2": 0.7594,
+        "count": 714,
+        "total_actual_rides": 81837.0
+      },
+      "233": {
+        "mae": 18.174,
+        "rmse": 25.317,
+        "wape_pct": 15.53,
+        "r2": 0.8301,
+        "count": 714,
+        "total_actual_rides": 83565.0
+      },
+      "234": {
+        "mae": 31.752,
+        "rmse": 45.544,
+        "wape_pct": 14.29,
+        "r2": 0.8647,
+        "count": 714,
+        "total_actual_rides": 158701.0
+      },
+      "235": {
+        "mae": 12.347,
+        "rmse": 16.032,
+        "wape_pct": 13.38,
+        "r2": 0.7627,
+        "count": 714,
+        "total_actual_rides": 65909.0
+      },
+      "236": {
+        "mae": 23.827,
+        "rmse": 37.132,
+        "wape_pct": 15.21,
+        "r2": 0.8407,
+        "count": 714,
+        "total_actual_rides": 111849.0
+      },
+      "237": {
+        "mae": 26.089,
+        "rmse": 39.093,
+        "wape_pct": 14.96,
+        "r2": 0.8654,
+        "count": 714,
+        "total_actual_rides": 124508.0
+      },
+      "238": {
+        "mae": 15.497,
+        "rmse": 21.858,
+        "wape_pct": 13.43,
+        "r2": 0.835,
+        "count": 714,
+        "total_actual_rides": 82362.0
+      },
+      "239": {
+        "mae": 19.818,
+        "rmse": 27.553,
+        "wape_pct": 14.53,
+        "r2": 0.8238,
+        "count": 714,
+        "total_actual_rides": 97397.0
+      },
+      "240": {
+        "mae": 3.879,
+        "rmse": 5.213,
+        "wape_pct": 28.75,
+        "r2": 0.4612,
+        "count": 714,
+        "total_actual_rides": 9633.0
+      },
+      "241": {
+        "mae": 10.583,
+        "rmse": 14.072,
+        "wape_pct": 13.07,
+        "r2": 0.7615,
+        "count": 714,
+        "total_actual_rides": 57826.0
+      },
+      "242": {
+        "mae": 12.091,
+        "rmse": 16.965,
+        "wape_pct": 14.28,
+        "r2": 0.8241,
+        "count": 714,
+        "total_actual_rides": 60462.0
+      },
+      "243": {
+        "mae": 15.323,
+        "rmse": 19.965,
+        "wape_pct": 13.71,
+        "r2": 0.754,
+        "count": 714,
+        "total_actual_rides": 79819.0
+      },
+      "244": {
+        "mae": 19.023,
+        "rmse": 25.546,
+        "wape_pct": 11.97,
+        "r2": 0.7821,
+        "count": 714,
+        "total_actual_rides": 113446.0
+      },
+      "245": {
+        "mae": 3.887,
+        "rmse": 4.941,
+        "wape_pct": 26.04,
+        "r2": 0.5448,
+        "count": 714,
+        "total_actual_rides": 10657.0
+      },
+      "246": {
+        "mae": 29.28,
+        "rmse": 40.189,
+        "wape_pct": 15.02,
+        "r2": 0.8594,
+        "count": 714,
+        "total_actual_rides": 139199.0
+      },
+      "247": {
+        "mae": 17.3,
+        "rmse": 27.94,
+        "wape_pct": 17.53,
+        "r2": 0.6546,
+        "count": 714,
+        "total_actual_rides": 70460.0
+      },
+      "248": {
+        "mae": 8.303,
+        "rmse": 10.552,
+        "wape_pct": 14.57,
+        "r2": 0.7389,
+        "count": 714,
+        "total_actual_rides": 40696.0
+      },
+      "249": {
+        "mae": 41.455,
+        "rmse": 63.138,
+        "wape_pct": 19.17,
+        "r2": 0.8236,
+        "count": 714,
+        "total_actual_rides": 154394.0
+      },
+      "250": {
+        "mae": 9.012,
+        "rmse": 11.719,
+        "wape_pct": 15.76,
+        "r2": 0.7426,
+        "count": 714,
+        "total_actual_rides": 40821.0
+      },
+      "251": {
+        "mae": 3.955,
+        "rmse": 5.093,
+        "wape_pct": 25.79,
+        "r2": 0.6118,
+        "count": 714,
+        "total_actual_rides": 10949.0
+      },
+      "252": {
+        "mae": 5.511,
+        "rmse": 7.332,
+        "wape_pct": 20.54,
+        "r2": 0.6902,
+        "count": 714,
+        "total_actual_rides": 19155.0
+      },
+      "253": {
+        "mae": 2.781,
+        "rmse": 7.106,
+        "wape_pct": 121.29,
+        "r2": -0.2774,
+        "count": 714,
+        "total_actual_rides": 1637.0
+      },
+      "254": {
+        "mae": 14.31,
+        "rmse": 18.969,
+        "wape_pct": 12.96,
+        "r2": 0.7897,
+        "count": 714,
+        "total_actual_rides": 78840.0
+      },
+      "255": {
+        "mae": 35.883,
+        "rmse": 51.742,
+        "wape_pct": 17.88,
+        "r2": 0.854,
+        "count": 714,
+        "total_actual_rides": 143281.0
+      },
+      "256": {
+        "mae": 30.568,
+        "rmse": 43.586,
+        "wape_pct": 17.16,
+        "r2": 0.8197,
+        "count": 714,
+        "total_actual_rides": 127167.0
+      },
+      "257": {
+        "mae": 6.386,
+        "rmse": 8.532,
+        "wape_pct": 20.3,
+        "r2": 0.7296,
+        "count": 714,
+        "total_actual_rides": 22463.0
+      },
+      "258": {
+        "mae": 9.833,
+        "rmse": 12.729,
+        "wape_pct": 13.98,
+        "r2": 0.7858,
+        "count": 714,
+        "total_actual_rides": 50235.0
+      },
+      "259": {
+        "mae": 9.863,
+        "rmse": 12.822,
+        "wape_pct": 14.21,
+        "r2": 0.7223,
+        "count": 714,
+        "total_actual_rides": 49551.0
+      },
+      "260": {
+        "mae": 12.185,
+        "rmse": 15.888,
+        "wape_pct": 14.19,
+        "r2": 0.6882,
+        "count": 714,
+        "total_actual_rides": 61317.0
+      },
+      "261": {
+        "mae": 11.022,
+        "rmse": 14.86,
+        "wape_pct": 15.31,
+        "r2": 0.8386,
+        "count": 714,
+        "total_actual_rides": 51395.0
+      },
+      "262": {
+        "mae": 11.786,
+        "rmse": 17.202,
+        "wape_pct": 14.28,
+        "r2": 0.853,
+        "count": 714,
+        "total_actual_rides": 58932.0
+      },
+      "263": {
+        "mae": 15.754,
+        "rmse": 21.997,
+        "wape_pct": 13.92,
+        "r2": 0.7999,
+        "count": 714,
+        "total_actual_rides": 80793.0
+      },
+      "264": {
+        "mae": 1.138,
+        "rmse": 2.361,
+        "wape_pct": 1194.46,
+        "r2": -0.2818,
+        "count": 714,
+        "total_actual_rides": 68.0
+      },
+      "265": {
+        "mae": 1.804,
+        "rmse": 6.178,
+        "wape_pct": 98.53,
+        "r2": -0.4687,
+        "count": 714,
+        "total_actual_rides": 1307.0
+      }
+    }
+  }
+}

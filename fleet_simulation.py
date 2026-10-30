@@ -500,12 +500,24 @@ def rng_choice_weighted_uniform(n: int) -> int:
 # ---------------------------------------------------------------------------
 
 
-def compute_allocation_recommendations(state: SimulationState) -> Dict[str, any]:
+def compute_allocation_recommendations(
+    state: SimulationState,
+    predicted_rides: Optional[Dict[int, float]] = None,
+) -> Dict[str, any]:
     """
     Compute deterministic cab allocation recommendations.
 
     Identifies zones with predicted shortages and surplus idle cabs,
     and recommends movements from donor to shortage zones.
+
+    Demand resolution order:
+      1. `predicted_rides` argument, when supplied (forecast-driven callers).
+      2. `state["predicted_rides"]`, when present (historical hourly averages).
+      3. `_predict_demand_for_interval()` recomputed on the fly.
+
+    Supplying `predicted_rides` only overrides the demand input. The allocation
+    mathematics (fleet conservation, donor selection, shortage/surplus rules,
+    movement cap) is identical for forecast and historical demand.
 
     Returns a dict with:
     - per-zone metrics (predicted_rides, idle_cabs, estimated_cabs_required, surplus, shortage_estimate)
@@ -513,10 +525,13 @@ def compute_allocation_recommendations(state: SimulationState) -> Dict[str, any]
     - unmet_demand_estimate (total unmet rides, affected zones)
     """
     prediction_interval_hrs = SIMULATION_INTERVAL_HOURS
-    if "predicted_rides" in state and state["predicted_rides"] is not None:
-        predicted_rides = state["predicted_rides"]
+    if predicted_rides is not None:
+        # Caller-supplied demand (validated upstream). Never mutated here.
+        zone_demand = predicted_rides
+    elif "predicted_rides" in state and state["predicted_rides"] is not None:
+        zone_demand = state["predicted_rides"]
     else:
-        predicted_rides = _predict_demand_for_interval(
+        zone_demand = _predict_demand_for_interval(
             state, prediction_interval_hrs
         )
 
@@ -526,7 +541,7 @@ def compute_allocation_recommendations(state: SimulationState) -> Dict[str, any]
     capacity_per_cab = _capacity_per_cab_per_interval()
 
     for zid in zones:
-        predicted = predicted_rides.get(zid, 0)
+        predicted = zone_demand.get(zid, 0)
         idle = state["idle_cabs"].get(zid, 0)
         busy = state["busy_cabs"].get(zid, 0)
         reposition = state["repositioning_cabs"].get(zid, 0)

@@ -8,3 +8,4 @@ venv/
 .pytest_cache/
 frontend/dist/
 dist/
+forecasting/artifacts/layer2_cache/

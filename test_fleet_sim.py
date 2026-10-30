@@ -1,5 +1,9 @@
 import sys
-sys.path.insert(0, r'C:\Ride Demand Forecasting')
+from pathlib import Path
+
+# Import the fleet_simulation module that lives beside this script so the
+# check always runs against the current working tree, not a sibling checkout.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fleet_simulation import _make_initial_state
 

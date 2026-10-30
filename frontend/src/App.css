@@ -592,7 +592,7 @@
 .range-chip {
     background: #edf6f7;
     color: #4d6d7d;
-    border: 1x solid #d6e7eb;
+    border: 1px solid #d6e7eb;
 }
 
 .heading-chips {
@@ -821,7 +821,7 @@
     display: grid;
     grid-template-columns: 1.55fr 1fr;
     gap: 14px;
-    margin-top: 14px;
+    margin-top: 10px;
 }
 
 .panel {
@@ -1350,4 +1350,211 @@
     padding: 40px 20px;
     color: var(--muted);
     font-size: 12px;
+}
+
+/* Multi-Horizon Forecasting Additions */
+.horizon-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 10px;
+    align-items: start;
+}
+
+@media (max-width: 800px) {
+    .horizon-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.horizon-card {
+    background: #fbfdfd;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    height: auto;
+    min-height: auto;
+    transition: transform .15s ease, border-color .15s ease;
+}
+
+.horizon-card .meta-item {
+    flex: 0 0 auto;
+    min-height: auto;
+    padding: 6px 10px;
+    margin-top: 2px;
+}
+
+.horizon-card.active-horizon {
+    border-color: var(--cab);
+    background: #fffdf8;
+    box-shadow: 0 4px 14px rgba(246, 190, 26, 0.15);
+}
+
+.horizon-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.horizon-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #eef5f8;
+    color: var(--navy);
+}
+
+.horizon-card.active-horizon .horizon-badge {
+    background: var(--cab-soft);
+    color: #8c6500;
+}
+
+.horizon-predicted {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.1;
+    margin: 2px 0 0;
+}
+
+.horizon-predicted span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.horizon-bounds {
+    font-size: 11px;
+    color: #27797b;
+    background: #e8f6f5;
+    padding: 4px 8px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.forecast-chart-container {
+    margin-top: 16px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    min-height: auto;
+}
+
+.forecast-table-container {
+    margin-top: 16px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+    min-height: auto;
+}
+
+/* Compact Content-Driven Metric Cards */
+.compact-metric-card {
+    background: var(--panel);
+    border: 1px solid #e1eaed;
+    border-radius: 11px;
+    box-shadow: var(--shadow);
+    padding: 12px 14px;
+    min-height: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.compact-metric-card .eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.compact-metric-card .metric-val {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    margin: 5px 0 2px;
+}
+
+.compact-metric-card .metric-desc {
+    margin: 0;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.3;
+}
+
+/* Integrated Table Card & Filters */
+.integrated-table-card {
+    background: var(--panel);
+    border: 1px solid #e1eaed;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+    min-height: auto;
+    height: auto;
+}
+
+.filter-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+}
+
+.forecast-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.forecast-table th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #f6f9fa;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+}
+
+.forecast-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f0f4f6;
+    color: var(--ink);
+}
+
+.forecast-table tr:hover td {
+    background: #fbfdfd;
+}
+
+.disclaimer-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #fdf8e6;
+    border: 1px solid #fae8a7;
+    border-radius: 8px;
+    color: #835c00;
+    font-size: 11px;
+    margin-top: 10px;
 }
