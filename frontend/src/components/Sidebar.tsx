@@ -44,7 +44,7 @@ function Sidebar({ mobileNavOpen, onClose }: SidebarProps) {
           >
             <Icon size={17} />
             <span>{label}</span>
-            {label === 'Forecast' && <span className="nav-badge">Live</span>}
+            
             <TaxiIcon size={16} className="nav-taxi" />
           </NavLink>
         ))}

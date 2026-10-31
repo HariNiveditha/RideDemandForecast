@@ -309,7 +309,12 @@ def test_forecast_recommendations_do_not_mutate_state(client):
     second_source = dict(second_payload.pop("demand_source"))
     first_clock = first_source.pop("system_time")
     second_clock = second_source.pop("system_time")
+    first_note = first_source.pop("freshness_note")
+    second_note = second_source.pop("freshness_note")
 
+    assert first_clock in first_note
+    assert second_clock in second_note
+    assert first_note.replace(first_clock, "") == second_note.replace(second_clock, "")
     assert first_source == second_source, "demand/freshness metadata disagreed beyond system_time"
     assert first_payload == second_payload, "repeated identical requests disagreed"
 

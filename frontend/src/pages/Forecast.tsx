@@ -344,7 +344,7 @@ function Forecast() {
                     <span className="horizon-badge">
                       HORIZON: +{f.horizon_minutes / 60}H ({f.horizon_minutes} MIN)
                     </span>
-                    <span className="eyebrow">{f.model_version}</span>
+                    <span className="eyebrow">Multi-Horizon Forecast</span>
                   </div>
 
                   <strong className="horizon-predicted" style={{ margin: '4px 0 2px' }}>
@@ -515,7 +515,7 @@ function Forecast() {
                     <td>{f.upper_bound != null ? `${f.upper_bound.toFixed(1)} rides` : '—'}</td>
                     <td>
                       <code style={{ fontSize: 11, background: '#f0f4f6', padding: '2px 5px', borderRadius: 4 }}>
-                        {f.model_version}
+                        Multi-Horizon Forecast
                       </code>
                     </td>
                   </tr>

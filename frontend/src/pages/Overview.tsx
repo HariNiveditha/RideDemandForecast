@@ -134,7 +134,7 @@ function Overview() {
       {hero}
 
       <SectionHeading eyebrow="CURRENT SNAPSHOT" title="Demand at a glance">
-        <span className="muted-pill">Live dataset</span>
+        <span className="muted-pill">Historical dataset</span>
       </SectionHeading>
 
       <section className="kpi-grid">
